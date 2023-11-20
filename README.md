@@ -23,7 +23,13 @@
 
 ## Study resources
 ### Links
-- 
+- [Repo -> Swoorup](https://github.com/Swoorup/mysh)
+- [Book -> Writing Your Own Shell](https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf) -> *Please make sure to do a `lexer` -> `parser` -> `expander` -> `executor` to make your life easier.*
+- [Article -> Shell Syntax](https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html)
+- [Article -> Building a mini-bash](https://m4nnb3ll.medium.com/minishell-building-a-mini-bash-a-42-project-b55a10598218)
+- [Article -> Shell Scripting Tutorial](https://www.shellscript.sh/)
+
+
 [↑ Index ↑](#top)
 
  <!-- ## Workflow
