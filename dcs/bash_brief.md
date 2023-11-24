@@ -143,4 +143,11 @@ Uma palavra é uma sequência de caracteres que o shell trata como um nome de co
 ### Citação
 A citação é usada para remover o significado especial de certos caracteres ou palavras-chave para o shell. Existem três tipos de citação: 'aspas simples', "aspas duplas" e barra invertida \\.
 
+### Comandos Shell
+Um comando shell simples como `echo a b c` consiste no próprio comando seguido de argumentos, separados por espaços.\
+Comandos shell mais complexos são compostos de comandos simples organizados juntos de diversas maneiras: em um pipeline no qual a saída de um comando se torna a entrada de um segundo, em um loop ou construção condicional ou em algum outro agrupamento.
+
+### Expansões do Shell
+
+
 >Leitura Manual bash em...: 3.1.2.5 Quoting
