@@ -147,7 +147,48 @@ A citação é usada para remover o significado especial de certos caracteres ou
 Um comando shell simples como `echo a b c` consiste no próprio comando seguido de argumentos, separados por espaços.\
 Comandos shell mais complexos são compostos de comandos simples organizados juntos de diversas maneiras: em um pipeline no qual a saída de um comando se torna a entrada de um segundo, em um loop ou construção condicional ou em algum outro agrupamento.
 
-### Expansões do Shell
+### Redirecionamento
+O redirecionamento é uma forma de alterar a entrada e/ou saída padrão de um comando. O redirecionamento é aplicado a um comando após a expansão de variáveis, mas antes da execução do comando. O redirecionamento é indicado por um operador de redirecionamento seguido por um nome de arquivo.\
+Os redirecionamentos são processados ​​na ordem em que aparecem, da esquerda para a direita.
+* **Redirecionamento de entrada**: `comando [n]< arquivo`
+O redirecionamento de entrada faz com que o arquivo seja aberto para leitura no descritor de arquivo `n`, ou na entrada padrão (descritor de arquivo 0) caso nnão seja especificado.
+* **Redirecionando Saída**: `comando > arquivo`
+O operador de redirecionamento de saída > no Bash é usado para redirecionar a saída de um comando para um arquivo. Ele permite que você armazene o resultado da execução de um comando em um arquivo, sobrescrevendo o conteúdo existente ou criando um novo arquivo, dependendo da situação.
+`echo 'Olá, Mundo!' > saudacao.txt`
+*echo 'Olá, Mundo!' é redirecionada para o arquivo saudacao.txt.*
 
+No caso da string com aspas duplas ao incluir o ponto de exclamação ! no final da string "Olá, Mundo!", o Bash interpreta isso como uma tentativa de buscar e executar um comando no histórico que começa com a string "Olá, Mundo!". Como o Bash não encontra tal comando no histórico, ele exibe o prompt dquote>, indicando que está esperando que você forneça o restante do comando.
 
->Leitura Manual bash em...: 3.1.2.5 Quoting
+Para evitar esse comportamento, você pode escapar o caractere de ponto de exclamação usando uma barra invertida \:
+`echo "Olá, Mundo\!" > saudacao.txt`
+
+* **Redirecionamento de saída** `>>` 
+No Bash é utilizado para redirecionar a saída de um comando para um arquivo, mas, ao contrário de `>`, ele não substitui o conteúdo existente do arquivo. Em vez disso, `>>` anexa a saída ao final do arquivo, preservando o conteúdo anterior.
+
+A sintaxe básica é a seguinte:
+
+```bash
+comando >> arquivo
+```
+
+Isso significa que a saída do comando será adicionada ao final do arquivo especificado. Se o arquivo não existir, ele será criado.
+
+Exemplo:
+
+```bash
+echo "Primeira linha" > arquivo.txt
+echo "Segunda linha" >> arquivo.txt
+```
+
+Após esses comandos, o arquivo `arquivo.txt` terá o seguinte conteúdo:
+
+```
+Primeira linha
+Segunda linha
+```
+
+O primeiro `echo` usa `>` para criar e escrever a "Primeira linha" no arquivo, enquanto o segundo `echo` usa `>>` para anexar a "Segunda linha" ao final do arquivo existente.
+
+Essa é uma maneira útil de acumular dados em um arquivo sem perder o conteúdo anterior.
+
+>Leitura Manual bash em...: 3.6.6 Aqui Documentos

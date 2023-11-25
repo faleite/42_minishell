@@ -26,10 +26,15 @@ caminho relativo ou absoluto).
 * Lidar **"** (aspas duplas) que deve evitar que o shell interprete os metacaracteres na sequência citada, exceto **$** (cifrão).
 
 ### **Implementar redirecionamentos:**
-  * **<** deve redirecionar a entrada. refere-se à entrada padrão (descritor de arquivo 0)
-  * **\>** deve redirecionar a saída. refere-se à saída padrão (descritor de arquivo 1)
-  * **<<** deve receber um delimitador e, em seguida, leia a entrada até que uma linha contendo o delimitador seja vista. No entanto, não é necessário atualizar o histórico!
-  * **\>>** deve redirecionar a saída no modo de acréscimo.
+* **<** deve redirecionar a entrada. 
+  * O redirecionamento de entrada faz com que o arquivo cujo nome resulta da expansão do `word` seja aberto para leitura no descritor de arquivo `n`, ou na entrada padrão (descritor de arquivo 0) caso nnão seja especificado. Ex. `[n]< word`
+* **\>** deve redirecionar a saída. refere-se à saída padrão (descritor de arquivo 1)
+  * O operador de redirecionamento de saída > no Bash é usado para redirecionar a saída de um comando para um arquivo. Ele permite que você armazene o resultado da execução de um comando em um arquivo, sobrescrevendo o conteúdo existente ou criando um novo arquivo, dependendo da situação.\
+`echo 'Olá, Mundo!' > saudacao.txt`\
+*echo 'Olá, Mundo!' é redirecionada para o arquivo saudacao.txt*
+* **<<** deve receber um delimitador e, em seguida, leia a entrada até que uma linha contendo o delimitador seja vista. No entanto, não é necessário atualizar o histórico!
+* **\>>** deve redirecionar a saída no modo de acréscimo.
+  * O operador de redirecionamento de saída >> no Bash é utilizado para redirecionar a saída de um comando para um arquivo, mas, ao contrário de >, ele não substitui o conteúdo existente do arquivo. Em vez disso, >> anexa a saída ao final do arquivo, preservando o conteúdo anterior.
 * Implementar **pipes** (**|** caractere). A saída de cada comando no pipeline é conectada à entrada do próximo comando por meio de um pipe.
 * Lidar com **variáveis de ambiente** (**$** seguidas por uma sequência de caracteres) que devem se expandir para seus valores.
 
