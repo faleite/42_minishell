@@ -33,6 +33,14 @@ caminho relativo ou absoluto).
 `echo 'Olá, Mundo!' > saudacao.txt`\
 *echo 'Olá, Mundo!' é redirecionada para o arquivo saudacao.txt*
 * **<<** deve receber um delimitador e, em seguida, leia a entrada até que uma linha contendo o delimitador seja vista. No entanto, não é necessário atualizar o histórico!
+  * Os here documents (<<) no shell Bash são usados para fornecer entrada para um comando a partir de um bloco de texto diretamente no script ou na linha de comando. Eles são especialmente úteis quando você deseja passar várias linhas de entrada para um comando sem ter que criar um arquivo temporário.\
+A sintaxe básica é a seguinte:
+```bash
+comando << DELIMITADOR
+Texto da entrada
+Mais linhas de entrada
+DELIMITADOR
+```
 * **\>>** deve redirecionar a saída no modo de acréscimo.
   * O operador de redirecionamento de saída >> no Bash é utilizado para redirecionar a saída de um comando para um arquivo, mas, ao contrário de >, ele não substitui o conteúdo existente do arquivo. Em vez disso, >> anexa a saída ao final do arquivo, preservando o conteúdo anterior.
 * Implementar **pipes** (**|** caractere). A saída de cada comando no pipeline é conectada à entrada do próximo comando por meio de um pipe.
