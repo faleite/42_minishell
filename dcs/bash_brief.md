@@ -277,6 +277,44 @@ Quando o Bash invoca um comando externo, a variável `$_` é definido como o cam
 
 ## [Signals](https://www-gnu-org.translate.goog/software/bash/manual/bash.html?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp#Signals)
 
->Leitura Manual bash em.: [4 Comandos internos do Shell](https://www-gnu-org.translate.goog/software/bash/manual/bash.html?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp#Shell-Builtin-Commands)\
-[Manual](https://www.gnu.org/software/bash/manual/bash.html#Shell-Builtin-Commands)
+## Comandos builtins do Bash
 
+### Comando `cd` (change directory)
+É usado para mudar o diretório atual no terminal. Quando usado sem nenhuma opção de flag ou argumento, ele muda para o diretório home do usuário atual.
+
+Existem dois tipos de caminhos que você pode usar com `cd`: relativo e absoluto.
+
+1. Caminho Absoluto: Um caminho absoluto é a localização exata do diretório ou arquivo no sistema de arquivos, começando pela raiz (root). Por exemplo, `/home/user/Documents` é um caminho absoluto.
+
+2. Caminho Relativo: Um caminho relativo é a localização de um diretório ou arquivo em relação ao diretório atual. Por exemplo, se você estiver no diretório `/home/user`, você pode mudar para o diretório Documents com `cd Documents`, que é um caminho relativo.
+
+Aqui estão alguns exemplos de como usar `cd`:
+
+- Mudar para o diretório home do usuário: `cd`
+- Mudar para um diretório relativo: `cd Documents`
+- Mudar para um diretório absoluto: `cd /home/user/Documents`
+- Mudar para o diretório pai: `cd ..`
+- Mudar para o diretório anterior: `cd -`
+
+### Comando `exit`
+O comando `exit` no Bash é usado para terminar uma sessão de terminal. Ele fecha a shell atual. Se você estiver em uma sessão de terminal interativa, o terminal será fechado. Se você estiver em um script de shell, a execução do script será encerrada.
+
+Você também pode fornecer um código de status opcional com `exit` para indicar se o script terminou com sucesso ou se houve algum erro. Por exemplo, `exit 0` indica um término bem-sucedido, enquanto `exit 1` geralmente indica que ocorreu algum erro.
+
+### Comando `export`
+A função `export` no Bash é usada para definir variáveis de ambiente. As variáveis de ambiente são um tipo especial de variável que está disponível para processos filhos de um processo. 
+
+Quando você usa `export` sem flags, você está definindo uma variável de ambiente que será passada para todos os processos filhos do shell atual. 
+
+Por exemplo, se você quiser definir uma variável de ambiente chamada `TEST` e dar a ela o valor `Hello World`, você usaria o seguinte comando:
+
+```bash
+export TEST="Hello World"
+```
+
+Depois de definir uma variável de ambiente, você pode acessá-la em qualquer lugar do seu script usando `$TEST`. 
+
+Se você quiser ver todas as variáveis de ambiente atualmente definidas, você pode usar o comando `env` sem opções ou argumentos.
+
+>Leitura Manual bash em.: [4 Comandos internos do Shell - echo](https://www-gnu-org.translate.goog/software/bash/manual/bash.html?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp#index-echo)\
+[Manual](https://www.gnu.org/software/bash/manual/bash.html#Shell-Builtin-Commands)
