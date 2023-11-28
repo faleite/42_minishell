@@ -316,5 +316,17 @@ Depois de definir uma variável de ambiente, você pode acessá-la em qualquer l
 
 Se você quiser ver todas as variáveis de ambiente atualmente definidas, você pode usar o comando `env` sem opções ou argumentos.
 
+### Special Builtins
+Por razões históricas, o padrão POSIX classificou vários comandos internos como especiais . Quando o Bash está sendo executado no modo POSIX , os comandos internos especiais diferem de outros comandos internos em três aspectos:
+
+1. Recursos internos especiais são encontrados antes das funções do shell durante a pesquisa de comandos.
+2. Se um built-in especial retornar um status de erro, um shell não interativo será encerrado.
+3. As instruções de atribuição que precedem o comando permanecem em vigor no ambiente shell após a conclusão do comando.
+
+Quando o Bash não está sendo executado no modo POSIX , esses componentes internos não se comportam de maneira diferente do restante dos comandos internos do Bash. O modo Bash POSIX é descrito em Modo Bash POSIX .
+
+Estes são os recursos especiais do POSIX :
+`break : . continue eval exec exit export readonly return set shift trap unset`
+
 >Leitura Manual bash em.: [4 Comandos internos do Shell - echo](https://www-gnu-org.translate.goog/software/bash/manual/bash.html?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp#index-echo)\
 [Manual](https://www.gnu.org/software/bash/manual/bash.html#Shell-Builtin-Commands)

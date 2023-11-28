@@ -61,6 +61,12 @@ Deve se expandir para o status de saída do pipeline em primeiro plano executado
 ### Comandos integrados/simples (builtins)
 #### Seu shell deve implementar os seguintes builtins:
 1. `echo` com opção `-n`: *Exibe mensagens na tela.*
+    - O comando `echo` no Bash é usado para imprimir argumantos ou variáveis de ambiente na tela, separados por um espaço, terminando com uma nova linha.
+    - A opção `-n`  é usada para suprimir a adição de uma nova linha ao final da saída.
+    ```Bash
+    bash-3.2$ echo -n "Olá " && echo "Mundo"
+    Olá Mundo
+    ```
 2. `cd` com apenas um caminho relativo ou absoluto: *Muda o diretório atual.*
     1. Caminho Absoluto: Um caminho absoluto é a localização exata do diretório ou arquivo no sistema de arquivos, começando pela raiz (root). Por exemplo, `/home/user/Documents` é um caminho absoluto.
     2. Caminho Relativo: Um caminho relativo é a localização de um diretório ou arquivo em relação ao diretório atual. Por exemplo, se você estiver no diretório `/home/user`, você pode mudar para o diretório Documents com `cd Documents`, que é um caminho relativo.
@@ -74,12 +80,6 @@ Deve se expandir para o status de saída do pipeline em primeiro plano executado
 6. `env` sem opções ou argumentos: *Mostra as variáveis de ambiente.*
 7. `exit` sem opções: *Sai do shell.*
     - O comando `exit` no Bash é usado para terminar uma sessão de terminal. Ele fecha a shell atual. Se você estiver em uma sessão de terminal interativa, o terminal será fechado. Se o terminal estiver sendo executado como um processo filho (subshell), o processo filho será encerrado e o terminal pai permanecerá aberto.
-
-*A opção `-n` no comando `echo` no Bash é usada para suprimir a adição de uma nova linha ao final da saída. Quando você usa `echo -n`, a próxima linha de saída ou texto será impressa na mesma linha, sem quebra de linha automática no final. Isso pode ser útil em scripts ou em situações em que você deseja controlar explicitamente a formatação da saída.*
-```Bash
-bash-3.2$ echo -n "Olá " && echo "Mundo"
-Olá Mundo
-```
 ---
   *A função **readline()** pode causar vazamentos de memória. Você não precisa consertá-los. Mas isso **não significa que seu próprio código, sim, o código que você escreveu, pode ter memmory leaks**.*
 
