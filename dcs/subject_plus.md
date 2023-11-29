@@ -9,6 +9,67 @@ External functs.| readline, rl_clear_history, rl_on_new_line, rl_replace_line, r
 Libft authorized | Yes
 Description  | Write a shell
 
+### Funcoes extarnas:
+<details>
+  <summary>Click to expand </summary>
+  
+Funcoes externas | Header | Brief
+------- | ------ | -----
+**readline** | `<readline/readline.h>`
+**rl_clear_history** | `<readline/readline.h>`
+**rl_on_new_line** | `<readline/readline.h>`
+**rl_replace_line** | `<readline/readline.h>`
+**rl_redisplay** | `<readline/readline.h>`
+**add_history** | `<readline/history.h>`
+**printf** | `<stdio.h>`
+**malloc** | `<stdlib.h>`
+**free** | `<stdlib.h>`
+**write** | `<unistd.h>`
+**access** | `<unistd.h>`
+**open** | `<fcntl.h>`
+**read** | `<unistd.h>`
+**close** | `<unistd.h>`
+**fork** | `<unistd.h>`
+**wait** | `<sys/wait.h>`
+**waitpid** | `<sys/wait.h>`
+**wait3** | `<sys/wait.h>`
+**wait4** | `<sys/wait.h>`
+**signal** | `<signal.h>`
+**sigaction** | `<signal.h>`
+**sigemptyset** | `<signal.h>`
+**sigaddset** | `<signal.h>`
+**kill** | `<signal.h>`
+**exit** | `<stdlib.h>`
+**getcwd** | `<unistd.h>`
+**chdir** | `<unistd.h>`
+**stat** | `<sys/stat.h>`
+**lstat** | `<sys/stat.h>`
+**fstat** | `<sys/stat.h>`
+**unlink** | `<unistd.h>`
+**execve** | `<unistd.h>`
+**dup** | `<unistd.h>`
+**dup2** | `<unistd.h>`
+**pipe** | `<unistd.h>`
+**opendir** | `<dirent.h>`
+**readdir** | `<dirent.h>`
+**closedir** | `<dirent.h>`
+**strerror** | `<string.h>`
+**perror** | `<string.h>`
+**isatty** | `<unistd.h>`
+**ttyname** | `<unistd.h>`
+**ttyslot** | `<unistd.h>`
+**ioctl** | `<ioctl.h>`
+**getenv** | `<stdlib.h>`
+**tcsetattr** | `<termios.h>`
+**tcgetattr** | `<termios.h>`
+**tgetent** | `<term.h>`
+**tgetflag** | `<term.h>`
+**tgetnum** | `<term.h>`
+**tgetstr** | `<term.h>`
+**tgoto** | `<term.h>`
+**tputs** | `<term.h>`
+</details>
+
 ## Seu shell deve:
 ### Modo interativo
 * Exibir um **prompt** ao aguardar um novo comando.
@@ -41,7 +102,7 @@ Texto da entrada
 Mais linhas de entrada
 DELIMITADOR
 ```
-* **\>>** deve redirecionar a saída no modo de acréscimo.
+* **\>>** deve redirecionar a saída no modo de acréscimo.definir valor da variável 
   * O operador de redirecionamento de saída >> no Bash é utilizado para redirecionar a saída de um comando para um arquivo, mas, ao contrário de >, ele não substitui o conteúdo existente do arquivo. Em vez disso, >> anexa a saída ao final do arquivo, preservando o conteúdo anterior.
 * Implementar **pipes** (**|** caractere). A saída de cada comando no pipeline é conectada à entrada do próximo comando por meio de um pipe.
 * Lidar com **variáveis de ambiente** (**$** seguidas por uma sequência de caracteres) que devem se expandir para seus valores.

@@ -1,4 +1,4 @@
-# Resumo manual do Bash
+# [Resumo manual do Bash](https://www.gnu.org/software/bash/manual/bash.html)
 >*Bourne-Again SHell*
 
 ## Forma interativa e não interativa
@@ -308,7 +308,8 @@ Quando você usa `export` sem flags, você está definindo uma variável de ambi
 
 Por exemplo, se você quiser definir uma variável de ambiente chamada `TEST` e dar a ela o valor `Hello World`, você usaria o seguinte comando:
 
-```bash
+```bash    F===G===H
+
 export TEST="Hello World"
 ```
 
@@ -330,6 +331,3 @@ Estes são os recursos especiais do POSIX :
 
 ### Interação Readline
 Muitas vezes, durante uma sessão interativa, você digita uma longa linha de texto, apenas para perceber que a primeira palavra da linha está escrita incorretamente. A biblioteca Readline oferece um conjunto de comandos para manipular o texto conforme você o digita, permitindo apenas corrigir o erro de digitação e não forçando você a redigitar a maior parte da linha. Utilizando esses comandos de edição, você move o cursor até o local que precisa de correção e apaga ou insere o texto das correções. Então, quando estiver satisfeito com a linha, basta pressionar RET . Você não precisa estar no final da linha para pressionar RET ; a linha inteira é aceita independentemente da localização do cursor dentro da linha.
-
->Leitura Manual bash em.: [8.2.3 Comandos readline](https://www-gnu-org.translate.goog/software/bash/manual/bash.html?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp#index-echo)\
-[Manual](https://www.gnu.org/software/bash/manual/bash.html#Shell-Builtin-Commands)
