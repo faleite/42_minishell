@@ -1,5 +1,20 @@
 # NOTES
 
+## Writing Your Own Shell
+
+**A  implementação  do  shell  é  dividida  em  três  partes:**
+1. **Parser**
+  - O Parser é o componente de software que lê a linha de comando como “ls al” e a coloca em uma estrutura de dados chamada **Command Table** que irá armazenar os comandos que serão executados.
+2. **Executor**
+  - O executor pegará a tabela de comandos gerada pelo **parser** e para cada **SimpleCommand** no array criará um novo processo. Também criará, se necessário, pipes para comunicar a saída de um processo à entrada do próximo. Além disso, ele redirecionará a entrada padrão, a saída padrão e o erro padrão se houver algum redirecionamento.
+3. **Shell Subsystems**
+*Outros subsistemas que completam seu shell são:*
+  - Variáveis de ambiente: Expressões no formato ${VAR} são expandidas com a variável de ambiente correspondente. Além disso, o shell deve ser capaz de definir, expandir e imprimir vars de ambiente.
+  - Wildcards: Argumentos no formato a*a são expandidos para todos os arquivos que correspondem a eles no diretório local e em vários diretórios.
+  - Subshells: Argumentos entre `` (crases) são executados e a saída é enviada como entrada para o shell.
+
+>leitura cap pag. 4
+
 ## Word Keys
 - **Lexical analysis**: O processo de dividir um fluxo de texto em palavras, frases, símbolos ou outros elementos significativos chamados tokens.
 - **Tokens**: Um token é uma sequência de caracteres que pode ser tratada como uma unidade em um programa de computador. Por exemplo, um programa de computador pode tratar as palavras em uma instrução de comando como tokens.
