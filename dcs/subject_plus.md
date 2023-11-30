@@ -9,65 +9,65 @@ External functs.| readline, rl_clear_history, rl_on_new_line, rl_replace_line, r
 Libft authorized | Yes
 Description  | Write a shell
 
-### Funcoes extarnas:
+### Funcoes externas:
 <details>
   <summary>Click to expand </summary>
   
 Funcoes externas | Header | Brief
 ------- | ------ | -----
-**readline** | `<readline/readline.h>`
-**rl_clear_history** | `<readline/readline.h>`
-**rl_on_new_line** | `<readline/readline.h>`
-**rl_replace_line** | `<readline/readline.h>`
-**rl_redisplay** | `<readline/readline.h>`
-**add_history** | `<readline/history.h>`
-**printf** | `<stdio.h>`
-**malloc** | `<stdlib.h>`
-**free** | `<stdlib.h>`
-**write** | `<unistd.h>`
-**access** | `<unistd.h>`
-**open** | `<fcntl.h>`
-**read** | `<unistd.h>`
-**close** | `<unistd.h>`
-**fork** | `<unistd.h>`
-**wait** | `<sys/wait.h>`
-**waitpid** | `<sys/wait.h>`
-**wait3** | `<sys/wait.h>`
-**wait4** | `<sys/wait.h>`
-**signal** | `<signal.h>`
-**sigaction** | `<signal.h>`
-**sigemptyset** | `<signal.h>`
-**sigaddset** | `<signal.h>`
-**kill** | `<signal.h>`
-**exit** | `<stdlib.h>`
-**getcwd** | `<unistd.h>`
-**chdir** | `<unistd.h>`
-**stat** | `<sys/stat.h>`
-**lstat** | `<sys/stat.h>`
-**fstat** | `<sys/stat.h>`
-**unlink** | `<unistd.h>`
-**execve** | `<unistd.h>`
-**dup** | `<unistd.h>`
-**dup2** | `<unistd.h>`
-**pipe** | `<unistd.h>`
-**opendir** | `<dirent.h>`
-**readdir** | `<dirent.h>`
-**closedir** | `<dirent.h>`
-**strerror** | `<string.h>`
-**perror** | `<string.h>`
-**isatty** | `<unistd.h>`
-**ttyname** | `<unistd.h>`
-**ttyslot** | `<unistd.h>`
-**ioctl** | `<ioctl.h>`
-**getenv** | `<stdlib.h>`
-**tcsetattr** | `<termios.h>`
-**tcgetattr** | `<termios.h>`
-**tgetent** | `<term.h>`
-**tgetflag** | `<term.h>`
-**tgetnum** | `<term.h>`
-**tgetstr** | `<term.h>`
-**tgoto** | `<term.h>`
-**tputs** | `<term.h>`
+**readline** | `<readline/readline.h>` | Fornece facilidades para leitura de linhas de texto de entrada.
+**rl_clear_history** | `<readline/readline.h>` | Limpa o histórico de comandos no readline.
+**rl_on_new_line** | `<readline/readline.h>` |  Informa ao readline que a próxima leitura deve começar em uma nova linha.
+**rl_replace_line** | `<readline/readline.h>` | Substitui a linha de entrada atual no readline.
+**rl_redisplay** | `<readline/readline.h>` | Redesenha a linha de entrada no readline.
+**add_history** | `<readline/history.h>` | Adiciona uma linha ao histórico do readline.
+**printf** | `<stdio.h>` | Imprime texto formatado no console.
+**malloc** | `<stdlib.h>` | Aloca memória dinamicamente.
+**free** | `<stdlib.h>` | Libera a memória alocada dinamicamente.
+**write** | `<unistd.h>` | Escreve dados em um descritor de arquivo.
+**access** | `<unistd.h>` | Verifica a existência e permissões de arquivos.
+**open** | `<fcntl.h>` | Abre ou cria um arquivo.
+**read** | `<unistd.h>` | Lê dados de um descritor de arquivo.
+**close** | `<unistd.h>` | Fecha um descritor de arquivo.
+**fork** | `<unistd.h>` | Cria um novo processo (fork).
+**wait** | `<sys/wait.h>` | Aguardam o término de um processo filho.
+**waitpid** | `<sys/wait.h>` | Aguardam o término de um processo filho.
+**wait3** | `<sys/wait.h>` | Aguardam o término de um processo filho.
+**wait4** | `<sys/wait.h>` | Aguardam o término de um processo filho.
+**signal** | `<signal.h>` | Manipulam sinais.
+**sigaction** | `<signal.h>` | Manipulam sinais.
+**sigemptyset** | `<signal.h>` | Manipulam sinais.
+**sigaddset** | `<signal.h>` | Manipulam sinais.
+**kill** | `<signal.h>` | Envia um sinal para um processo.
+**exit** | `<stdlib.h>` | Encerra o processo 
+**getcwd** | `<unistd.h>` | Obtém o diretório de trabalho atual. 
+**chdir** | `<unistd.h>` | Muda o diretório de trabalho. 
+**stat** | `<sys/stat.h>` | Obtêm informações sobre arquivos.
+**lstat** | `<sys/stat.h>` | Obtêm informações sobre arquivos.
+**fstat** | `<sys/stat.h>` | Obtêm informações sobre arquivos.
+**unlink** | `<unistd.h>` | Remove um arquivo.
+**execve** | `<unistd.h>` | Executa um programa. 
+**dup** | `<unistd.h>` | Duplicam descritores de arquivo.
+**dup2** | `<unistd.h>` | Duplicam descritores de arquivo.
+**pipe** | `<unistd.h>` | Cria um pipe.
+**opendir** | `<dirent.h>` | Manipulam diretórios.
+**readdir** | `<dirent.h>` | Manipulam diretórios.
+**closedir** | `<dirent.h>` | Manipulam diretórios.
+**strerror** | `<string.h>` | Convertem códigos de erro em mensagens de erro.
+**perror** | `<string.h>` | Convertem códigos de erro em mensagens de erro.
+**isatty** | `<unistd.h>` | Manipulam informações do terminal. 
+**ttyname** | `<unistd.h>` | Manipulam informações do terminal. 
+**ttyslot** | `<unistd.h>` | Manipulam informações do terminal. 
+**ioctl** | `<ioctl.h>` | Controla dispositivos.
+**getenv** | `<stdlib.h>` | Obtém o valor de uma variável de ambiente.
+**tcsetattr** | `<termios.h>` | Configuram e obtêm atributos do terminal.
+**tcgetattr** | `<termios.h>` | Configuram e obtêm atributos do terminal.
+**tgetent** | `<term.h>` | Gerenciam terminais com capacidades ANSI.
+**tgetflag** | `<term.h>` | Gerenciam terminais com capacidades ANSI.
+**tgetnum** | `<term.h>` | Gerenciam terminais com capacidades ANSI.
+**tgetstr** | `<term.h>` | Gerenciam terminais com capacidades ANSI.
+**tgoto** | `<term.h>` | Gerenciam terminais com capacidades ANSI.
+**tputs** | `<term.h>` | Gerenciam terminais com capacidades ANSI.
 </details>
 
 ## Seu shell deve:
