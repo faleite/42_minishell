@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/04 18:43:42 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/04 18:48:28 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,31 @@ typedef struct s_prompt
 	char	**envp;
 	pid_t	pid; 
 }			t_prompt;
+
+/**
+ * LEXER
+ * @brief Depois de ler, stdin usamos uma função que nomeada cmdtrim que 
+ * separa a string levando em consideração espaços e aspas. 
+ * Por exemplo:
+ * string: echo "hello      there" how are 'you 'doing? $USER |wc -l >outfile
+ * output: {echo, "hello      there", how, are, 'you 'doing?, $USER, |wc, -l, >outfile, NULL}
+*/
+
+/**
+ * EXPANDER
+ * @brief seguida, aplicamos as funções expansoras em cima de cada substring
+ * da string original, resultando em algo semelhante a isto:
+ * output: {echo, "hello      there", how, are, 'you 'doing?, faleite, |wc, -l, >outfile, NULL}
+ * Nota: se uma variável não for encontrada, a parte $var da string será
+ * substituída por uma string vazia
+*/
+
+/**
+ * PIPE & REDIRECT
+ * @brief Por último, temos outra função de divisão chamada cmdsubsplit que
+ * separa com <, |, ou >, mas apenas se esses caracteres estiverem fora das 
+ * aspas:
+ * output: {echo, "hello      there", how, are, 'you 'doing?, pixel, |, wc, -l, >, outfile, NULL}
+*/
 
 # endif /* PARSER_H */
