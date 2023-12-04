@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/04 18:48:28 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/04 20:32:25 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdio.h> /* printf */
 # include <unistd.h> /* write */
 # include <sys/types.h> /* pid_t */
+# include <readline/readline.h>
+# include <readline/history.h>
 
 /* int	g_status; // Status de saída do comando executado mais recentemente */
 
