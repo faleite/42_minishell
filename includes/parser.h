@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/04 18:23:15 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/04 18:43:42 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 # define PARSER_H
 
 # include "../libft/libft.h"
-# include <stdio.h>
+# include <stdio.h> /* printf */
+# include <unistd.h> /* write */
+# include <sys/types.h> /* pid_t */
 
 /* int	g_status; // Status de saída do comando executado mais recentemente */
 
