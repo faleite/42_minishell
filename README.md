@@ -245,7 +245,7 @@ graph TB
         outfile     : 1"}}
         G{{"struct2
         full_cmd : echo ; /home/n_user/minishell 'hola' ; /home/n_user/src
-        full_path   : echo
+        full_path   : NULL
         pid         : -1
         infile      : 0
         outfile     : 1"}}
