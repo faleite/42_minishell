@@ -10,7 +10,7 @@ SRC_DIR		= src
 FILES 		= $(foreach dir, $(SRC_DIR), $(wildcard $(dir)/*.c))
 OBJS		= $(FILES:.c=.o)
 LIBFT		= ./libft/libft.a
-RDLINE		= -lreadline -lhistory
+RDLINE		= -L/usr/local/opt/readline/lib -lreadline -lhistory
 RM			= rm -f
 
 .c.o:
@@ -36,7 +36,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 		@make -C libft
-		clear
+#		clear
 		@echo "$(GREEN)Compiling of $(RED)$(NAME)...$(CLR_RESET)"
 		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(RDLINE) -o $(NAME)
 		@echo "$(RED)$(NAME) $(GREEN)is ready!$(CLR_RESET)\n"
