@@ -10,7 +10,8 @@ SRC_DIR		= src
 FILES 		= $(foreach dir, $(SRC_DIR), $(wildcard $(dir)/*.c))
 OBJS		= $(FILES:.c=.o)
 LIBFT		= ./libft/libft.a
-RDLINE		= -L/usr/local/opt/readline/lib -lreadline -lhistory
+RDLINE		= -lreadline -lhistory
+# RDLINE		= -L/usr/local/opt/readline/lib -lreadline -lhistory
 RM			= rm -f
 
 .c.o:
@@ -58,7 +59,6 @@ fclean: clean
 re: fclean all
 	@echo "$(RED)$(NAME) $(GREEN)has been recompiled.$(CLR_RESET)\n"
 	@echo "$(PURPLE)====================================$(CLR_RESET)"
-
 
 v:
 	make re && clear && valgrind --leak-check=full --show-leak-kinds=all ./minishell

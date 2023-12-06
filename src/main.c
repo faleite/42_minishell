@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/06 19:48:53 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/06 22:21:38 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,30 @@
 
 #define WD_NUM 1000
 #define WD_LEN 1000
+
+void	print_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		printf("%s, ", arr[i++]);
+	}
+	printf("\n");
+}
+
+void	free_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		free(arr[i++]);
+	}
+	free(arr);
+}
 
 char	**sft_split(char *str)
 {
@@ -72,9 +96,8 @@ void	cmdline(void)
 			break ;
 		add_history(command_line);
 		arr = sft_split(command_line);
-		while (*arr)
-			printf("%s, ", *arr++);
-		printf("\n");
+		print_arr(arr);
+		free_arr(arr);
 		free(command_line);
 	}
 }
