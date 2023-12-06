@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/05 21:39:49 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:48:53 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,29 @@
 char	**sft_split(char *str)
 {
 	char	**arr;
+	char	c;
 	int		j;
 	int		k;
 
 	arr = (char **)malloc(sizeof(char *) * WD_NUM);
-	while (*str == 32 || *str == 34 || *str == 39)
+	while (*str == ' ' || *str == '\t' || *str == '\n')
 		str++;
 	j = 0;
+	c = 32;
 	while (*str != '\0')
 	{
-		if (*str > 32)
+		if (*str == 34 || *str == 39)
+			c = 0;
+		if (*str > c)
 		{
 			k = 0;
 			arr[j] = (char *)malloc(sizeof(char) * WD_LEN);
-			while (*str > 32)
+			while (*str > c)
+			{
 				arr[j][k++] = *str++;
+				if (*str == 34 || *str == 39)
+					c = 32;
+			}
 			arr[j][k] = '\0';
 			j++;
 		}
