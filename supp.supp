@@ -1,0 +1,14 @@
+{
+    readline 1
+    Memcheck:Leak
+    match-leak-kinds: reachable
+    ...
+    obj:/usr/lib/x86_64-linux-gnu/libreadline.so.8.0
+}
+{
+    readline 2
+    Memcheck:Leak
+    match-leak-kinds: reachable
+    ...
+    obj:/usr/lib/x86_64-linux-gnu/libreadline.so.8.2
+}

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/06 22:21:38 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:35:48 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,46 @@ void	free_arr(char **arr)
 		free(arr[i++]);
 	}
 	free(arr);
+}
+
+/**
+ * Criar uma funcao que substitui meu separador
+ * echo "hello      there" how are 'you 'doing? $USER |wc -l >outfile
+ * echo/2"hello      there"/2how/2are/2'you 'doing?/2$USER/2|wc/2-l/2>outfile
+ * 
+*/
+char	*put_separator(char *s1)
+{
+	char	*s2;
+	char	flag;
+	int		i;
+
+	i = 0;
+	flag = 1;
+	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s1) * 2));
+	if (!s2)
+		return (NULL);
+	while (*s1)
+	{
+		if (*s1 == '\"' && flag == 1)
+			flag = '\"';
+		if (*s1 == '\"' && flag == '\"')
+			flag = 1;
+		if (*s1 == ' ' && flag == 1)
+		{
+			flag = 0;
+			s2[i++] = '1';
+			while (!flag)
+			{
+				s1++;
+				if (!isspace(*s1))
+					flag = 1;
+			}
+		}
+		else
+			s2[i++] = *s1++;
+	}
+	return (s2);
 }
 
 char	**sft_split(char *str)
@@ -104,7 +144,9 @@ void	cmdline(void)
 
 int	main(int argc, char *argv[])
 {
-	//char *s = "echo "hello      there" how are 'you 'doing? $USER |wc -l >outfile";
-	cmdline();
+	char *s = "echo    hello test";
+	
+	printf("%s\n%s", s, put_separator(s));
+	//cmdline();
 	return (0);
 }

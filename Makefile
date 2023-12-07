@@ -61,6 +61,6 @@ re: fclean all
 	@echo "$(PURPLE)====================================$(CLR_RESET)"
 
 v:
-	make re && clear && valgrind --leak-check=full --show-leak-kinds=all ./minishell
+	make re && valgrind --leak-check=full --show-leak-kinds=all --suppressions="supp.supp" ./minishell
 
 .PHONY: all clean fclean re
