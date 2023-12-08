@@ -63,4 +63,7 @@ re: fclean all
 v:
 	make re && valgrind --leak-check=full --show-leak-kinds=all --suppressions="supp.supp" ./minishell
 
+run:
+	cc -Wall -Wextra -Werror -g src/main.c ./libft/libft.a -lreadline -lhistory -o minishell
+
 .PHONY: all clean fclean re
