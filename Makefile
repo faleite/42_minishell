@@ -36,7 +36,7 @@ PURPLE 		= \033[0;35m
 all: $(NAME)
 
 $(NAME): $(OBJS)
-		@make -C libft
+#		@make -C libft
 #		clear
 		@echo "$(GREEN)Compiling of $(RED)$(NAME)...$(CLR_RESET)"
 		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(RDLINE) -o $(NAME)
@@ -51,7 +51,7 @@ clean:
 
 fclean: clean
 		$(RM) $(NAME)
-		$(RM) $(LIBFT)
+#		$(RM) $(LIBFT)
 		clear
 		@echo "$(RED)$(NAME) $(GREEN)has been deleted.$(CLR_RESET)\n"
 		@echo "$(RED)libft $(GREEN)has been deleted.$(CLR_RESET)\n"
@@ -62,8 +62,5 @@ re: fclean all
 
 v:
 	make re && valgrind --leak-check=full --show-leak-kinds=all --suppressions="supp.supp" ./minishell
-
-run:
-	cc -Wall -Wextra -Werror -g src/main.c ./libft/libft.a -lreadline -lhistory -o minishell
 
 .PHONY: all clean fclean re

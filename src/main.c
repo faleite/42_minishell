@@ -6,34 +6,38 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/08 22:18:47 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/09 22:41:07 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parser.h"
 
-void	print_arr(char **arr)
+void	handle_quotes(char *s1, char *s2)
 {
-	int	i;
+	char	sig;
 
-	i = 0;
-	while (arr[i] != NULL)
+	sig = 1;
+	while (*s1)
 	{
-		printf("%s, ", arr[i++]);
+		if (sig == 1)
+		{
+			while (*s1 == ' ')
+			{
+				*s2++ = '_';
+				s1++;
+			}
+			if (*s1 == '\"' || *s1 == '\'')
+				sig = *s1;
+			*s2++ = *s1++;
+		}
+		if (sig == '\"' || sig == '\'')
+		{
+			if (*s1 == sig)
+				sig = 1;
+			*s2++ = *s1++;
+		}
 	}
-	printf("\n");
-}
-
-void	free_arr(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i] != NULL)
-	{
-		free(arr[i++]);
-	}
-	free(arr);
+	*s2 = '\0';
 }
 
 /**
@@ -41,37 +45,15 @@ void	free_arr(char **arr)
  * echo "hello      there" how are 'you 'doing? $USER |wc -l >outfile
  * echo/2"hello      there"/2how/2are/2'you 'doing?/2$USER/2|wc/2-l/2>outfile
 */
-char	*sp_replace(char *s1)
+char	*sep_replace(char *s1)
 {
 	char	*s2;
-	char	rep;
-	int		i;
+	int		len;
 
-	i = 0;
-	rep = 1;
 	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s1) * 2));
 	if (!s2)
 		return (NULL);
-	while (*s1)
-	{
-		if (rep == 1)
-		{
-			while (*s1 == ' ')
-			{
-				s2[i++] = '2';
-				s1++;
-			}
-			if (*s1 == '\"' && rep == 1)
-				rep = '\"';
-			s2[i++] = *s1++;
-		}
-		if (rep == '\"')
-		{
-			if (*s1 == '\"' && rep == '\"')
-				rep = 1;
-			s2[i++] = *s1++;
-		}
-	}
+	handle_quotes(s1, s2);
 	return (s2);
 }
 
@@ -87,7 +69,7 @@ void	cmdline(void)
 		if (!command_line)
 			break ;
 		add_history(command_line);
-		arr = sft_split(command_line);
+		arr = ft_split(command_line, ' ');
 		print_arr(arr);
 		free_arr(arr);
 		free(command_line);
@@ -97,9 +79,12 @@ void	cmdline(void)
 // int	main(int argc, char *argv[])
 int	main(void)
 {
-	char *s = "   echo  \"hello  '    there\" how are 'you 'doing? $USER |wc -l >outfile";
+	char	s1[] = "echo \"hello  '  there\" how are 'you 'doing? $USER |wc -l >outfile";
+	char	*s2;
 
-	printf("%s\n%s\n", s, sp_replace(s));
+	s2 = sep_replace(s1);
+	printf("%s\n%s\n", s1, s2);
+	free(s2);
 	//cmdline();
 	return (0);
 }

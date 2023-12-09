@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/07 18:47:46 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/09 19:37:05 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,8 @@ typedef struct s_prompt
  * output: {echo, "hello      there", how, are, 'you 'doing?, pixel, |, wc, -l, >, outfile, NULL}
 */
 
-# endif /* PARSER_H */
+/* Utils */
+void	print_arr(char **arr);
+void	free_arr(char **arr);
+
+#endif /* PARSER_H */

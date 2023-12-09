@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/11 21:44:17 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/09 22:23:22 by faaraujo         ###   ########.fr       */
+/*   Created: 2023/12/09 19:32:22 by faaraujo          #+#    #+#             */
+/*   Updated: 2023/12/09 19:36:50 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/parser.h"
 
-/**
- * @brief Computes the length of the string s excluding the terminating null 
- * byte ('\0').
- * @param s Pointer of string.
- * @return Returns the number of bytes in the string pointed to by s.  
-*/
-size_t	ft_strlen(const char *s)
+void	print_arr(char **arr)
 {
-	size_t	len;
+	int	i;
 
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		printf("%s, ", arr[i++]);
+	}
+	printf("\n");
+}
+
+void	free_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		free(arr[i++]);
+	}
+	free(arr);
 }
