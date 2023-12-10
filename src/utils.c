@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 19:32:22 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/09 19:36:50 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/10 21:45:59 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_arr(char **arr)
 	i = 0;
 	while (arr[i] != NULL)
 	{
-		printf("%s, ", arr[i++]);
+		printf("%s\n", arr[i++]);
 	}
 	printf("\n");
 }

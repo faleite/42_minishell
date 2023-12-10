@@ -171,7 +171,7 @@ Deve se expandir para o status de saída do pipeline em primeiro plano executado
 
 ***Você deve se limitar à descrição do assunto. Tudo o que não é pedido não é obrigatório. Se você tiver alguma dúvida sobre algum requisito, tome o [bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/) como referência.***
 
-[↑ Index ↑](#top)
+[↑ Index ↑](#mandatory-part)
 
 ## Mind Map
 
@@ -182,7 +182,7 @@ noteAlign: left
 ---
 %%{ init: { "theme": 'dark', "nodeAlignment": 'left' } }%%
 graph TB
-    A(["< Makefile cat | echo #quot;$PWD 'hola'#quot; ~/src | 'tr' -d/>outfile"])
+    A(["< Makefile cat| echo #quot;$PWD 'hola'#quot; ~/src | 'tr' -d / >outfile"])
     B[("< Makefile
     cat|
     echo
@@ -309,7 +309,7 @@ graph LR
 	end
 ```
 
-[↑ Index ↑](#top)
+[↑ Index ↑](#mandatory-part)
 
 ## Overview
 ### [Resumo manual do Bash](https://www.gnu.org/software/bash/manual/bash.html)
@@ -646,7 +646,7 @@ Estes são os recursos especiais do POSIX :
 ### Interação Readline
 Muitas vezes, durante uma sessão interativa, você digita uma longa linha de texto, apenas para perceber que a primeira palavra da linha está escrita incorretamente. A biblioteca Readline oferece um conjunto de comandos para manipular o texto conforme você o digita, permitindo apenas corrigir o erro de digitação e não forçando você a redigitar a maior parte da linha. Utilizando esses comandos de edição, você move o cursor até o local que precisa de correção e apaga ou insere o texto das correções. Então, quando estiver satisfeito com a linha, basta pressionar RET . Você não precisa estar no final da linha para pressionar RET ; a linha inteira é aceita independentemente da localização do cursor dentro da linha.
 
-[↑ Index ↑](#top)
+[↑ Index ↑](#mandatory-part)
 
 ## Study resources
 ### Links
@@ -659,7 +659,7 @@ Muitas vezes, durante uma sessão interativa, você digita uma longa linha de te
 - [Article -> Shell Syntax](https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html)
 <!-- - [Article -> Shell Scripting Tutorial](https://www.shellscript.sh/) -->
 
-[↑ Index ↑](#top)
+[↑ Index ↑](#mandatory-part)
 
  <!-- ## Workflow
 <details>
