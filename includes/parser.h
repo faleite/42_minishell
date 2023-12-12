@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/09 19:37:05 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/12 19:04:50 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_prompt
 */
 
 /* Utils */
+void	handle_quotes(char *s1, char *s2);
 void	print_arr(char **arr);
 void	free_arr(char **arr);
 

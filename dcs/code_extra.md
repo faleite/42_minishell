@@ -30,3 +30,15 @@ void	handle_quotes(char *s1, char *s2)
 	*s2 = '\0';
 }
 ```
+
+```c
+// Segunda solução para o problema de separar os redicts e pipes
+void	red_pipe(char **s2, char **s1)
+{
+	if (is_redpipe(*(*s1 - 1)) && !is_redpipe(**s1))
+		*(*s2)++ = '\2';
+	if (!is_redpipe(*(*s1 - 1)) && is_redpipe(**s1))
+		*(*s2)++ = '\2';
+}
+```
+
