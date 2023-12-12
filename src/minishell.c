@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/12 19:07:47 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/12 21:39:09 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,22 @@ void	cmdline(void)
 int	main(void)
 {
 	//char	s1[] = "echo \"hello  '  there\" how are 'you 'doing? $USER |wc -l >outfile";
-	char	s1[] = "<<Makefile cat| echo \"$PWD < > | 'hola'\" ~/src | 'tr' -d / >outfile";
+	//char	s1[] = "<<Makefile cat| echo \"$PWD < > | 'hola'\" ~/src | 'tr' -d / >outfile";*
 	//char	s1[] = "echo|cat || teste >>>> >>ts >>>tdb ||t";
 	//char	*s2;
-	char	**arr;
+	//char	**arr;*
 
-	arr = sep_replace(s1);
+	//arr = sep_replace(s1);*
 	//s2 = sep_replace(s1);
 	//printf("%s\n%s\n", s1, s2);
 	//free(s2);
-	printf("String Original: %s\n", s1);
-	printf("\nFirst parser:\n");
-	print_arr(arr);
-	free_arr(arr);
+	//printf("String Original: %s\n", s1);*
+	//printf("\nFirst parser:\n");*
+	//print_arr(arr);*
+	//free_arr(arr);*
 	//cmdline();
+
+	printf("env: %s\n", getenv("USER"));
+	printf("env: %s\n", getenv("HOME"));
 	return (0);
 }
