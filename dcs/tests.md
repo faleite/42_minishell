@@ -1,5 +1,22 @@
 # Testes da linha de comando
 
+# Expansão de variáveis ${}
+```bash
+shell$ echo $!USER
+USER
+shell$ echo ${!USER}
+(null)
+shell$ echo ${USER}
+fal
+shell$ echo ${USER}Colchete protege a variavel
+falColchete protege a variavel
+shell$ echo ${ty-test} # Se ty não estiver definido, imprime test
+test
+shell$ echo ${USER-test}
+fal
+```
+
+
 ```bash
  <Makefile cat| echo "$PWD 'hola'" ~/src | 'tr' -d / >outfile
 ```
