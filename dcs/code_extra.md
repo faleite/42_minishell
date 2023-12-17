@@ -1,6 +1,19 @@
 # code behind the scenes
 
 ```c
+if (*s1 == '$')
+			{
+				if (*(s1 + 1) == '\'' || *(s1 + 1) == '\"')
+					s1++;
+				if (*(s1 + 1) == ' ' || *(s1 + 1) == '\0')
+					s2[i++] = *s1++;
+			}
+			if (*s1 == '\"')
+				sig = *s1;
+			s2[i++] = *s1++;
+```
+
+```c
 // int	main(int argc, char *argv[])
 	//char	s1[] = "echo \"hello  '  there\" how are 'you 'doing? $USER |wc -l >outfile";
 	//char	s1[] = "<<Makefile cat| echo \"$PWD < > | 'hola'\" ~/src | 'tr' -d / >outfile";

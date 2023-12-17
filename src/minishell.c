@@ -6,72 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/16 21:44:18 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/17 20:29:12 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parser.h"
-
-static void	aux_inside(int *i, char *sig, char **s1, char **s2)
-{
-	if (**s1 == '\"')
-		*sig = 1;
-	(*s2)[(*i)++] = *(*s1)++;
-}
-
-static int	inside_dbquotes(char **s1, char **s2, int i, char *sig)
-{
-	char	*start;
-	char	*end;
-	char	*var;
-	char	*value;
-
-	if (**s1 == '$' && *(*s1 + 1) != '\'')
-	{
-		start = ++(*s1);
-		while (**s1 != ' ' && **s1 != '\'' && **s1 != '\"' && **s1)
-			(*s1)++;
-		end = *s1;
-		var = (char *)malloc(sizeof(char) * ((end - start) + 1));
-		ft_strlcpy(var, start, ((end - start) + 1));
-		value = getenv(var);
-		free (var);
-		if (value)
-		{
-			ft_strlcpy(*s2 + i, value, (ft_strlen(*s1) + ft_strlen(var) + 1));
-			i += ft_strlen(value);
-		}
-	}
-	else
-		aux_inside(&i, sig, s1, s2);
-	return (i);
-}
-
-char	*expand_var(char *s1)
-{
-	int		i;
-	char	sig;
-	char	*s2;
-
-	i = 0;
-	sig = 1;
-	s2 = (char *)malloc(sizeof(char) * ft_strlen(s1) * 2);
-	while (*s1)
-	{
-		if (sig == '\"')
-		{
-			i = inside_dbquotes(&s1, &s2, i, &sig);
-		}
-		else
-		{
-			if (*s1 == '\"')
-				sig = *s1;
-			s2[i++] = *s1++;
-		}
-	}
-	s2[i] = '\0';
-	return (s2);
-}
 
 /**
  * Substitui separador
@@ -117,16 +56,21 @@ int	main(void)
 {
 	// char	s1[] = "echo \"$HOME '$PWD' >>>\" $USER '$PWD' ~///fal";
 	// char	s1[] = "\"$HOME' '$USER' >>>\" '$PWD' $SHELL";
-	char	s1[] = "\"$PWD '$USER' | $'USER' 'hola'\" ~/src '$USER' $HOME |'tr' -d / >outfile";
+	//char	s1[] = " $USER \"$PWD '$USER'u | $'USER' 'hola'\" ~/src '$USER' $HOME |'tr' -d / >outfile";
 				// output: /home/fal '/home/fal' >>> fal $PWD /home/fal///fal
+	char	s1[] = "$USER '$USER'  4 $ $'USER' $\"SHELL\" \"$SHELL\"   $    $";
 	char	*s2;
+	char	*s3;
 
-	s2 = expand_var(s1);
-	if (s2)
-		printf("%s\n", s2);
+	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s1) * 2));
+	expand_var(s1, s2);
+	s3 = expander_outside(s2);
+	if (s3)
+		printf("%s\n", s3);
 	else
 		printf("\n");
-	//free(s2);
+	free(s2);
+	free(s3);
 	// printf("env: %s\n", getenv("USER"));
 	// printf("env: %s\n", getenv("HOME"));
 	return (0);
