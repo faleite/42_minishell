@@ -1,16 +1,52 @@
 # code behind the scenes
 
 ```c
-if (*s1 == '$')
-			{
-				if (*(s1 + 1) == '\'' || *(s1 + 1) == '\"')
-					s1++;
-				if (*(s1 + 1) == ' ' || *(s1 + 1) == '\0')
-					s2[i++] = *s1++;
-			}
+void	*expander_inside(char *s1, char *s2)
+{
+	int		i;
+	char	sig;
+
+	i = 0;
+	sig = 1;
+	while (*s1)
+	{
+		if (sig == 1)
+		{
 			if (*s1 == '\"')
 				sig = *s1;
 			s2[i++] = *s1++;
+		}
+		else
+			i = inside_dbquotes(&s1, &s2, i, &sig);
+	}
+	s2[i] = '\0';
+}
+
+char	*expander_inside(char *s1)
+{
+	int		i;
+	char	sig;
+	char	*s2;
+
+	i = 0;
+	sig = 1;
+	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s1) * 2));
+	if (!s2)
+		return (NULL);
+	while (*s1)
+	{
+		if (sig == 1)
+		{
+			if (*s1 == '\"')
+				sig = *s1;
+			s2[i++] = *s1++;
+		}
+		else
+			i = inside_dbquotes(&s1, &s2, i, &sig);
+	}
+	s2[i] = '\0';
+	return (s2);
+}
 ```
 
 ```c

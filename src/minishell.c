@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/17 20:29:12 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/18 22:05:49 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,21 @@
 char	**sep_replace(char *s1)
 {
 	char	*s2;
+	char	*s3;
+	char	*s4;
 	char	**arr;
 
 	arr = NULL;
-	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s1) * 2));
-	if (!s2)
+	s2 = expander_inside(s1);
+	s3 = expander_outside(s2);
+	s4 = (char *)malloc(sizeof(char) * (ft_strlen(s1) * 2));
+	if (!s4)
 		return (NULL);
-	handle_quotes(s1, s2);
-	arr = ft_split(s2, '\2');
+	handle_quotes(s3, s4);
+	arr = ft_split(s4, '\2');
 	free(s2);
+	free(s3);
+	free(s4);
 	return (arr);
 }
 
@@ -40,11 +46,14 @@ void	cmdline(void)
 	arr = NULL;
 	while (1)
 	{
-		command_line = readline("[~/minishell]$ ");
+		command_line = readline("[minishell]$ ");
 		if (!command_line)
+		{
+			printf("exit\n");
 			break ;
+		}
 		add_history(command_line);
-		arr = ft_split(command_line, ' ');
+		arr = sep_replace(command_line);
 		print_arr(arr);
 		free_arr(arr);
 		free(command_line);
@@ -57,21 +66,17 @@ int	main(void)
 	// char	s1[] = "echo \"$HOME '$PWD' >>>\" $USER '$PWD' ~///fal";
 	// char	s1[] = "\"$HOME' '$USER' >>>\" '$PWD' $SHELL";
 	//char	s1[] = " $USER \"$PWD '$USER'u | $'USER' 'hola'\" ~/src '$USER' $HOME |'tr' -d / >outfile";
-				// output: /home/fal '/home/fal' >>> fal $PWD /home/fal///fal
-	char	s1[] = "$USER '$USER'  4 $ $'USER' $\"SHELL\" \"$SHELL\"   $    $";
-	char	*s2;
-	char	*s3;
+	//char	s1[] = "$USER '$USER'  4 $ $'USER' $  \"SHELL\" \"$SHELL\"   $    $";
+	char	s1[] = "<<Makefile cat| echo \"$PWD < > | 'hola'\" $USER || 'tr' -d / >outfile";
+	char	**arr;
 
-	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s1) * 2));
-	expand_var(s1, s2);
-	s3 = expander_outside(s2);
-	if (s3)
-		printf("%s\n", s3);
-	else
-		printf("\n");
-	free(s2);
-	free(s3);
-	// printf("env: %s\n", getenv("USER"));
-	// printf("env: %s\n", getenv("HOME"));
+	//cmdline();
+	arr = sep_replace(s1);
+	printf("Comamnd line: %s\n", s1);
+	printf("=======\n");
+	printf("Parser:\n");
+	printf("=======\n");
+	print_arr(arr);
+	free_arr(arr);
 	return (0);
 }
