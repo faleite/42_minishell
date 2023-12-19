@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 13:44:44 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/18 21:27:39 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/19 21:19:59 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,15 @@ int	outside_dbquotes(char **s2, char **s3, int i)
 			(*s3)[i++] = *(*s2)++;
 		else if (*(*s2 + 1) == '\'')
 			(*s2)++;
-		else if (*(*s2 + 1) == ' ' || *(*s2 + 1) == '\0')
+		else if (*(*s2 + 1) == '\2' || *(*s2 + 1) == '\0')
 			(*s3)[i++] = *(*s2)++;
-		else if (*(*s2 + 1) != ' ' && *(*s2 + 1) != '\0')
+		else if (*(*s2 + 1) != '\2' && *(*s2 + 1) != '\0')
 			i = dollar(s2, s3, i);
 	}
 	else
 		(*s3)[i++] = *(*s2)++;
 	return (i);
 }
-
 
 static void	aux_inside(int *i, char *sig, char **s1, char **s2)
 {
@@ -58,7 +57,8 @@ static int	dollar(char **src, char **dst, int i)
 	char	*value;
 
 	start = ++(*src);
-	while (**src != ' ' && **src != '\'' && **src != '\"' && **src)
+	while (**src != ' ' && **src != '\2' && **src != '\'' && \
+			**src != '\"' && **src)
 		(*src)++;
 	end = *src;
 	var = (char *)malloc(sizeof(char) * ((end - start) + 1));

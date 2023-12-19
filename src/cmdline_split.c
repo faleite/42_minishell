@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:00:07 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/18 22:00:26 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/19 21:45:35 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ static int	is_redpipe(char c)
 
 static void	replace_spaces(char **s2, char **s1)
 {
-	if (*s1 && *s1 > s1[0] && is_redpipe(*(*s1 - 1)) && !is_redpipe(**s1))
+	if (is_redpipe(*(*s1 - 1)) && !is_redpipe(**s1))
 		*(*s2)++ = '\2';
-	if (*s1 && *s1 > s1[0] && !is_redpipe(*(*s1 - 1)) && is_redpipe(**s1))
+	if (!is_redpipe(*(*s1 - 1)) && is_redpipe(**s1))
 		*(*s2)++ = '\2';
-	while (*s1 && **s1 == ' ')
+	while (**s1 == ' ')
 	{
 		*(*s2)++ = '\2';
-		*(*s1)++;
+		(*s1)++;
 	}
 }

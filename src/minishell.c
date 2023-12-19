@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/18 22:05:49 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/19 21:41:32 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,20 @@ char	**sep_replace(char *s1)
 	char	**arr;
 
 	arr = NULL;
-	s2 = expander_inside(s1);
-	s3 = expander_outside(s2);
-	s4 = (char *)malloc(sizeof(char) * (ft_strlen(s1) * 2));
-	if (!s4)
+	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s1) * 2 + 1));
+	if (!s2)
 		return (NULL);
-	handle_quotes(s3, s4);
-	arr = ft_split(s4, '\2');
+	handle_quotes(s1, s2);
+	//free(s1);
+	s3 = expander_outside(s2);
 	free(s2);
+	s4 = expander_inside(s3);
 	free(s3);
+	//printf("%s\n", s4);
+	arr = ft_split(s4, '\2');
+	//print_arr(arr);
 	free(s4);
+	//free_arr(arr);
 	return (arr);
 }
 
@@ -49,6 +53,8 @@ void	cmdline(void)
 		command_line = readline("[minishell]$ ");
 		if (!command_line)
 		{
+			// free_arr(arr);
+			// free(command_line);
 			printf("exit\n");
 			break ;
 		}
@@ -65,18 +71,19 @@ int	main(void)
 {
 	// char	s1[] = "echo \"$HOME '$PWD' >>>\" $USER '$PWD' ~///fal";
 	// char	s1[] = "\"$HOME' '$USER' >>>\" '$PWD' $SHELL";
-	//char	s1[] = " $USER \"$PWD '$USER'u | $'USER' 'hola'\" ~/src '$USER' $HOME |'tr' -d / >outfile";
-	//char	s1[] = "$USER '$USER'  4 $ $'USER' $  \"SHELL\" \"$SHELL\"   $    $";
+	// char	s1[] = "<<$USER \"$PWD '$USER'u | $'USER' 'hola'\" ~/src '$USER' $HOME|'tr' -d / >outfile";
+	// char	s1[] = "$USER '$USER'  4 $ $'USER' $  \"SHELL\" \"$SHELL\"   $    $";
 	char	s1[] = "<<Makefile cat| echo \"$PWD < > | 'hola'\" $USER || 'tr' -d / >outfile";
-	char	**arr;
+	//char	**arr;
+	// printf("%s\n", s1);
+	// sep_replace(s1);
 
-	//cmdline();
-	arr = sep_replace(s1);
-	printf("Comamnd line: %s\n", s1);
-	printf("=======\n");
-	printf("Parser:\n");
-	printf("=======\n");
-	print_arr(arr);
-	free_arr(arr);
+	//arr = sep_replace(s1);
+	cmdline();
+	// printf("=======\n");
+	// printf("Parser:\n");
+	// printf("=======\n");
+	// print_arr(arr);
+	// free_arr(arr);
 	return (0);
 }
