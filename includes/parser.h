@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/18 20:11:26 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/20 19:46:30 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ typedef struct s_prompt
 */
 
 /* Utils */
-void	handle_quotes(char *s1, char *s2);
 void	print_arr(char **arr);
 void	free_arr(char **arr);
 
@@ -94,5 +93,7 @@ char	*expander_inside(char *s1);
 char	*expander_outside(char *s2);
 int		inside_dbquotes(char **s1, char **s2, int i, char *sig);
 int		outside_dbquotes(char **s2, char **s3, int i);
+void	handle_quotes(char *s1, char *s2);
+void	replace_spaces(char *s1);
 
 #endif /* PARSER_H */
