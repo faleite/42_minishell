@@ -102,7 +102,7 @@ Texto da entrada
 Mais linhas de entrada
 DELIMITADOR
 ```
-* **\>>** deve redirecionar a saída no modo de acréscimo.definir valor da variável 
+* **\>>** deve redirecionar a saída no modo de acréscimo.
   * O operador de redirecionamento de saída >> no Bash é utilizado para redirecionar a saída de um comando para um arquivo, mas, ao contrário de >, ele não substitui o conteúdo existente do arquivo. Em vez disso, >> anexa a saída ao final do arquivo, preservando o conteúdo anterior.
 * Implementar **pipes** (**|** caractere). A saída de cada comando no pipeline é conectada à entrada do próximo comando por meio de um pipe.
 * Lidar com **variáveis de ambiente** (**$** seguidas por uma sequência de caracteres) que devem se expandir para seus valores.

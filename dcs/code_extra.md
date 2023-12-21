@@ -1,5 +1,18 @@
 # code behind the scenes
 
+```bash
+$ echo "hello  '  there" how are 'you 'doing? $USER |wc -l >outfile
+$ <<Makefile cat| echo "$PWD < > | 'hola'" ~/src | 'tr' -d / >outfile
+$ echo "$PWD < > \\ | 'hola'" ~/src ${USER} $HOME |'tr' -d / >outfile
+$ echo|cat || teste >>>> >>ts >>>tdb ||t
+$ echo "$HOME '$PWD' >>>" $USER '$PWD' ~///fa
+$ echo "$HOME '$PWD' >>>" $USER '$PWD' ~///fal
+$ $HOME' '$USER' >>>" '$PWD' $SHELL
+$ <<$USER "$PWD '$USER'u | $'USER' 'hola'" ~/src '$USER' $HOME|'tr' -d / >outfile
+$ $USER '$USER'  4 $ $'USER' $  "SHELL" "$SHELL"   $    $
+$ <<Makefile cat| echo \"$PWD < > | 'hola'\" $USER || 'tr' -d / >outfile
+```
+
 ```c
 void	*expander_inside(char *s1, char *s2)
 {
@@ -47,19 +60,6 @@ char	*expander_inside(char *s1)
 	s2[i] = '\0';
 	return (s2);
 }
-```
-
-```bash
-$ echo "hello  '  there" how are 'you 'doing? $USER |wc -l >outfile
-$ <<Makefile cat| echo "$PWD < > | 'hola'" ~/src | 'tr' -d / >outfile
-$ echo "$PWD < > \\ | 'hola'" ~/src ${USER} $HOME |'tr' -d / >outfile
-$ echo|cat || teste >>>> >>ts >>>tdb ||t
-$ echo "$HOME '$PWD' >>>" $USER '$PWD' ~///fa
-$ "echo \"$HOME '$PWD' >>>\" $USER '$PWD' ~///fal
-$ "$HOME' '$USER' >>>" '$PWD' $SHELL
-$ "<<$USER \"$PWD '$USER'u | $'USER' 'hola'\" ~/src '$USER' $HOME|'tr' -d / >outfile
-$ "$USER '$USER'  4 $ $'USER' $  "SHELL" "$SHELL"   $    $
-$ "<<Makefile cat| echo \"$PWD < > | 'hola'\" $USER || 'tr' -d / >outfile
 ```
 
 ```c

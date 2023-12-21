@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faaraujo <faaraujo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 21:23:24 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/04/30 17:44:50 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/21 19:26:06 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,16 +208,6 @@ int		ft_memcmp(const void *s1, const void *s2, size_t len);
 */
 char	*ft_strchr(const char *s, int c);
 
-/**
- * @brief function locates the last occurrence of c (converted to a char) in the
- * string pointed to by s. The terminating null character is considered part of 
- * the string; therefore if c is `\0', the functions locate the terminating `\0'.
- * @param s Pointer of string.
- * @param c character to be found (converted to char).
- * @return return a pointer to the located character, or NULL if the character 
- * does not appear in the string. 
- * The terminating null byte is considered part of the string.
-*/
 char	*ft_strrchr(const char *s, int c);
 
 /**
