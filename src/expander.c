@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:27:54 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/22 21:31:11 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/24 14:05:00 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,27 @@ char	*expander_outside(char *s2)
 	return (s3);
 }
 
-char	*cmd_strtrim(char const *s1, char const *set)
+static char	*handle_trim_quotes_aux(int val, char *ptr)
 {
-	size_t	len;
+	if (val != 2)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	return (ptr);
+}
+
+char	*handle_trim_quotes(char const *s1, char const *set)
+{
 	char	*s2;
+	char	*start_s2;
 	int		val;
 
-	val = -1;
-	if (!(s1))
-		return (NULL);
+	val = 0;
 	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
 	if (!s2)
-		return(NULL);
+		return (NULL);
+	start_s2 = s2;
 	while (*s1)
 	{
 		if (*s1 != *set)
@@ -89,7 +98,37 @@ char	*cmd_strtrim(char const *s1, char const *set)
 		}
 	}
 	*s2 = '\0';
-	return (s2);
+	return (handle_trim_quotes_aux(val, start_s2));
+}
+
+void	aux(char **ptr, char **str)
+{
+	free(*str);
+	*str = *ptr;
+}
+
+char	first_quote(char *str)
+{
+	int	i;
+	int	duo;
+	int	uno;
+
+	i = 0;
+	duo = 0;
+	uno = 0;
+	while (str[i])
+	{
+		if (str[i] == '\"')
+			duo = i;
+		if (str[i] == '\'')
+			uno = i;
+		i++;
+	}
+	if (duo > uno)
+		return ('\"');
+	if (uno > duo)
+		return ('\'');
+	return ('0');
 }
 
 char	**strtrim_quotes(char **arr)
@@ -99,25 +138,23 @@ char	**strtrim_quotes(char **arr)
 	char	*uno;
 	char	*tmp;
 
-	tmp = NULL;
 	duo = "\"";
 	uno = "\'";
+	tmp = NULL;
 	i = 0;
 	while (arr[i] && arr)
 	{
-		tmp = cmd_strtrim(arr[i], duo);
-        if (tmp)
-        {
-            free(arr[i]);
-            arr[i] = tmp;
-        }
-        tmp = cmd_strtrim(arr[i], uno);
-        if (tmp)
-        {
-            free(arr[i]);
-            arr[i] = tmp;
-        }
-        i++;
+		if (first_quote(arr[i]) == *duo)
+		{
+			tmp = handle_trim_quotes(arr[i], duo);
+			aux(&tmp, &arr[i]);
+		}
+		else if (first_quote(arr[i]) == *uno)
+		{
+			tmp = handle_trim_quotes(arr[i], uno);
+			aux(&tmp, &arr[i]);
+		}
+		i++;
 	}
 	return (arr);
 }
