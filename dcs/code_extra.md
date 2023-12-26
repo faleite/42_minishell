@@ -1,5 +1,36 @@
 # code behind the scenes
 
+# Test for here_doc
+```bash
+faaraujo@c2r3s3:~/00/shell$ cat << ""
+> ola
+> 
+ola
+faaraujo@c2r3s3:~/00/shell$ cat << ""
+> 
+faaraujo@c2r3s3:~/00/shell$ cat << "ola"    
+
+> "ola"
+> ola
+
+
+"ola"
+```
+
+# Test fo $1, $@, $*, $#, $0
+```bash
+faaraujo@c2r3s3:~/00/shell$ $#
+0: command not found
+faaraujo@c2r3s3:~/00/shell$ $?
+127: command not found
+faaraujo@c2r3s3:~/00/shell$ $1
+faaraujo@c2r3s3:~/00/shell$ $@
+faaraujo@c2r3s3:~/00/shell$ ls $1
+dcs  includes  libft  LICENSE  Makefile  minishell  README.md  src  supp.supp
+faaraujo@c2r3s3:~/00/shell$ ls $@
+dcs  includes  libft  LICENSE  Makefile  minishell  README.md  src  supp.supp
+```
+
 ```bash
 echo "hello  '  there" how are 'you 'doing? $USER |wc -l >outfile
 <<Makefile cat| echo "$PWD < > | 'hola'" ~/src | 'tr' -d / >outfile
@@ -11,6 +42,15 @@ $HOME' '$USER' >>>" '$PWD' $SHELL
 <<$USER "$PWD '$USER'u | $'USER' 'hola'" ~/src '$USER' $HOME|'tr' -d / >outfile
 $USER '$USER'  4 $ $'USER' $  "SHELL" "$SHELL"   $    $
 <<Makefile cat| echo \"$PWD < > | 'hola'\" $USER || 'tr' -d / >outfile
+```
+
+```c
+static void	aux_inside(int *i, char *sig, char **s1, char **s2)
+{
+	if (**s1 == '\"')
+		*sig = 1;
+	(*s2)[(*i)++] = *(*s1)++;
+}
 ```
 
 ```c

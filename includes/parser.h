@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/24 13:43:42 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/26 18:43:40 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,5 @@ int		inside_dbquotes(char **s1, char **s2, int i, char *sig);
 int		outside_dbquotes(char **s2, char **s3, int i);
 void	handle_quotes(char *s1, char *s2);
 void	replace_spaces(char *s1);
-char	*handle_trim_quotes(char const *s1, char const *set);
-char	first_quote(char *str);
 
 #endif /* PARSER_H */
