@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/27 17:40:20 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/27 21:02:56 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * echo "hello      there" how are 'you 'doing? $USER |wc -l >outfile
  * echo/2"hello      there"/2how/2are/2'you 'doing?/2$USER/2|wc/2-l/2>outfile
 */
-char	**sep_replace(char *s1)
+char	**lexer_line(char *s1)
 {
 	char	*s2;
 	char	*s3;
@@ -55,7 +55,7 @@ void	cmdline(void)
 			break ;
 		}
 		add_history(command_line);
-		arr = sep_replace(command_line);
+		arr = lexer_line(command_line);
 		print_arr(arr);
 		free_arr(arr);
 		free(command_line);

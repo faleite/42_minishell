@@ -6,11 +6,36 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 18:41:05 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/27 17:35:41 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/27 17:45:48 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parser.h"
+
+static char	*handle_trim_quotes(char const *s1, int *val);
+
+char	**strtrim_quotes(char **arr)
+{
+	int		i;
+	int		val;
+	char	*tmp;
+
+	i = 0;
+	while (arr[i] && arr)
+	{
+		val = 0;
+		tmp = handle_trim_quotes(arr[i], &val);
+		if (!(val % 2) && tmp)
+		{
+			free(arr[i]);
+			arr[i] = tmp;
+		}
+		else
+		 	free(tmp);
+		i++;
+	}
+	return (arr);
+}
 
 static char	*handle_trim_quotes(char const *s1, int *val)
 {
@@ -39,27 +64,4 @@ static char	*handle_trim_quotes(char const *s1, int *val)
 	}
 	s2[i] = '\0';
 	return (s2);
-}
-
-char	**strtrim_quotes(char **arr)
-{
-	int		i;
-	int		val;
-	char	*tmp;
-
-	i = 0;
-	while (arr[i] && arr)
-	{
-		val = 0;
-		tmp = handle_trim_quotes(arr[i], &val);
-		if (!(val % 2) && tmp)
-		{
-			free(arr[i]);
-			arr[i] = tmp;
-		}
-		else
-		 	free(tmp);
-		i++;
-	}
-	return (arr);
 }

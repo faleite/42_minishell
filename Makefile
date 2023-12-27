@@ -11,7 +11,7 @@ FILES 		= $(foreach dir, $(SRC_DIR), $(wildcard $(dir)/*.c))
 OBJS		= $(FILES:.c=.o)
 LIBFT		= ./libft/libft.a
 RDLINE		= -lreadline -lhistory
-# RDLINE		= -L/usr/local/opt/readline/lib -lreadline -lhistory
+# RDLINE		= -L/usr/local/opt/readline/lib -lreadline -lhistory # for mac
 RM			= rm -f
 
 .c.o:

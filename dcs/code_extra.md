@@ -32,6 +32,7 @@ dcs  includes  libft  LICENSE  Makefile  minishell  README.md  src  supp.supp
 ```
 
 ```bash
+'"$SHELL"'"$SHELL"
 $HOME' '$USER' >>>" '$PWD' $SHELL #Caso de quebra
 echo "hello  '  there" how are 'you 'doing? $USER |wc -l >outfile
 <<Makefile cat| echo "$PWD < > | 'hola'" ~/src | 'tr' -d / >outfile

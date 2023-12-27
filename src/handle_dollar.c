@@ -1,51 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander_utils.c                                   :+:      :+:    :+:   */
+/*   handle_dollar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 13:44:44 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/26 19:47:56 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/27 21:15:40 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parser.h"
 
-static int	dollar(char **src, char **dst, int i);
-
-int	inside_dbquotes(char **s1, char **s2, int i, char *sig)
-{
-	if (**s1 == '$' && *(*s1 + 1) != '\'')
-		i = dollar(s1, s2, i);
-	else
-	{
-		if (**s1 == '\"')
-			*sig = 1;
-		(*s2)[i++] = *(*s1)++;
-	}
-	return (i);
-}
-
-int	outside_dbquotes(char **s2, char **s3, int i)
-{
-	if (**s2 == '$')
-	{
-		if (*(*s2 + 1) == '\"')
-			(*s3)[i++] = *(*s2)++;
-		else if (*(*s2 + 1) == '\'')
-			(*s2)++;
-		else if (*(*s2 + 1) == '\2' || *(*s2 + 1) == '\0')
-			(*s3)[i++] = *(*s2)++;
-		else if (*(*s2 + 1) != '\2' && *(*s2 + 1) != '\0')
-			i = dollar(s2, s3, i);
-	}
-	else
-		(*s3)[i++] = *(*s2)++;
-	return (i);
-}
-
-static int	dollar(char **src, char **dst, int i)
+int	dollar(char **src, char **dst, int i)
 {
 	char	*start;
 	char	*end;
@@ -59,6 +26,7 @@ static int	dollar(char **src, char **dst, int i)
 	end = *src;
 	var = (char *)malloc(sizeof(char) * ((end - start) + 1));
 	ft_strlcpy(var, start, ((end - start) + 1));
+	//Lidar com $? aqui em var;
 	value = getenv(var);
 	if (value)
 	{
