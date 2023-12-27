@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/26 19:21:32 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/27 17:40:20 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,6 @@ void	cmdline(void)
 
 int	main(void)
 {
-	// char	s1[] = "\"'Teste'\"";
-	
-	// printf("%c ", first_quote(s1));
-
 	cmdline();
 	return (0);
 }
