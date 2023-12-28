@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/27 21:02:56 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/28 21:47:04 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ void	cmdline(void)
 	char	**arr;
 
 	arr = NULL;
+	signal(SIGINT, ctrlc_sigint);
+/*
+Warning: noted but unhandled ioctl 0x5412 with no size/direction hints.
+==10047==    This could cause spurious value errors to appear.
+==10047==    See README_MISSING_SYSCALL_OR_IOCTL for guidance on writing a proper wrapper.
+*/
+	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
 		command_line = readline("[minishell]$ ");

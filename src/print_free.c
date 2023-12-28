@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 19:32:22 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/20 20:27:28 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/28 21:23:12 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	print_arr(char **arr)
 	{
 		printf("%s\n", arr[i++]);
 	}
-	printf("\n");
 }
 
 void	free_arr(char **arr)

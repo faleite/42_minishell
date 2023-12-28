@@ -64,8 +64,8 @@ fclean:
 
 re: fclean all
 
-# r:
-# 	$(MAKE) && clear && valgrind --leak-check=full ./$(NAME)
+r:
+ 	$(MAKE) && clear && valgrind --leak-check=full ./$(NAME)
 
 fd:
 	$(MAKE) && clear && valgrind --track-fds=yes ./$(NAME)

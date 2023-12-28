@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:27:54 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/27 20:18:16 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/28 20:14:10 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*expander_inside(char *s1)
 
 	i = 0;
 	sig = 1;
-	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s1) * 10));
+	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s1) * 10 + 1));
 	if (!s2)
 		return (NULL);
 	while (*s1)
@@ -48,7 +48,7 @@ char	*expander_outside(char *s2)
 
 	i = 0;
 	sig = 1;
-	s3 = (char *)malloc(sizeof(char) * (ft_strlen(s2) * 10));
+	s3 = (char *)malloc(sizeof(char) * (ft_strlen(s2) * 10 + 1));
 	while (*s2)
 	{
 		if (sig == 1)
@@ -73,7 +73,6 @@ int	inside_spquotes(char **s1, char **s2, int i, char *sig)
 	if (**s1 == '\'')
 		*sig = 1;
 	(*s2)[i++] = *(*s1)++;
-	
 	return (i);
 }
 

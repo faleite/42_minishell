@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 18:41:05 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/27 17:45:48 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/28 19:44:00 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**strtrim_quotes(char **arr)
 			arr[i] = tmp;
 		}
 		else
-		 	free(tmp);
+			free(tmp);
 		i++;
 	}
 	return (arr);

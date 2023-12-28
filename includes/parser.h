@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/27 19:17:24 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/28 20:56:23 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <readline/history.h>
 # include <stdlib.h> /* getenv */
 # include <limits.h>
+# include <signal.h> /* */
+# include <sys/ioctl.h> /* */
+
 
 /* int	g_status; // Status de saída do comando executado mais recentemente */
 
@@ -98,5 +101,8 @@ char	*expander_outside(char *s2);
 char	**strtrim_quotes(char **arr);
 void	handle_quotes(char *s1, char *s2);
 void	replace_spaces(char *s1);
+
+/* Signals */
+void	ctrlc_sigint(int sig);
 
 #endif /* PARSER_H */

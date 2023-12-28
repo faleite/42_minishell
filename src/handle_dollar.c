@@ -6,11 +6,13 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 13:44:44 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/27 21:15:40 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/28 21:17:07 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parser.h"
+
+int	g_status;
 
 int	dollar(char **src, char **dst, int i)
 {
@@ -35,4 +37,15 @@ int	dollar(char **src, char **dst, int i)
 	}
 	free (var);
 	return (i);
+}
+
+void	ctrlc_sigint(int sig)
+{
+	if (sig == SIGINT)
+	{
+		g_status = 130;
+		ioctl(STDIN_FILENO, TIOCSTI, "\n");
+		rl_replace_line("", 0);
+		rl_on_new_line();
+	}
 }
