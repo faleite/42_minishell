@@ -6,11 +6,13 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/28 21:48:26 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/29 20:20:03 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parser.h"
+
+int	g_exit;
 
 /**
  * Substitui separador
@@ -46,15 +48,9 @@ void	cmdline(void)
 	char	**arr;
 
 	arr = NULL;
-	signal(SIGINT, ctrlc_sigint);
-/*
-Warning: noted but unhandled ioctl 0x5412 with no size/direction hints.
-==10047==    This could cause spurious value errors to appear.
-==10047==    See README_MISSING_SYSCALL_OR_IOCTL for guidance on writing a proper wrapper.
-*/
-	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
+		rl_catch_signals = 0;
 		command_line = readline("[minishell]$ ");
 		if (!command_line)
 		{

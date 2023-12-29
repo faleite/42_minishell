@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:00:07 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/27 19:35:03 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/29 19:26:52 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	handle_quotes(char *s1, char *s2)
 			put_spaces(&s1, &s2);
 			if (*s1 == '\"' || *s1 == '\'')
 				sig = *s1;
-			*s2++ = *s1++;
+			if (*s1)
+				*s2++ = *s1++;
 		}
 		else
 			end_quote(&sig, &s1, &s2);
@@ -85,6 +86,15 @@ static int	is_redpipe(char c)
 	return (c == '<' || c == '>' || c == '|');
 }
 
+/*
+In case of dollar and ? exit value
+	if (**s1 == '$' && *(*s1 + 1) == '?')
+	{
+		*(*s2)++ = *(*s1)++;
+		*(*s2)++ = *(*s1)++;
+		*(*s2)++ = ' ';
+	}
+*/
 static void	put_spaces(char **s1, char **s2)
 {
 	if (is_redpipe(**s1) && *s1)
