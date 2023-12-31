@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 18:41:05 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/28 19:44:00 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/31 14:57:15 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parser.h"
+#include "../../includes/parser.h"
 
 static char	*handle_trim_quotes(char const *s1, int *val);
 

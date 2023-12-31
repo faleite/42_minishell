@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:00:07 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/29 19:26:52 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/31 14:56:52 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parser.h"
+#include "../../includes/parser.h"
 
 static void		end_quote(char *sig, char **s1, char **s2);
 static void		put_spaces(char **s2, char **s1);

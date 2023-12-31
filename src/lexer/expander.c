@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:27:54 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/28 20:14:10 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/31 14:56:55 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parser.h"
+#include "../../includes/parser.h"
 
 char	*expander_inside(char *s1)
 {

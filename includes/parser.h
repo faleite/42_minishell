@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/31 12:47:44 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/31 15:13:43 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@
 # include <signal.h> /* */
 # include <sys/ioctl.h> /* */
 
-
-/* int	g_status; // Status de saída do comando executado mais recentemente */
-
 /**
  * Estrutura que representa um comando minishell.
  * A estrutura t_shell contém informações sobre um comando mini, 
@@ -40,16 +37,17 @@
  */
 typedef struct s_shell
 {
-	char	**full_cmd;
-	char	*full_path;
-	int		infile;
-	int		outfile;
-}			t_shell;
+	char			**full_cmd;
+	char			*full_path;
+	int				infile;
+	int				outfile;
+	struct s_shell	*next;
+}					t_shell;
 
 /**
  * Estrutura que representa um prompt.
  * Contém informações relacionadas a um prompt incluindo:
- * *cmds -> Lista de comandos contendo um t_mini nó com todos os comandos
+ * *cmds -> Lista de comandos contendo um t_shell nó com todos os comandos
  * separados por pipes.
  * **envp -> Matriz atualizada contendo chaves e valores para o ambiente shell
  * pid -> ID do processo da instância do minishell
@@ -58,7 +56,7 @@ typedef struct s_prompt
 {
 	t_shell	*cmds;
 	char	**envp;
-	pid_t	pid; 
+	pid_t	pid;
 }			t_prompt;
 
 /**

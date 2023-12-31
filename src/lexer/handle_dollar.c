@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 13:44:44 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/31 12:48:45 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/31 14:57:08 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parser.h"
+#include "../../includes/parser.h"
 
 int	g_status;
 

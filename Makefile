@@ -6,8 +6,14 @@
 NAME		= minishell
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -g #-fsanitize=address
-SRC_DIR		= src
-FILES 		= $(foreach dir, $(SRC_DIR), $(wildcard $(dir)/*.c))
+SL			= src/lexer
+SP			= src/parser
+# FILES 		= $(foreach dir, $(SRC_DIR), $(wildcard $(dir)/*.c))
+FILES 		= src/minishell.c\
+			  $(SL)/cmdline_split.c $(SL)/expander.c $(SL)/handle_dollar.c\
+			  $(SL)/free_data.c $(SL)/trim_quotes.c\
+			  $(SP)/parser.c\
+
 OBJS		= $(FILES:.c=.o)
 LIBFT		= ./libft/libft.a
 RDLINE		= -lreadline -lhistory

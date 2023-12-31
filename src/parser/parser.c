@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_free.c                                       :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 19:32:22 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/28 21:23:12 by faaraujo         ###   ########.fr       */
+/*   Created: 2023/12/31 15:03:40 by faaraujo          #+#    #+#             */
+/*   Updated: 2023/12/31 15:35:41 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parser.h"
+#include "../../includes/parser.h"
 
-void	print_arr(char **arr)
+t_shell	*cmd(void)
 {
-	int	i;
+	static t_shell	s;
 
-	i = 0;
-	while (arr[i] != NULL)
-	{
-		printf("%s\n", arr[i++]);
-	}
-}
-
-void	free_arr(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i] != NULL)
-	{
-		free(arr[i++]);
-	}
-	free(arr);
+	s.infile = -1;
+	s.outfile = -1;
+	return (&s);
 }
