@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/28 20:56:23 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/31 12:47:44 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ void	handle_quotes(char *s1, char *s2);
 void	replace_spaces(char *s1);
 
 /* Signals */
-void	ctrlc_sigint(int sig);
+// void	ctrlc_sigint(int sig);
+
+extern int	g_status;
 
 #endif /* PARSER_H */

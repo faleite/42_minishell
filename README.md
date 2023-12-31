@@ -182,22 +182,13 @@ noteAlign: left
 ---
 %%{ init: { "theme": 'dark', "nodeAlignment": 'left' } }%%
 graph TB
-    A(["< Makefile cat| echo #quot;$PWD 'hola'#quot; ~/src | 'tr' -d / >outfile"])
-    B[("< Makefile
-    cat|
-    echo
-    #quot;$PWD 'hola'#quot;
-    ~/src
-    |
-    'tr'
-    -d
-    /
-    >outifile")]
+    A(["< Makefile cat| echo #quot;$PWD < > | 'hola'#quot; #quot;$HOME#quot;/src | 'tr' -d / >outfile"])
+    B(["<\2Makefile\2cat\2|\2echo\2#quot;$PWD < > | 'hola'#quot;\2#quot;$HOME#quot;/src\2|\2'tr'\2-d\2/\2>\2outfile"])
     C[("< Makefile
     cat|
     echo
     #quot;/home/n_user/minishell 'hola'#quot;
-    /home/n_user/src
+    #quot;/home/n_user#quot;/src
     |
     'tr'
     -d
@@ -209,7 +200,7 @@ graph TB
     |
     echo
     #quot;/home/n_user/minishell 'hola'#quot;
-    /home/n_user/src
+    #quot;/home/n_user#quot;/src
     |
     'tr'
     -d
@@ -229,11 +220,12 @@ graph TB
     /
     >
     outifile")]
-    A ==ft_cmdtrim==> B
-    A =="expand_vars
-    expand_path"==> C
-    A ==ft_cmdsubsplit==> D
-    A ==ft_strtrim_all==> E
+    A =="handle_quotes
+    replace_spaces"==> B
+    A =="expander_outside
+    expander_inside"==> C
+    A ==ft_split==> D
+    A ==strtrim_quotes==> E
     E ~~~ H
     A === H
     subgraph fill_structs

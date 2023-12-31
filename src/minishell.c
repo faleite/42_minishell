@@ -6,13 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/29 20:20:03 by faaraujo         ###   ########.fr       */
+/*   Updated: 2023/12/31 13:15:06 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parser.h"
-
-int	g_exit;
 
 /**
  * Substitui separador
@@ -50,7 +48,6 @@ void	cmdline(void)
 	arr = NULL;
 	while (1)
 	{
-		rl_catch_signals = 0;
 		command_line = readline("[minishell]$ ");
 		if (!command_line)
 		{
@@ -59,9 +56,9 @@ void	cmdline(void)
 		}
 		add_history(command_line);
 		arr = lexer_line(command_line);
+		free(command_line);
 		print_arr(arr);
 		free_arr(arr);
-		free(command_line);
 	}
 }
 

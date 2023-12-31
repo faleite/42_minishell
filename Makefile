@@ -61,6 +61,14 @@ re: fclean all
 	@echo "$(PURPLE)====================================$(CLR_RESET)"
 
 v:
+	make re && valgrind --leak-check=full --suppressions="supp.supp" ./minishell
+
+# a flag --show-leak-kinds=all 
+# pode ajudar a identificar vazamentos de memória que de outra forma poderiam passar despercebidos.
+vs:
 	make re && valgrind --leak-check=full --show-leak-kinds=all --suppressions="supp.supp" ./minishell
+
+fd:
+	make re && valgrind  --track-fds=yes ./minishell
 
 .PHONY: all clean fclean re
