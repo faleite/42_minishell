@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/31 15:13:43 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/01/01 14:02:23 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <limits.h>
 # include <signal.h> /* */
 # include <sys/ioctl.h> /* */
+# include <fcntl.h> /* open */
 
 /**
  * Estrutura que representa um comando minishell.
@@ -99,6 +100,9 @@ char	*expander_outside(char *s2);
 char	**strtrim_quotes(char **arr);
 void	handle_quotes(char *s1, char *s2);
 void	replace_spaces(char *s1);
+
+/* Parser */
+t_shell	*cmd(void);
 
 /* Signals */
 // void	ctrlc_sigint(int sig);

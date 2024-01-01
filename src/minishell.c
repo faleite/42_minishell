@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/31 13:15:06 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/01/01 13:44:16 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ char	**lexer_line(char *s1)
 void	cmdline(void)
 {
 	char	*command_line;
-	char	**arr;
+	char	**tokens;
 
-	arr = NULL;
+	tokens = NULL;
 	while (1)
 	{
 		command_line = readline("[minishell]$ ");
@@ -55,10 +55,10 @@ void	cmdline(void)
 			break ;
 		}
 		add_history(command_line);
-		arr = lexer_line(command_line);
+		tokens = lexer_line(command_line);
 		free(command_line);
-		print_arr(arr);
-		free_arr(arr);
+		print_arr(tokens);
+		free_arr(tokens);
 	}
 }
 
