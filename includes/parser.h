@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/01 14:02:23 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/01/02 21:06:06 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,14 @@ void	replace_spaces(char *s1);
 
 /* Parser */
 t_shell	*cmd(void);
+t_shell	*add_nodes(char **tokens);
+t_shell	*put_cmds(char **tokens);
+t_shell	*handle_redirection(t_shell *cmds, char **tokens);
+int	handle_input_redirection(t_shell *curr, char *token);
+int	handle_output_redirection(t_shell *curr, char *token);
+int	cmds_len(char **tokens);
+
+
 
 /* Signals */
 // void	ctrlc_sigint(int sig);

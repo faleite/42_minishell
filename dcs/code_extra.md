@@ -1,5 +1,40 @@
 # code behind the scenes
 
+# structs
+```c
+t_shell	*put_cmds(t_shell *cmds, char **tokens)
+{
+	t_shell	*curr;
+	int		i;
+	int		j;
+
+	i = 0;
+	curr = cmds;
+	while (curr)
+	{
+		curr->full_cmd = malloc(sizeof(char *) * (token_count(tokens) + 1));
+		j = 0;
+		while (tokens[i] && ft_strncmp(tokens[i], "|", 1))
+		{
+			if (!ft_strncmp(tokens[i], "<", 1) || \
+				!ft_strncmp(tokens[i], ">", 1) || \
+				!ft_strncmp(tokens[i], ">>", 2))
+				i += 2;
+			else
+			{
+				curr->full_cmd[j++] = ft_strdup(tokens[i]);
+				if (!curr->full_path)
+					curr->full_path = ft_strdup(tokens[i]);
+			}
+		}
+		curr->full_cmd[j] = NULL;
+		i++;
+		curr = curr->next;
+	}
+	return (cmds);
+}
+```
+
 # Test for here_doc
 ```bash
 faaraujo@c2r3s3:~/00/shell$ cat << ""

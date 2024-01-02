@@ -6,11 +6,13 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:03:40 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/01 21:02:33 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/01/02 21:16:29 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
+
+// <<Makefile cat| echo "$PWD <$?> | 'hola'" "$HOME"/src | echo $? '$?' |'tr' -d / >outfile
 
 t_shell	*cmd(void)
 {
@@ -21,30 +23,9 @@ t_shell	*cmd(void)
 	return (&s);
 }
 
-t_shell	*add_nodes(char **tokens)
-{
-	t_shell	*curr;
-	t_shell	*cmds;
-	int		i;
-
-	i = 0;
-	curr = cmd();
-	cmds = curr;
-	while (tokens[i])
-	{
-		if (!ft_strncmp(tokens[i], "|", 1))
-		{
-			curr->next = cmd();
-			curr = curr->next;
-		}
-		i++;
-	}
-	return (cmds);
-}
-
 int	handle_input_redirection(t_shell *curr, char *token)
 {
-	if (!token && access(token, R_OK) == -1)
+	if (!token || access(token, R_OK) == -1)
 	{
 		ft_putstr_fd("Erro: Sem permissao de leitura para o arquivo\n", 2);
 		return (-1);
@@ -63,12 +44,12 @@ int	handle_output_redirection(t_shell *curr, char *token)
 	int	flag;
 
 	flag = O_WRONLY | O_CREAT;
-	if (!token && access(token, W_OK) == -1)
+	if (!token || access(token, W_OK) == -1)
 	{
 		ft_putstr_fd("Erro: sem permissao de escrita para o arquivo\n", 2);
 		return (-1);
 	}
-	if (token[1] == '>')
+	if (ft_strlen(token) > 1 && token[1] == '>')
 		flag |= O_APPEND;
 	else
 		flag |= O_TRUNC;
@@ -110,28 +91,25 @@ t_shell	*handle_redirection(t_shell *cmds, char **tokens)
 	return (cmds);
 }
 
-int	token_count(char **arr)
+static int	token_count(char **arr)
 {
 	int	i;
-	int	len;
 
 	i = 0;
-	len = 0;
-	while (arr[i++])
-		len++;
-	return (len);
+	while (arr[i])
+		i++;
+	return (i);
 }
 
-//$ <<Makefile cat| echo "$PWD <$?> | 'hola'" "$HOME"/src | echo $? '$?' |'tr' -d / >outfile
-
-t_shell	*put_cmds(t_shell *cmds, char **tokens)
+t_shell	*put_cmds(char **tokens)
 {
 	t_shell	*curr;
+	t_shell *cmds;
 	int		i;
 	int		j;
 
 	i = 0;
-	curr = cmds;
+	cmds = curr;
 	while (curr)
 	{
 		curr->full_cmd = malloc(sizeof(char *) * (token_count(tokens) + 1));
@@ -145,13 +123,57 @@ t_shell	*put_cmds(t_shell *cmds, char **tokens)
 			else
 			{
 				curr->full_cmd[j++] = ft_strdup(tokens[i]);
-				if (!curr->full_path)
-					curr->full_path = ft_strdup(tokens[i]);
+				// if (!curr->full_path)
+				// 	curr->full_path = ft_strdup(tokens[i]);
 			}
 		}
-		curr->full_cmd[j] = NULL;
+		//curr->full_cmd[j] = NULL;
 		i++;
 		curr = curr->next;
 	}
+	return (cmds);
+}
+
+
+int	cmds_len(char **tokens)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = 0;
+	while (tokens[i])
+	{
+		if (ft_strncmp(tokens[i], "|", 1) == 0)
+			len++;
+		i++;
+	}
+	return (++len);
+}
+
+
+t_shell	*add_nodes(char **tokens)
+{
+	t_shell	*curr;
+	t_shell	*cmds;
+	int		len;
+
+	len = cmds_len(tokens);
+	curr = (t_shell *)malloc(sizeof(t_shell));
+	if (!curr)
+		return (NULL);
+	curr->infile  = -1;
+	curr->outfile  = -1;
+	cmds = curr;
+	while (--len)
+	{
+		curr->next = (t_shell *)malloc(sizeof(t_shell));
+		if (!curr->next)
+			return (NULL);
+		curr = curr->next;
+		curr->infile  = -1;
+		curr->outfile  = -1;
+	}
+	curr->next = NULL;
 	return (cmds);
 }

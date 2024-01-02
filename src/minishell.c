@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/01 13:44:16 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/01/02 21:06:36 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * echo "hello      there" how are 'you 'doing? $USER |wc -l >outfile
  * echo/2"hello      there"/2how/2are/2'you 'doing?/2$USER/2|wc/2-l/2>outfile
 */
-char	**lexer_line(char *s1)
+char	**ft_lexer(char *s1)
 {
 	char	*s2;
 	char	*s3;
@@ -40,30 +40,63 @@ char	**lexer_line(char *s1)
 	return (arr);
 }
 
-void	cmdline(void)
+int	cmds_size(t_shell *lst)
 {
-	char	*command_line;
-	char	**tokens;
+	t_shell	*current;
+	size_t	i;
 
-	tokens = NULL;
+	current = lst;
+	i = 0;
+	while (current)
+	{
+		current = current->next;
+		i++;
+	}
+	return (i);
+}
+
+void	init_process(char *line)
+{
+	char	**tokens;
+	t_shell	*cmds;
+	
+	tokens = ft_lexer(line);
+	cmds = add_nodes(tokens);
+	cmds = put_cmds(tokens);
+	printf("%d\n", cmds_size(cmds));
+	//print_arr(tokens);
+	free_arr(tokens);
+}
+
+void	cmdline(char *cmd_line)
+{
+	
 	while (1)
 	{
-		command_line = readline("[minishell]$ ");
-		if (!command_line)
+		if (!cmd_line)
+			cmd_line = readline("[minishell]$ ");
+		if (!cmd_line)
 		{
 			printf("exit\n");
 			break ;
 		}
-		add_history(command_line);
-		tokens = lexer_line(command_line);
-		free(command_line);
-		print_arr(tokens);
-		free_arr(tokens);
+		else
+		{
+			if (*cmd_line)
+				add_history(cmd_line);
+			init_process(cmd_line);
+		}
+		free(cmd_line);
+		cmd_line = NULL;
+		g_status = 0;
 	}
 }
 
 int	main(void)
 {
-	cmdline();
+	char	*cmd_line;
+	
+	cmd_line = NULL;
+	cmdline(cmd_line);
 	return (0);
 }
