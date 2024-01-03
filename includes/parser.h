@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/02 21:06:06 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/01/03 21:22:40 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,31 @@
 # include <sys/ioctl.h> /* */
 # include <fcntl.h> /* open */
 
+# define PIPE "|"
+# define INPUT_REDIRECT "<"
+# define OUTPUT_REDIRECT ">"
+# define HERE_DOC "<<"
+# define APPEND ">>"
+
+typedef enum	e_token
+{
+	INPUT_ID = 1,
+	OUTPUT_ID,
+	HEREDOC_ID,
+	APPEND_ID,
+	PIPE_ID,
+	ARGS_ID,
+}		t_enum_tokens;
+
+typedef struct	s_token
+{
+	t_enum_tokens	token_id;
+	char			*token;
+	struct s_token	*prev;
+	struct s_token	*next;
+}					t_token;
+
+
 /**
  * Estrutura que representa um comando minishell.
  * A estrutura t_shell contém informações sobre um comando mini, 
@@ -40,10 +65,25 @@ typedef struct s_shell
 {
 	char			**full_cmd;
 	char			*full_path;
+	// int	fd[2];
 	int				infile;
 	int				outfile;
 	struct s_shell	*next;
 }					t_shell;
+
+typedef	struct s_redirect
+{
+	
+};
+
+
+typedef struct s_parser
+{
+	char	**args;
+	
+	
+};
+
 
 /**
  * Estrutura que representa um prompt.

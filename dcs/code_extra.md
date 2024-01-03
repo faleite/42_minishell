@@ -2,6 +2,63 @@
 
 # structs
 ```c
+void	free_stack(t_stack **root)
+{
+	t_stack	*curr;
+	t_stack	*aux;
+
+	curr = *root;
+	while (curr)
+	{
+		aux = curr;
+		curr = curr->next;
+		free(aux);
+	}
+	*root = NULL;
+}
+```
+
+```c
+void	insert_end(t_stack **root, int value)
+{
+	t_stack	*new_node;
+	t_stack	*curr;
+
+	new_node = malloc(sizeof(t_stack));
+	if (!new_node)
+		exit(1);
+	new_node->next = NULL;
+	new_node->nbr = value;
+	if (!*root)
+	{
+		*root = new_node;
+		return ;
+	}
+	curr = *root;
+	while (curr->next)
+		curr = curr->next;
+	curr->next = new_node;
+}
+```
+
+```c
+int	struct_len(t_stack *root)
+{
+	int		s_len;
+	t_stack	*curr;
+
+	s_len = 0;
+	curr = root;
+	while (curr != NULL)
+	{
+		s_len++;
+		curr = curr->next;
+	}
+	return (s_len);
+}
+```
+
+```c
 t_shell	*put_cmds(t_shell *cmds, char **tokens)
 {
 	t_shell	*curr;
