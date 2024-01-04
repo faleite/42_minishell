@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/02 21:06:36 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/01/04 21:17:01 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ char	**ft_lexer(char *s1)
 	return (arr);
 }
 
-int	cmds_size(t_shell *lst)
+int	cmds_size(t_redirect *lst)
 {
-	t_shell	*current;
-	size_t	i;
+	t_redirect	*current;
+	size_t		i;
 
 	current = lst;
 	i = 0;
@@ -57,13 +57,13 @@ int	cmds_size(t_shell *lst)
 
 void	init_process(char *line)
 {
-	char	**tokens;
-	t_shell	*cmds;
+	char		**tokens;
+	t_redirect	*redirect;
 	
+	redirect = ft_calloc(1, sizeof(t_redirect));
 	tokens = ft_lexer(line);
-	cmds = add_nodes(tokens);
-	cmds = put_cmds(tokens);
-	printf("%d\n", cmds_size(cmds));
+	fill_data_redirect(redirect, tokens);
+	printf("%d\n", cmds_size(redirect));
 	//print_arr(tokens);
 	free_arr(tokens);
 }

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/03 21:22:40 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/01/04 21:13:11 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define PIPE "|"
 # define INPUT_REDIRECT "<"
 # define OUTPUT_REDIRECT ">"
-# define HERE_DOC "<<"
 # define APPEND ">>"
+# define HERE_DOC "<<"
 
 typedef enum	e_token
 {
@@ -41,49 +41,31 @@ typedef enum	e_token
 	ARGS_ID,
 }		t_enum_tokens;
 
-typedef struct	s_token
-{
-	t_enum_tokens	token_id;
-	char			*token;
-	struct s_token	*prev;
-	struct s_token	*next;
-}					t_token;
-
-
-/**
- * Estrutura que representa um comando minishell.
- * A estrutura t_shell contém informações sobre um comando mini, 
- * incluindo:
- * full_cmd -> Equivalente ao típico argv, contendo o nome do comando e seus
- * parâmetros quando necessário
- * full_path -> Se não for um builtin, primeiro disponível para o executável
- * indicado por argv[0] na variável PATH
- * infile -> Qual descritor de arquivo ler ao executar um comando (o padrão é stdin)
- * outfile -> Qual descritor de arquivo gravar ao executar um comando (o padrão é stdout)
- */
-typedef struct s_shell
-{
-	char			**full_cmd;
-	char			*full_path;
-	// int	fd[2];
-	int				infile;
-	int				outfile;
-	struct s_shell	*next;
-}					t_shell;
-
 typedef	struct s_redirect
 {
-	
-};
+	t_enum_tokens	token_id;
+	char			*file;
+	struct s_redirect	*next;
+}					t_redirect;
 
-
-typedef struct s_parser
+/**
+ * @brief Estrutura que representa um comando minishell.
+ * incluindo:
+ * @param cmd Se não for um builtin, primeiro disponível para o executável
+ * indicado por argv[0] na variável PATH
+ * @param args Equivalente ao típico argv, contendo o nome do comando e seus
+ * parâmetros quando necessário
+ * @param redirect estrutura com contendo o tipo de redirecionador ou heredoc
+ * e seu parametro ou arquivo a ser redirecionado
+ * @note pode se usar uma array int para o file descriptor: int fd[2];
+ */
+typedef struct s_prompt
 {
-	char	**args;
-	
-	
-};
-
+	char			*cmd;
+	char			**args;
+	t_redirect		*redirect;
+	struct s_prompt	*next;
+}					t_prompt;
 
 /**
  * Estrutura que representa um prompt.
@@ -93,30 +75,12 @@ typedef struct s_parser
  * **envp -> Matriz atualizada contendo chaves e valores para o ambiente shell
  * pid -> ID do processo da instância do minishell
  */
-typedef struct s_prompt
+typedef struct s_shell
 {
-	t_shell	*cmds;
-	char	**envp;
-	pid_t	pid;
-}			t_prompt;
-
-/**
- * LEXER
- * @brief Depois de ler, stdin usamos uma função que nomeada cmdtrim que 
- * separa a string levando em consideração espaços e aspas. 
- * Por exemplo:
- * string: echo "hello      there" how are 'you 'doing? $USER |wc -l >outfile
- * output: {echo, "hello      there", how, are, 'you 'doing?, $USER, |wc, -l, >outfile, NULL}
-*/
-
-/**
- * EXPANDER
- * @brief seguida, aplicamos as funções expansoras em cima de cada substring
- * da string original, resultando em algo semelhante a isto:
- * output: {echo, "hello      there", how, are, 'you 'doing?, faleite, |wc, -l, >outfile, NULL}
- * Nota: se uma variável não for encontrada, a parte $var da string será
- * substituída por uma string vazia
-*/
+	t_prompt	*cmds;
+	char		**envp;
+	pid_t		pid;
+}			t_shell;
 
 /**
  * PIPE & REDIRECT
@@ -126,31 +90,36 @@ typedef struct s_prompt
  * output: {echo, "hello      there", how, are, 'you 'doing?, pixel, |, wc, -l, >, outfile, NULL}
 */
 
-/* Utils */
-void	print_arr(char **arr);
-void	free_arr(char **arr);
+/* For sintax error */
+// typedef struct	s_token
+// {
+// 	t_enum_tokens	token_id;
+// 	char			*token;
+// 	struct s_token	*prev;
+// 	struct s_token	*next;
+// }					t_token;
 
 /* Lexer */
+char	**strtrim_quotes(char **arr);
+void	handle_quotes(char *s1, char *s2);
+void	replace_spaces(char *s1);
+
+/* Expander */
 int		dollar(char **src, char **dst, int i);
 int		outside_quotes(char **s2, char **s3, int i);
 int		inside_dbquotes(char **s1, char **s2, int i, char *sig);
 int		inside_spquotes(char **s1, char **s2, int i, char *sig);
 char	*expander_inside(char *s1);
 char	*expander_outside(char *s2);
-char	**strtrim_quotes(char **arr);
-void	handle_quotes(char *s1, char *s2);
-void	replace_spaces(char *s1);
 
 /* Parser */
-t_shell	*cmd(void);
-t_shell	*add_nodes(char **tokens);
-t_shell	*put_cmds(char **tokens);
-t_shell	*handle_redirection(t_shell *cmds, char **tokens);
-int	handle_input_redirection(t_shell *curr, char *token);
-int	handle_output_redirection(t_shell *curr, char *token);
-int	cmds_len(char **tokens);
+void	node_insert_redirects(t_redirect **root, int id, char *token);
+void	fill_data_redirect(t_redirect *redirect, char **tokens);
+int		cmds_len(char **tokens);
 
-
+/* Utils */
+void	print_arr(char **arr);
+void	free_arr(char **arr);
 
 /* Signals */
 // void	ctrlc_sigint(int sig);
