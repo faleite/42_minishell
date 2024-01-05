@@ -11,8 +11,8 @@ SP			= src/parser
 # FILES 		= $(foreach dir, $(SRC_DIR), $(wildcard $(dir)/*.c))
 FILES 		= src/minishell.c\
 			  $(SL)/cmdline_split.c $(SL)/expander.c $(SL)/handle_dollar.c\
-			  $(SL)/free_data.c $(SL)/trim_quotes.c\
-			  $(SP)/parser.c\
+			  $(SL)/trim_quotes.c $(SL)/lexer.c\
+			  $(SP)/parser.c $(SP)/utils.c\
 
 OBJS		= $(FILES:.c=.o)
 LIBFT		= ./libft/libft.a

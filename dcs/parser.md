@@ -1,6 +1,28 @@
 ```c
 // <<Makefile cat| echo "$PWD <$?> | 'hola'" "$HOME"/src | echo $? '$?' |'tr' -d / >outfile
 
+t_redirect	*fill_data_redirect(char **tokens)
+{
+	int			i;
+	t_redirect	*redirect;
+
+	redirect = NULL;
+	i = 0;
+	while (tokens[i])
+	{
+		if (!ft_strcmp(tokens[i], "|") && tokens[i + 1])
+			i++;
+		if (!ft_strcmp(tokens[i], "<") && tokens[i + 1])
+		{
+			node_insert_redirects(&redirect, INPUT_ID, tokens[i + 1]);
+			i += 2;
+		}
+		else
+			i++;
+	}
+	return (redirect);
+}
+
 t_shell	*cmd(void)
 {
 	static t_shell	s;

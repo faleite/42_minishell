@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/04 21:13:11 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/01/05 19:07:20 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define APPEND ">>"
 # define HERE_DOC "<<"
 
-typedef enum	e_token
+typedef enum e_token
 {
 	INPUT_ID = 1,
 	OUTPUT_ID,
@@ -41,10 +41,10 @@ typedef enum	e_token
 	ARGS_ID,
 }		t_enum_tokens;
 
-typedef	struct s_redirect
+typedef struct s_redirect
 {
-	t_enum_tokens	token_id;
-	char			*file;
+	t_enum_tokens		token_id;
+	char				*file;
 	struct s_redirect	*next;
 }					t_redirect;
 
@@ -100,26 +100,29 @@ typedef struct s_shell
 // }					t_token;
 
 /* Lexer */
-char	**strtrim_quotes(char **arr);
-void	handle_quotes(char *s1, char *s2);
-void	replace_spaces(char *s1);
+char		**ft_lexer(char *s1);
+char		**strtrim_quotes(char **arr);
+void		handle_quotes(char *s1, char *s2);
+void		replace_spaces(char *s1);
 
 /* Expander */
-int		dollar(char **src, char **dst, int i);
-int		outside_quotes(char **s2, char **s3, int i);
-int		inside_dbquotes(char **s1, char **s2, int i, char *sig);
-int		inside_spquotes(char **s1, char **s2, int i, char *sig);
-char	*expander_inside(char *s1);
-char	*expander_outside(char *s2);
+int			dollar(char **src, char **dst, int i);
+int			outside_quotes(char **s2, char **s3, int i);
+int			inside_dbquotes(char **s1, char **s2, int i, char *sig);
+int			inside_spquotes(char **s1, char **s2, int i, char *sig);
+char		*expander_inside(char *s1);
+char		*expander_outside(char *s2);
 
 /* Parser */
-void	node_insert_redirects(t_redirect **root, int id, char *token);
-void	fill_data_redirect(t_redirect *redirect, char **tokens);
-int		cmds_len(char **tokens);
+int			cmds_size(t_redirect *root);
+void		node_insert_redirects(t_redirect **root, int id, char *token);
+void		print_redirects(t_redirect *root);
+t_redirect	*fill_data_redirect(char **tokens);
+
 
 /* Utils */
-void	print_arr(char **arr);
-void	free_arr(char **arr);
+void		print_arr(char **arr);
+void		free_arr(char **arr);
 
 /* Signals */
 // void	ctrlc_sigint(int sig);

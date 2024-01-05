@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:03:40 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/04 21:14:41 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/01/05 22:07:13 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	node_insert_redirects(t_redirect **root, int id, char *token)
 	if (!*root)
 	{
 		*root = new_node;
-		return ;	
+		return ;
 	}
 	curr = *root;
 	while (curr->next)
@@ -35,15 +35,36 @@ void	node_insert_redirects(t_redirect **root, int id, char *token)
 	curr->next = new_node;
 }
 
-void	fill_data_redirect(t_redirect *redirect, char **tokens)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 
 	i = 0;
+	while ((s1[i] && s2[i]) && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
+}
+
+/*
+lexer problem
+<file|< file2:
+<
+file
+|<
+file2
+*/
+t_redirect	*fill_data_redirect(char **tokens)
+{
+	int			i;
+	t_redirect	*redirect;
+
 	redirect = NULL;
-	while (tokens[i] && ft_strncmp(tokens[i], "|", 1))
+	i = 0;
+	while (tokens[i])
 	{
-		if (tokens[i + 1] && !ft_strncmp(tokens[i], "<", ft_strlen(tokens[i])))
+		if (!ft_strcmp(tokens[i], "|"))
+			i++;
+		if (!ft_strcmp(tokens[i], "<") && tokens[i + 1])
 		{
 			node_insert_redirects(&redirect, INPUT_ID, tokens[i + 1]);
 			i += 2;
@@ -51,4 +72,5 @@ void	fill_data_redirect(t_redirect *redirect, char **tokens)
 		else
 			i++;
 	}
+	return (redirect);
 }
