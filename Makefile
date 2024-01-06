@@ -12,7 +12,7 @@ SP			= src/parser
 FILES 		= src/minishell.c\
 			  $(SL)/cmdline_split.c $(SL)/expander.c $(SL)/handle_dollar.c\
 			  $(SL)/trim_quotes.c $(SL)/lexer.c\
-			  $(SP)/parser.c $(SP)/utils.c\
+			  $(SP)/handle_redirect.c $(SP)/utils.c $(SP)/handle_args.c\
 
 OBJS		= $(FILES:.c=.o)
 LIBFT		= ./libft/libft.a

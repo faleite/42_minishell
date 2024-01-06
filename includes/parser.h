@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/05 19:07:20 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/01/06 20:00:35 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef enum e_token
 typedef struct s_redirect
 {
 	t_enum_tokens		token_id;
-	char				*file;
+	char				*token;
 	struct s_redirect	*next;
 }					t_redirect;
 
@@ -114,15 +114,21 @@ char		*expander_inside(char *s1);
 char		*expander_outside(char *s2);
 
 /* Parser */
-int			cmds_size(t_redirect *root);
 void		node_insert_redirects(t_redirect **root, int id, char *token);
-void		print_redirects(t_redirect *root);
+void		free_redirects(t_redirect **root);
 t_redirect	*fill_data_redirect(char **tokens);
+t_prompt	*fill_data_args(char **tokens);
+
 
 
 /* Utils */
+int			ft_strcmp(char *s1, char *s2);
+int			cmds_size(t_redirect *root);
 void		print_arr(char **arr);
 void		free_arr(char **arr);
+void		print_redirects(t_redirect *root);
+void		print_args(t_prompt *root);
+
 
 /* Signals */
 // void	ctrlc_sigint(int sig);
