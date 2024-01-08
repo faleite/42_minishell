@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:02:46 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/06 19:59:34 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/01/08 20:50:10 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
-void	print_args(t_prompt *root)
+void	print_prompt(t_prompt *root)
 {
 	int			i;
 	t_prompt	*curr;
@@ -31,10 +31,14 @@ void	print_args(t_prompt *root)
 	curr = root;
 	while (curr)
 	{
-		printf("args\n");
+		printf("struct: %d\n", i + 1);
+		printf("cmd: %s\n", curr->cmd);
+		printf("args: { ");
 		while (curr->args[i])
-			printf("argumentos: %s ,", curr->args[i++]);
-		printf("\n");
+			printf("%s ", curr->args[i++]);
+		printf("}\n\n");
+		// printf("token_id: %d\n", curr->redirect->token_id);
+		// printf("token: %s\n", curr->redirect->token);
 		curr = curr->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/06 20:01:48 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/01/08 19:52:17 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,18 @@ void	init_process(char *line)
 	char		**tokens;
 	t_prompt	*prompt;
 
-	prompt = ft_calloc(1, sizeof(t_prompt));
-	if (!prompt)
-		exit(1);
+	prompt = NULL;
 	tokens = ft_lexer(line);
-	//prompt->redirect = fill_data_redirect(tokens);
 	//printf("%d\n", cmds_size(prompt->redirect));
-	prompt = fill_data_args(tokens);
+	ft_parser(&prompt, tokens);
+	//prompt->redirect = fill_data_redirect(tokens);
 	//printf("%d\n", cmds_size(prompt));
-	print_args(prompt);
+	print_prompt(prompt);
 	//print_redirects(prompt->redirect);
 	//print_arr(tokens);
 	free_arr(tokens);
 	//free_redirects(&(prompt->redirect));
-	free(prompt);
+	//free(prompt);
 }
 
 void	cmdline(char *cmd_line)

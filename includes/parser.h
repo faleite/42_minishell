@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/06 20:00:35 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/01/08 18:37:54 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void		node_insert_redirects(t_redirect **root, int id, char *token);
 void		free_redirects(t_redirect **root);
 t_redirect	*fill_data_redirect(char **tokens);
 t_prompt	*fill_data_args(char **tokens);
+void		ft_parser(t_prompt **prompt, char **tokens);
 
 
 
@@ -127,7 +128,7 @@ int			cmds_size(t_redirect *root);
 void		print_arr(char **arr);
 void		free_arr(char **arr);
 void		print_redirects(t_redirect *root);
-void		print_args(t_prompt *root);
+void		print_prompt(t_prompt *root);
 
 
 /* Signals */

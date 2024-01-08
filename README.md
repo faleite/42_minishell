@@ -649,6 +649,7 @@ Muitas vezes, durante uma sessão interativa, você digita uma longa linha de te
 - [Repo -> Swoorup](https://github.com/Swoorup/mysh)
 - [Article -> Building a mini-bash](https://m4nnb3ll.medium.com/minishell-building-a-mini-bash-a-42-project-b55a10598218)
 - [Article -> Shell Syntax](https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html)
+- [Test your shell](https://github.com/ChewyToast/mpanic) 
 <!-- - [Article -> Shell Scripting Tutorial](https://www.shellscript.sh/) -->
 
 [↑ Index ↑](#mandatory-part)
