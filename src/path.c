@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:42:39 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/01/18 19:06:39 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:43:23 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*var_path(char *envp[])
 {
 	char	*path;
-	int	i;
+	int		i;
 
 	i = 0;
 	path = NULL;
@@ -23,7 +23,7 @@ char	*var_path(char *envp[])
 	{
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
 		{
-			path = envp[i] + 5;;
+			path = envp[i] + 5;
 			return (path);
 		}
 		i++;
@@ -51,9 +51,9 @@ char	*cmd_path(char *envp[], char *cmd)
 {
 	char	**path_cmds;
 	char	*path;
-	int	p_len;
-	int	c_len;
-	
+	int		p_len;
+	int		c_len;
+
 	if (access(cmd, F_OK) == 0)
 		return (cmd);
 	path_cmds = ft_split(var_path(envp), ':');

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/18 20:00:06 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:39:33 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_shell
 {
 	t_prompt	*cmds;
 	char		**envp;
+	int			fd[2];
 	char		*infile;
 	char		*outfile;
 	pid_t		pid;
@@ -161,6 +162,9 @@ void		print_prompt(t_prompt *root);
 
 // Creating path
 char	*cmd_path(char *envp[], char *cmd);
+
+// Stirng utils
+int	ft_equalstr(const char *s1, const char *s2);
 
 /* Signals */
 // void	ctrlc_sigint(int sig);
