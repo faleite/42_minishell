@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:33:14 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/01/22 17:39:42 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:37:06 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	free_str(void *obj)
 	return (1);
 }
 
-void	ft_heredoc(t_shell *command, char *delimiter)
+void	ft_heredoc(t_command *command, char *delimiter)
 {
 	char	*str;
 

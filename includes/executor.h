@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/22 17:39:33 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/01/25 20:16:43 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ typedef struct	s_args
  */
 typedef struct s_prompt
 {
-	char			*path;
 	char			**args;
 	t_enum_token	*tokens_id;
 	char			**tokens;
@@ -84,15 +83,21 @@ typedef struct s_prompt
  * **envp -> Matriz atualizada contendo chaves e valores para o ambiente shell
  * pid -> ID do processo da instância do minishell
  */
-typedef struct s_shell
+typedef struct s_command
 {
-	t_prompt	*cmds;
-	char		**envp;
-	int			fd[2];
-	char		*infile;
-	char		*outfile;
-	pid_t		pid;
-}			t_shell;
+	char				*path;
+	char				**args;
+	int					fd[2];
+	pid_t				pid;
+	char				*infile;
+	char				*outfile;
+	struct s_command	*next;
+}			t_command;
+
+typedef struct s_envp
+{
+	char	**envp;
+}		t_envp;
 
 /**
  * PIPE & REDIRECT
@@ -101,15 +106,6 @@ typedef struct s_shell
  * aspas:
  * output: {echo, "hello      there", how, are, 'you 'doing?, pixel, |, wc, -l, >, outfile, NULL}
 */
-
-/* For sintax error */
-// typedef struct	s_token
-// {
-// 	t_enum_tokens	token_id;
-// 	char			*token;
-// 	struct s_token	*prev;
-// 	struct s_token	*next;
-// }					t_token;
 
 /* Lexer */
 char		**ft_lexer(char *s1);
@@ -168,6 +164,10 @@ int	ft_equalstr(const char *s1, const char *s2);
 
 /* Signals */
 // void	ctrlc_sigint(int sig);
+
+// Enviroment variables management
+void	ft_envp(char *envp[]);
+t_envp	*getev(void);
 
 extern int	g_status;
 
