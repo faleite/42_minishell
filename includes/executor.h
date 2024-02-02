@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/25 20:16:43 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/01 23:04:16 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h> /* printf */
 # include <unistd.h> /* write */
 # include <sys/types.h> /* pid_t */
+# include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdlib.h> /* getenv */
@@ -24,6 +25,7 @@
 # include <signal.h> /* */
 # include <sys/ioctl.h> /* */
 # include <fcntl.h> /* open */
+# include <stdbool.h>
 
 # define PIPE "|"
 # define INFILE "<"
@@ -88,16 +90,27 @@ typedef struct s_command
 	char				*path;
 	char				**args;
 	int					fd[2];
+	int					infile_fd;
+	int					outfile_fd;
 	pid_t				pid;
-	char				*infile;
-	char				*outfile;
+	// char				*infile;
+	// char				*outfile;
+	t_prompt			*prompt;
+	struct s_command	*prev;
 	struct s_command	*next;
 }			t_command;
 
 typedef struct s_envp
 {
-	char	**envp;
+	char		*name;
+	char		*value;
+	struct s_envp	*next;
 }		t_envp;
+
+typedef struct	s_envparray
+{
+	char	**envp;
+}		t_envparr;
 
 /**
  * PIPE & REDIRECT
@@ -157,7 +170,7 @@ void		print_redirects(t_redirect *root);
 void		print_prompt(t_prompt *root);
 
 // Creating path
-char	*cmd_path(char *envp[], char *cmd);
+char	*cmd_path(char *cmd);
 
 // Stirng utils
 int	ft_equalstr(const char *s1, const char *s2);
@@ -165,9 +178,21 @@ int	ft_equalstr(const char *s1, const char *s2);
 /* Signals */
 // void	ctrlc_sigint(int sig);
 
+// Frees
+void	free_map(char **map);
+
+t_command	*init_exec(t_prompt *prompt);
+
 // Enviroment variables management
+void	ft_fillenvp(char *envp[]);
+t_envparr	*getevarr(void);
 void	ft_envp(char *envp[]);
 t_envp	*getev(void);
+
+int		ft_open_all(t_command *current);
+
+
+void	print_commands(t_command *head);
 
 extern int	g_status;
 
