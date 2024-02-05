@@ -3,27 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:42:39 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/01 15:47:50 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/05 03:32:15 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/executor.h"
+#include "../../includes/parser.h"
 
-char	*var_path(void)
+void	var_path(t_envp *getev)
 {
 	t_envp	*current;
 
-	current = getev();
+	current = getev;
 	while (current)
 	{
 		if (!ft_strncmp(current->name, "PATH", 4))
-			return (current->value);
+			data()->path = current->value;
 		current = current->next;
 	}
-	return (NULL);
 }
 
 char	*create_path(char *dest, char *path, char *command)
@@ -64,7 +63,7 @@ char	*cmd_path(char *cmd)
 
 	if (access(cmd, F_OK) == 0)
 		return (cmd);
-	path_cmds = ft_split(var_path(), ':');
+	path_cmds = ft_split(data()->path, ':');
 	path = NULL;
 	while (*path_cmds)
 	{
@@ -82,5 +81,6 @@ char	*cmd_path(char *cmd)
 		path_cmds++;
 	}
 	// free_map(path_cmds);
+	//printf("Error: %s command not found!\n", cmd);
 	return (NULL);
 }

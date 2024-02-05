@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_executor.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:33:49 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/01 23:22:49 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/05 03:22:16 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/executor.h"
-#include <unistd.h>
+#include "../../includes/parser.h"
 
 static t_command	*find_tail(t_command *head)
 {
@@ -46,7 +45,6 @@ void	new_struct(t_prompt *prompt, t_command **head)
 		return ;
 	}
 	current = find_tail(*head);
-	new->prev = current;
 	current->next = new;
 }
 
@@ -73,7 +71,6 @@ void	print_commands(t_command *head)
 		printf("Path: %s\n", current->path);
 		printf("Fds: %d, %d\n", current->fd[0], current->fd[1]);
 		printf("Infile_fd: %d Outfile_fd: %d\n", current->infile_fd, current->outfile_fd);
-		printf("Prev: %p\n", current->prev);
 		printf("Current: %p\n", current);
 		printf("Next: %p\n\n\n", current->next);
 		current = current->next;
@@ -105,11 +102,12 @@ void	free_struct(t_command *head)
 		tmp = current;
 		current = current->next;
 		free_map(tmp->args);
-		// free_prompt(&tmp->prompt);
+		free(tmp->path);
+		free_prompt(&tmp->prompt);
 		free(tmp);
 	}
 	head = NULL;
-	// free(head);
+	free(head);
 }
 
 // void	print_envp(void)

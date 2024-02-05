@@ -6,11 +6,11 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/01 23:37:44 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/05 03:45:02 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/executor.h"
+#include "../../includes/parser.h"
 
 static int	exec_command(t_command *command, int infile, int outfile)
 {
@@ -76,52 +76,55 @@ void	executing(t_command *head)
 			if (current->fd[1] != 1)
 				close(current->fd[1]);
 		}
-		exec_command(current, infile, outfile);
+		if (is_builtin(current->args[0]))
+			builtins(current, infile, outfile);
+		else
+			exec_command(current, infile, outfile);
 		infile = current->fd[0];
 		current = current->next;
 	}
 	wait_all(head);
 }
 
-int main (int ac, char *av[], char *ev[])
-{
+// int main (int ac, char *av[], char *ev[])
+// {
 
-	static t_prompt	test;
-	static t_prompt	test2;
-	t_command	*head;
+// 	static t_prompt	test;
+// 	static t_prompt	test2;
+// 	t_command	*head;
 
-	// head = ft_calloc(1, sizeof(t_command));
-	test.args = ft_calloc(10, sizeof(char *));
-	test.tokens = ft_calloc(10, sizeof(char *));
-	test.tokens_id = ft_calloc(10, sizeof(t_enum_token));
+// 	// head = ft_calloc(1, sizeof(t_command));
+// 	test.args = ft_calloc(10, sizeof(char *));
+// 	test.tokens = ft_calloc(10, sizeof(char *));
+// 	test.tokens_id = ft_calloc(10, sizeof(t_enum_token));
 
-	test2.args = ft_calloc(10, sizeof(char *));
-	test2.tokens = ft_calloc(10, sizeof(char *));
-	test2.tokens_id = ft_calloc(10, sizeof(t_enum_token));
+// 	test2.args = ft_calloc(10, sizeof(char *));
+// 	test2.tokens = ft_calloc(10, sizeof(char *));
+// 	test2.tokens_id = ft_calloc(10, sizeof(t_enum_token));
 
-	test.args[0] = "cat";
-	// test.args[1] = "oi";
-	test.tokens[0] = "i";
-	test.tokens_id[0] = HEREDOC_ID;
-	// test.tokens[1] = "file";
-	// test.tokens_id[1] = INFILE_ID;
-	// test.next = &test2;
+// 	test.args[0] = "cat";
+// 	// test.args[1] = "oi";
+// 	test.tokens[0] = "i";
+// 	test.tokens_id[0] = HEREDOC_ID;
+// 	// test.tokens[1] = "file";
+// 	// test.tokens_id[1] = INFILE_ID;
+// 	// test.next = &test2;
 
-	test2.args[0] = "wc";
-	test2.args[2] = NULL;
-	// test2.tokens[0] = "infile.txt";
-	// test2.tokens_id[0] = INFILE_ID;
-	test2.next = NULL;
+// 	test2.args[0] = "wc";
+// 	test2.args[2] = NULL;
+// 	// test2.tokens[0] = "infile.txt";
+// 	// test2.tokens_id[0] = INFILE_ID;
+// 	test2.next = NULL;
 	
-	ft_fillenvp(ev);
-	ft_envp(getevarr()->envp);
-	// print_envp();
+// 	ft_fillenvp(ev);
+// 	ft_envp(getevarr()->envp);
+// 	// print_envp();
 
-	int	i = 0;
-	head = init_exec(&test);
-	ft_open_all(head);
-	executing(head);
-	print_commands(head);
+// 	int	i = 0;
+// 	head = init_exec(&test);
+// 	ft_open_all(head);
+// 	executing(head);
+// 	print_commands(head);
 
-	printf("\nExecuting complete");
-}
+// 	printf("\nExecuting complete");
+// }

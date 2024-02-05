@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/01 23:04:16 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/05 03:16:01 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdio.h> /* printf */
 # include <unistd.h> /* write */
 # include <sys/types.h> /* pid_t */
-# include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdlib.h> /* getenv */
@@ -26,56 +25,27 @@
 # include <sys/ioctl.h> /* */
 # include <fcntl.h> /* open */
 # include <stdbool.h>
+# include <sys/wait.h>
 
-# define PIPE "|"
-# define INFILE "<"
-# define OUTFILE ">"
-# define APPEND ">>"
-# define HERE_DOC "<<"
+// typedef enum e_token
+// {
+// 	NO_REDIR,
+// 	INFILE_ID,
+// 	OUTFILE_ID,
+// 	APPEND_ID,
+// 	HEREDOC_ID,
+// 	PIPE_ID,
+// 	ARGS_ID,
+// }		t_enum_token;
 
-typedef enum e_token
-{
-	NO_REDIR,
-	INFILE_ID,
-	OUTFILE_ID,
-	APPEND_ID,
-	HEREDOC_ID,
-	PIPE_ID,
-	ARGS_ID,
-}		t_enum_token;
-
-typedef struct s_redirect
-{
-	t_enum_token		*tokens_id;
-	char				**tokens;
-	struct s_redirect	*next;
-}					t_redirect;
-
-typedef struct	s_args
-{
-	char			*cmd;
-	char			**args;
-	struct s_args	*next;
-}					t_args;
-
-/**
- * @brief Estrutura que representa um comando minishell.
- * incluindo:
- * @param cmd Se não for um builtin, primeiro disponível para o executável
- * indicado por argv[0] na variável PATH
- * @param args Equivalente ao típico argv, contendo o nome do comando e seus
- * parâmetros quando necessário
- * @param redirect estrutura com contendo o tipo de redirecionador ou heredoc
- * e seu parametro ou arquivo a ser redirecionado
- * @note pode se usar uma array int para o file descriptor: int fd[2];
- */
-typedef struct s_prompt
-{
-	char			**args;
-	t_enum_token	*tokens_id;
-	char			**tokens;
-	struct s_prompt	*next;
-}					t_prompt;
+// typedef struct s_prompt
+// {
+// 	char			*path;
+// 	char			**args;
+// 	t_enum_token	*tokens_id;
+// 	char			**tokens;
+// 	struct s_prompt	*next;
+// }					t_prompt;
 
 /**
  * Estrutura que representa um prompt.
@@ -85,114 +55,52 @@ typedef struct s_prompt
  * **envp -> Matriz atualizada contendo chaves e valores para o ambiente shell
  * pid -> ID do processo da instância do minishell
  */
-typedef struct s_command
-{
-	char				*path;
-	char				**args;
-	int					fd[2];
-	int					infile_fd;
-	int					outfile_fd;
-	pid_t				pid;
-	// char				*infile;
-	// char				*outfile;
-	t_prompt			*prompt;
-	struct s_command	*prev;
-	struct s_command	*next;
-}			t_command;
+// typedef struct s_command
+// {
+// 	char				*path;
+// 	char				**args;
+// 	int					fd[2];
+// 	int					infile_fd;
+// 	int					outfile_fd;
+// 	pid_t				pid;
+// 	// char				*infile;
+// 	// char				*outfile;
+// 	t_prompt			*prompt;
+// 	struct s_command	*prev;
+// 	struct s_command	*next;
+// }			t_command;
 
-typedef struct s_envp
-{
-	char		*name;
-	char		*value;
-	struct s_envp	*next;
-}		t_envp;
+// typedef struct s_envp
+// {
+// 	char		*name;
+// 	char		*value;
+// 	struct s_envp	*next;
+// }		t_envp;
 
-typedef struct	s_envparray
-{
-	char	**envp;
-}		t_envparr;
-
-/**
- * PIPE & REDIRECT
- * @brief Por último, temos outra função de divisão chamada cmdsubsplit que
- * separa com <, |, ou >, mas apenas se esses caracteres estiverem fora das 
- * aspas:
- * output: {echo, "hello      there", how, are, 'you 'doing?, pixel, |, wc, -l, >, outfile, NULL}
-*/
-
-/* Lexer */
-char		**ft_lexer(char *s1);
-char		**strtrim_quotes(char **arr);
-void		handle_quotes(char *s1, char *s2);
-void		replace_spaces(char *s1);
-
-/* Expander */
-int			dollar(char **src, char **dst, int i);
-int			outside_quotes(char **s2, char **s3, int i);
-int			inside_dbquotes(char **s1, char **s2, int i, char *sig);
-int			inside_spquotes(char **s1, char **s2, int i, char *sig);
-char		*expander_inside(char *s1);
-char		*expander_outside(char *s2);
-
-/* Parser */
-void		parser_prompt(t_prompt **prompt, t_args *arg, \
-						t_redirect *red, char **toks);
-void		fill_prompt(t_prompt *node, t_args *arg, \
-						t_redirect *red, char **toks);
-void		free_prompt(t_prompt **root);
-t_prompt	*insert_end_parser(t_prompt **root);
-
-/* Utils redirects parser */
-void		free_redirects(t_redirect **root);
-void		fill_redirects(t_redirect *node, char **tokens, int *i);
-void		parser_redirects(t_redirect **redirect, char **tokens);
-t_redirect	*insert_end_redirects(t_redirect **root);
-
-/* Utils args parser */
-void		free_args(t_args **root);
-void		parser_args(t_args **args, char **tokens);
-void		fill_args(t_args *node, char **tokens, int *i);
-t_args		*insert_end_args(t_args **root);
-
-/* Utils */
-int			ft_strcmp(char *s1, char *s2);
-int			count_tokens(char **tokens);
-void		free_arr(char **arr);
-
-/* Errors */
-int				sintax_errors(char **tokens);
-void			msg_error(char *msg, int exit_status);
-
-/* Debugs */
-void		print_arr(char **arr);
-void		print_args(t_args *root);
-void		print_redirects(t_redirect *root);
-void		print_prompt(t_prompt *root);
-
-// Creating path
-char	*cmd_path(char *cmd);
-
-// Stirng utils
-int	ft_equalstr(const char *s1, const char *s2);
-
-/* Signals */
-// void	ctrlc_sigint(int sig);
-
-// Frees
-void	free_map(char **map);
-
-t_command	*init_exec(t_prompt *prompt);
-
-// Enviroment variables management
-void	ft_fillenvp(char *envp[]);
-t_envparr	*getevarr(void);
-void	ft_envp(char *envp[]);
-t_envp	*getev(void);
-
-int		ft_open_all(t_command *current);
+// typedef struct	s_envparray
+// {
+// 	char	**envp;
+// }		t_envparr;
 
 
-void	print_commands(t_command *head);
+// // Creating path
+// char	*cmd_path(char *cmd);
+
+// // Frees
+// void	free_map(char **map);
+
+// t_command	*init_exec(t_prompt *prompt);
+
+// // Enviroment variables management
+// void	ft_fillenvp(char *envp[]);
+// t_envparr	*getevarr(void);
+// void	ft_envp(char *envp[]);
+// t_envp	*getev(void);
+
+// int		ft_open_all(t_command *current);
+
+
+// void	print_commands(t_command *head);
 
 extern int	g_status;
 

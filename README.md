@@ -15,8 +15,10 @@
 
 <!-- * ### [Introduction]() -->
 * ### [Mandatory part](#mandatory-part-1)
-* ### [Mind Map](#mind-map-1)
-* ### [Overview](#overview-1)
+* ### [Mind Map](./dcs/readme/mind_map.md)
+<!-- * ### [Mind Map](#mind-map-1) -->
+* ### [Overview](./dcs/readme/bash_brief.md)
+<!-- * ### [Overview](#overview-1) -->
 <!-- * ### [Usage]() -->
 * ### [Study resources](#study-resources-1)
 <!-- * ### [Tools]() -->
@@ -171,9 +173,9 @@ Deve se expandir para o status de saída do pipeline em primeiro plano executado
 
 ***Você deve se limitar à descrição do assunto. Tudo o que não é pedido não é obrigatório. Se você tiver alguma dúvida sobre algum requisito, tome o [bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/) como referência.***
 
-[↑ Index ↑](#top)
+[↑ Index ↑](#mandatory-part)
 
-## Mind Map
+<!-- ## Mind Map
 
 ### Parser
 ```mermaid
@@ -182,22 +184,13 @@ noteAlign: left
 ---
 %%{ init: { "theme": 'dark', "nodeAlignment": 'left' } }%%
 graph TB
-    A(["< Makefile cat | echo #quot;$PWD 'hola'#quot; ~/src | 'tr' -d/>outfile"])
-    B[("< Makefile
-    cat|
-    echo
-    #quot;$PWD 'hola'#quot;
-    ~/src
-    |
-    'tr'
-    -d
-    /
-    >outifile")]
+    A(["< Makefile cat| echo #quot;$PWD < > | 'hola'#quot; #quot;$HOME#quot;/src | 'tr' -d / >outfile"])
+    B(["<\2Makefile\2cat\2|\2echo\2#quot;$PWD < > | 'hola'#quot;\2#quot;$HOME#quot;/src\2|\2'tr'\2-d\2/\2>\2outfile"])
     C[("< Makefile
     cat|
     echo
     #quot;/home/n_user/minishell 'hola'#quot;
-    /home/n_user/src
+    #quot;/home/n_user#quot;/src
     |
     'tr'
     -d
@@ -209,7 +202,7 @@ graph TB
     |
     echo
     #quot;/home/n_user/minishell 'hola'#quot;
-    /home/n_user/src
+    #quot;/home/n_user#quot;/src
     |
     'tr'
     -d
@@ -229,11 +222,12 @@ graph TB
     /
     >
     outifile")]
-    A ==ft_cmdtrim==> B
-    A =="expand_vars
-    expand_path"==> C
-    A ==ft_cmdsubsplit==> D
-    A ==ft_strtrim_all==> E
+    A =="handle_quotes
+    replace_spaces"==> B
+    A =="expander_outside
+    expander_inside"==> C
+    A ==ft_split==> D
+    A ==strtrim_quotes==> E
     E ~~~ H
     A === H
     subgraph fill_structs
@@ -309,7 +303,7 @@ graph LR
 	end
 ```
 
-[↑ Index ↑](#top)
+[↑ Index ↑](#mandatory-part)
 
 ## Overview
 ### [Resumo manual do Bash](https://www.gnu.org/software/bash/manual/bash.html)
@@ -646,7 +640,7 @@ Estes são os recursos especiais do POSIX :
 ### Interação Readline
 Muitas vezes, durante uma sessão interativa, você digita uma longa linha de texto, apenas para perceber que a primeira palavra da linha está escrita incorretamente. A biblioteca Readline oferece um conjunto de comandos para manipular o texto conforme você o digita, permitindo apenas corrigir o erro de digitação e não forçando você a redigitar a maior parte da linha. Utilizando esses comandos de edição, você move o cursor até o local que precisa de correção e apaga ou insere o texto das correções. Então, quando estiver satisfeito com a linha, basta pressionar RET . Você não precisa estar no final da linha para pressionar RET ; a linha inteira é aceita independentemente da localização do cursor dentro da linha.
 
-[↑ Index ↑](#top)
+[↑ Index ↑](#mandatory-part) -->
 
 ## Study resources
 ### Links
@@ -657,9 +651,10 @@ Muitas vezes, durante uma sessão interativa, você digita uma longa linha de te
 - [Repo -> Swoorup](https://github.com/Swoorup/mysh)
 - [Article -> Building a mini-bash](https://m4nnb3ll.medium.com/minishell-building-a-mini-bash-a-42-project-b55a10598218)
 - [Article -> Shell Syntax](https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html)
+- [Test your shell](https://github.com/ChewyToast/mpanic) 
 <!-- - [Article -> Shell Scripting Tutorial](https://www.shellscript.sh/) -->
 
-[↑ Index ↑](#top)
+[↑ Index ↑](#mandatory-part)
 
  <!-- ## Workflow
 <details>

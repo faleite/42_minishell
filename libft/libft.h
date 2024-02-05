@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faaraujo <faaraujo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 21:23:24 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/12/07 19:21:43 by feden-pe         ###   ########.fr       */
+/*   Updated: 2023/12/21 19:26:06 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
  * @param lst The address of a pointer to the first link of a list.
  * @param new The address of a pointer to the node to be added to the list.
 */
-void	ft_lstadd_front(t_list **lst, t_list *new2);
+void	ft_lstadd_front(t_list **lst, t_list *new);
 
 /**
  * @brief Adds the node ’new’ at the end of the list.
  * @param lst The address of a pointer to the first link of a list.
  * @param new The address of a pointer to the node to be added to the list.
 */
-void	ft_lstadd_back(t_list **lst, t_list *new2);
+void	ft_lstadd_back(t_list **lst, t_list *new);
 
 /**
  * @brief Takes as a parameter a node and frees the memory of the node’s content
@@ -208,16 +208,6 @@ int		ft_memcmp(const void *s1, const void *s2, size_t len);
 */
 char	*ft_strchr(const char *s, int c);
 
-/**
- * @brief function locates the last occurrence of c (converted to a char) in the
- * string pointed to by s. The terminating null character is considered part of 
- * the string; therefore if c is `\0', the functions locate the terminating `\0'.
- * @param s Pointer of string.
- * @param c character to be found (converted to char).
- * @return return a pointer to the located character, or NULL if the character 
- * does not appear in the string. 
- * The terminating null byte is considered part of the string.
-*/
 char	*ft_strrchr(const char *s, int c);
 
 /**

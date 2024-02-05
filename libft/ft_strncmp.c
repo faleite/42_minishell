@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faaraujo <faaraujo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 22:18:08 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/01 15:39:23 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/02 21:17:17 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,34 @@
  * The comparison is done using unsigned characters, so that `\200' is greater
  * than `\0'.
 */
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+// int	ft_strncmp(const char *s1, const char *s2, size_t n)
+// {
+// 	size_t			i;
+// 	unsigned char	*cs1;
+// 	unsigned char	*cs2;
+
+// 	cs1 = (unsigned char *)s1;
+// 	cs2 = (unsigned char *)s2;
+// 	i = 0;
+// 	while ((cs1[i] || cs2[i]) && i < n)
+// 	{
+// 		if (cs1[i] != cs2[i])
+// 			return (cs1[i] - cs2[i]);
+// 		i++;
+// 	}
+// 	return (0);
+// }
+int	ft_strncmp(const char *s1, const char *s2, size_t num)
 {
-	size_t			i;
-	unsigned char	*cs1;
-	unsigned char	*cs2;
+	size_t	i;
 
-	if (!s1 || !s2)
-		return (-1);
-
-	cs1 = (unsigned char *)s1;
-	cs2 = (unsigned char *)s2;
 	i = 0;
-	while ((cs1[i] || cs2[i]) && i < n)
+	if (!s1)
+		return (-1);
+	while ((s1[i] || s2[i]) && (i < num))
 	{
-		if (cs1[i] != cs2[i])
-			return (cs1[i] - cs2[i]);
+		if ((unsigned char)s1[i] != (unsigned char)s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 		i++;
 	}
 	return (0);
