@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 02:27:08 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/05 20:23:38 by feden-pe         ###   ########.fr       */
+/*   Created: 2024/02/05 15:53:59 by feden-pe          #+#    #+#             */
+/*   Updated: 2024/02/05 18:10:40 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parser.h"
 
-int	exit_final(t_command *command)
+void	free_envp(t_envp *head)
 {
-	free_struct(command);
-	free_envp(data()->envp);
-	clear_history();
-	exit(data()->g_status);
+	t_envp	*current;
+	t_envp	*tmp;
+
+	current = head;
+	while (current && current->value && current->name)
+	{
+		tmp = current;
+		current = current->next;
+		free(tmp->name);
+		free(tmp->value);
+		free(tmp);
+	}
+	head = NULL;
+}
+
+void	free_path(char	*str)
+{
+	free(str);
 }

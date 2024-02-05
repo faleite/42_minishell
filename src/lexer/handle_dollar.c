@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 13:44:44 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/01 16:38:18 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/05 21:20:48 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 char	*exit_value(char *s1)
 {
-	int		g_status;
 	int		i;
 	int		j;
 	char	*s2;
@@ -22,8 +21,7 @@ char	*exit_value(char *s1)
 
 	i = 0;
 	j = 0;
-	g_status = 127;
-	s2 = ft_itoa(g_status);
+	s2 = ft_itoa(data()->g_status);
 	s3 = (char *)(malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1)));
 	if (!s3)
 		return (NULL);
@@ -61,7 +59,7 @@ int	dollar(char **src, char **dst, int i)
 	if (var[0] == '?')
 		value = exit_value(var);
 	else
-		value = getenv(var);
+		value = get_value(var);
 	if (value)
 	{
 		ft_strlcpy(*dst + i, value, (ft_strlen(*src) + ft_strlen(value) + 1));
@@ -69,7 +67,7 @@ int	dollar(char **src, char **dst, int i)
 	}
 	if (var[0] == '?')
 		free(value);
-	free (var);
+	free(var);
 	return (i);
 }
 

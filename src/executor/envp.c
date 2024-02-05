@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:08:36 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/05 03:35:51 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/05 19:57:02 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,11 +117,11 @@ char	*add_value(char *str)
 // 	}
 // }
 
-void	print_envp(void)
+void	print_envp(t_envp *head)
 {
 	t_envp	*current;
 
-	current = data()->envp;
+	current = head;
 	while (current)
 	{
 		printf("Name: %s\nValue: %s\n", current->name, current->value);
@@ -134,7 +134,7 @@ void	ft_fillenvp(char *envp[])
 	getevarr()->envp = envp_exec(envp);
 }
 
-t_envp	*insert_end_envp(void)
+t_envp	*insert_end_envp(t_envp **head)
 {
 	t_envp	*new_node;
 	t_envp	*current;
@@ -142,12 +142,12 @@ t_envp	*insert_end_envp(void)
 	new_node = ft_calloc(1, sizeof(t_envp));
 	if (!new_node)
 		exit(1);
-	if (!(data()->envp))
+	if (!*head)
 	{
-		data()->envp = new_node;
+		*head = new_node;
 		return (new_node);
 	}
-	current = data()->envp;
+	current = *head;
 	while (current && current->next)
 		current = current->next;
 	if (current)
@@ -163,8 +163,8 @@ void	fill_envp(t_envp **getev, char **envp)
 	i = 0;
 	while (envp && envp[i])
 	{
-		new_node = insert_end_envp();
-		new_node->name = ft_strdup(add_name(envp[i]));
+		new_node = insert_end_envp(getev);
+		new_node->name = add_name(envp[i]);
 		new_node->value = ft_strdup(add_value(envp[i]));
 		i++;
 	}

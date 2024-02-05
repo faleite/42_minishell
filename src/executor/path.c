@@ -6,23 +6,24 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:42:39 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/05 03:32:15 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/05 20:05:39 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
 
-void	var_path(t_envp *getev)
+char	*var_path(void)
 {
 	t_envp	*current;
 
-	current = getev;
+	current = data()->envp;
 	while (current)
 	{
 		if (!ft_strncmp(current->name, "PATH", 4))
-			data()->path = current->value;
+			return (current->value);
 		current = current->next;
 	}
+	return (NULL);
 }
 
 char	*create_path(char *dest, char *path, char *command)
@@ -57,6 +58,7 @@ void	free_map(char **map)
 char	*cmd_path(char *cmd)
 {
 	char	**path_cmds;
+	char	**tmp;
 	char	*path;
 	int		p_len;
 	int		c_len;
@@ -65,6 +67,7 @@ char	*cmd_path(char *cmd)
 		return (cmd);
 	path_cmds = ft_split(data()->path, ':');
 	path = NULL;
+	tmp = path_cmds;
 	while (*path_cmds)
 	{
 		p_len = ft_strlen(*path_cmds);
@@ -74,13 +77,12 @@ char	*cmd_path(char *cmd)
 			return (NULL);
 		if (access(create_path(path, *path_cmds, cmd), F_OK) == 0)
 		{
-			// free_map(path_cmds);
+			free_arr(tmp);
 			return (path);
 		}
 		free(path);
 		path_cmds++;
 	}
-	// free_map(path_cmds);
-	//printf("Error: %s command not found!\n", cmd);
+	free_arr(tmp);
 	return (NULL);
 }

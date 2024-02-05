@@ -6,11 +6,20 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/05 03:22:01 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/05 20:20:19 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
+#include <unistd.h>
+
+static void	error_msg(char *delimiter)
+{
+	ft_putstr_fd("minishell: warning: here-document ", STDERR_FILENO);
+	ft_putstr_fd("delimited by end-of-file (wanted `", STDERR_FILENO);
+	ft_putstr_fd(delimiter, STDERR_FILENO);
+	ft_putendl_fd("')", STDERR_FILENO);
+}
 
 int		ft_open_infile_heredoc(t_command *current, char *delimiter)
 {
@@ -25,6 +34,7 @@ int		ft_open_infile_heredoc(t_command *current, char *delimiter)
 		str = readline("> ");
 		if (!str || ft_strncmp(str, delimiter, ft_strlen(delimiter) + 1) == 0)
 		{
+			error_msg(delimiter);
 			free(str);
 			break ;
 		}

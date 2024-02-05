@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:33:49 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/05 03:22:16 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/05 19:15:20 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,24 @@ static t_command	*find_tail(t_command *head)
 	return (current);
 }
 
+char	**cpy_arr(char **map)
+{
+	int	i;
+	char	**new;
+
+	i = 0;
+	while (map[i])
+		i++;
+	new = ft_calloc(i + 1, sizeof(char *));
+	i = 0;
+	while (map[i])
+	{
+		new[i] = ft_strdup(map[i]);
+		i++;
+	}
+	return (new);
+}
+
 void	new_struct(t_prompt *prompt, t_command **head)
 {
 	t_command	*new;
@@ -32,8 +50,11 @@ void	new_struct(t_prompt *prompt, t_command **head)
 
 	i = 0;
 	new = ft_calloc(1, sizeof(t_command));
-	new->path = cmd_path(prompt->args[0]);
-	new->args = prompt->args;
+	if (prompt && prompt->args[0])
+	{
+		new->path = cmd_path(prompt->args[0]);
+		new->args = cpy_arr(prompt->args);
+	}
 	new->prompt = prompt;
 	new->fd[0] = STDIN_FILENO;
 	new->fd[1] = STDOUT_FILENO;
@@ -53,7 +74,7 @@ void	print_map(char **map)
 	int	i;
 
 	i = 0;
-	while (map[i])
+	while (map && map[i])
 	{
 		printf("%s\n", map[i]);
 		i++;
@@ -101,9 +122,9 @@ void	free_struct(t_command *head)
 	{
 		tmp = current;
 		current = current->next;
-		free_map(tmp->args);
+		free_arr(tmp->args);
 		free(tmp->path);
-		free_prompt(&tmp->prompt);
+		free_prompt2(tmp->prompt);
 		free(tmp);
 	}
 	head = NULL;
@@ -121,8 +142,6 @@ void	free_struct(t_command *head)
 // 		current = current->next;
 // 	}
 // }
-
-void	print_envp(void);
 
 // int		main(int ac, char **av, char **ev)
 // {

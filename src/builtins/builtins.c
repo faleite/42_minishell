@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:18:00 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/05 03:45:11 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:58:50 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int	is_builtin(char	*arg)
 {
-	if ((ft_strncmp(arg, "echo", 5) == 0))
+	if (!arg)
+		return (0);
+	else if ((ft_strncmp(arg, "echo", 5) == 0))
 		return (1);
 	else if ((ft_strncmp(arg, "pwd", 3) == 0))
 		return (1);
@@ -36,13 +38,13 @@ void	builtins(t_command *command, int infile, int outfile)
 	if ((ft_strncmp(command->args[0], "echo", 5) == 0))
 		echo(command, outfile);
 	else if ((ft_strncmp(command->args[0], "pwd", 3) == 0))
-		pwd();
+		pwd(outfile);
 	else if ((ft_strncmp(command->args[0], "cd", 2) == 0))
-		cd(command);
+		cd(command, outfile);
 	else if ((ft_strncmp(command->args[0], "env", 3) == 0))
-		env();
+		env(outfile);
 	else if ((ft_strncmp(command->args[0], "export", 6) == 0))
-		ft_export(command->args);
+		ft_export(command->args, outfile);
 	else if ((ft_strncmp(command->args[0], "unset", 5) == 0))
 		unset(command);
 	else if ((ft_strncmp(command->args[0], "exit", 4) == 0))

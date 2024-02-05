@@ -1,4 +1,4 @@
-
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/05 03:45:02 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:42:40 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,16 @@ static int	exec_command(t_command *command, int infile, int outfile)
 void	wait_all(t_command *head)
 {
 	t_command	*current;
+	int			wstatus;
+	int			i;
+	pid_t		pid;
 
+	i = commands_wait(head);
 	current = head;
-	while (current)
+	while (i > 0)
 	{
 		wait(NULL);
-		current = current->next;
+		i--;
 	}
 }
 
@@ -76,9 +80,14 @@ void	executing(t_command *head)
 			if (current->fd[1] != 1)
 				close(current->fd[1]);
 		}
-		if (is_builtin(current->args[0]))
+		if (current->args && is_builtin(current->args[0]))
 			builtins(current, infile, outfile);
-		else
+		else if (current->args && current->args[0] && !cmd_path(current->args[0]))
+		{
+			printf("Error: %s command not found!\n", current->args[0]);
+			return ;
+		}
+		else if (current->args)
 			exec_command(current, infile, outfile);
 		infile = current->fd[0];
 		current = current->next;

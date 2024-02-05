@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:46:00 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/05 03:20:20 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/05 20:03:09 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	update_value(char *name, char *value)
 {
-	t_envp	*current;
+	t_envp		*current;
 
 	current = data()->envp;
 	while (current)

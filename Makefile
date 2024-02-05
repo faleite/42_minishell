@@ -15,7 +15,8 @@ SEC			= src/executor
 SB			= src/builtins
 SH			= src/heredoc
 # FILES 		= $(foreach dir, $(SRC_DIR), $(wildcard $(dir)/*.c))
-FILES 		= $(SRC_DIR)parser.c $(SRC_DIR)exit.c\
+FILES 		= $(SRC_DIR)parser.c $(SRC_DIR)exit.c $(SRC_DIR)free.c\
+			  $(SRC_DIR)wait.c\
 			  $(SL)/cmdline_split.c $(SL)/expander.c $(SL)/handle_dollar.c\
 			  $(SL)/trim_quotes.c $(SL)/lexer.c\
 			  $(SP)/parser_redirect.c $(SP)/utils.c $(SP)/parser_args.c\

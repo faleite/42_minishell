@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/05 03:42:04 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/05 20:02:05 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ void		handle_pipe(char *s1, char *s2);
 void		handle_redirects(char *s1, char *s2);
 void		replace_spaces(char *s1);
 void		end_quote(char *sig, char **s1, char **s2);
+void		trim_spaces_end(char **tokens);
+
 
 /* Expander */
 int			dollar(char **src, char **dst, int i);
@@ -199,7 +201,7 @@ char	*cmd_path(char *cmd);
 void	free_map(char **map);
 
 t_command	*init_exec(t_prompt *prompt);
-void	var_path(t_envp *getev);
+char		*var_path(void);
 
 // Enviroment variables management
 void	ft_fillenvp(char *envp[]);
@@ -209,25 +211,29 @@ t_envp	*getev(void);
 
 int		ft_open_all(t_command *current);
 
-void	print_envp(void);
+void	print_envp(t_envp *head);
 void	print_commands(t_command *head);
 void	free_struct(t_command *head);
 int		exit_final(t_command *command);
 t_data *data(void);
-t_envp	*insert_end_envp(void);
+t_envp	*insert_end_envp(t_envp **head);
 char	*add_name(char *str);
 char	*add_value(char *str);
 
+void	free_path(char *str);
+void	free_envp(t_envp *head);
+void	free_struct(t_command *head);
+void	free_prompt2(t_prompt *head);
 // Executing
 void	executing(t_command *head);
 // Builtins
 void	echo(t_command *command, int outfile);
-void	pwd(void);
-void	cd(t_command *command);
+void	pwd(int outfile);
+void	cd(t_command *command, int outfile);
 void	unset(t_command *command);
 int		exit_builtin(t_command *command);
-void	env(void);
-void	ft_export(char **key_value);
+void	env(int outfile);
+void	ft_export(char **key_value, int outfile);
 int		is_builtin(char	*arg);
 void	builtins(t_command *command, int infile, int outfile);
 
@@ -235,6 +241,8 @@ void	builtins(t_command *command, int infile, int outfile);
 void	update_value(char *name, char *value);
 char	*get_value(char *name);
 void	fill_envp(t_envp **getev, char **envp);
+
+int		commands_wait(t_command *head);
 
 // Builtin utils
 int			is_long(char *str);

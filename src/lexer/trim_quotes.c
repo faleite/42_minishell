@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 18:41:05 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/25 15:47:21 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:06:42 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,3 +93,23 @@ static char	*handle_trim_quotes(char const *s1, int *val)
 	s2[i] = '\0';
 	return (s2);
 }
+
+void	trim_spaces_end(char **tokens)
+{
+	int		i;
+	char	*tmp;
+
+	i = 0;
+	while (tokens && tokens[i])
+	{
+		tmp = ft_strtrim(tokens[i], " ");
+		if (tmp)
+		{
+			free(tokens[i]);
+			tokens[i] = ft_strdup(tmp);
+			free(tmp);
+		}
+		i++;
+	}
+}
+

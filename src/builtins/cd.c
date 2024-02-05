@@ -6,13 +6,13 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:37:24 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/05 03:19:01 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/05 20:01:18 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
 
-static void	change_directory(char *path, int flag)
+static void	change_directory(char *path, int flag, int outfile)
 {
 	char	*old;
 	char	*new;
@@ -29,10 +29,10 @@ static void	change_directory(char *path, int flag)
 	}
 	free(old);
 	if (flag)
-		pwd();
+		pwd(outfile);
 }
 
-static void	cd_default(char *name, int flag)
+static void	cd_default(char *name, int flag, int outfile)
 {
 	char	*path;
 	
@@ -41,29 +41,28 @@ static void	cd_default(char *name, int flag)
 	{
 		ft_putstr_fd("minishell: cd: ", 2);
 		ft_putstr_fd(name, 2);
-		ft_putstr_fd(" not set", 2);
+		ft_putendl_fd(" not set", 2);
 	}
 	else if (flag)
-		change_directory(path, 1);
+		change_directory(path, 1, outfile);
 	else
-		change_directory(path, 0);
-	free(path);
+		change_directory(path, 0, outfile);
 }
 
-void	cd(t_command *command)
+void	cd(t_command *command, int outfile)
 {
 	if (!command->args[1])
-		cd_default("HOME", 0);
+		cd_default("HOME", 0, outfile);
 	else if (command->args[1][0] == '-' && !command->args[1][1])
-		cd_default("OLDPWD", 1);
+		cd_default("OLDPWD", 1, outfile);
 	else
 	{
 		if (command->args[2])
 		{
-			ft_putstr_fd("minishell: cd: Too many arguments", 2);
+			ft_putendl_fd("minishell: cd: Too many arguments", 2);
 			return ;
 		}
 		else
-			change_directory(command->args[1], 0);
+			change_directory(command->args[1], 0, outfile);
 	}
 }

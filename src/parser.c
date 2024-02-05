@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/05 03:34:24 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/05 21:18:18 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,17 @@
 void	exec_process(t_prompt *prompt, char **envp)
 {
 	t_command	*exec;
-	t_envp		*getev;
 
-	getev = NULL;
+	data()->path = var_path();
 
-	fill_envp(&getev, envp);
-	var_path(getev);
-	//print_envp(getev);
-
-	data()->envp = getev;
-	// print_envp(data()->envp);
-
-	// Builtins
-	// ft_env(getev);
-	// ft_export(&getev, curr->args);
 	exec = init_exec(prompt);
 
 	ft_open_all(exec);
+	// print_commands(exec);
+	// print_prompt(exec->prompt);
 	executing(exec);
+	// free_envp(data()->envp);
+	free_struct(exec);
 }
 
 void	init_process(char *line, char **envp)
@@ -55,10 +48,18 @@ void	init_process(char *line, char **envp)
 	t_redirect	*redirect;
 	t_prompt	*prompt;
 	t_command	*exec;
+	t_envp		*getev;
+
+	getev = NULL;
+
+	fill_envp(&getev, envp);
+	data()->envp = getev;
+
 
 	tokens = ft_lexer(line);
-	handle_heredoc(tokens);
+	// handle_heredoc(tokens);
 	strtrim_quotes(tokens);
+	trim_spaces_end(tokens);
 	args = NULL;
 	parser_args(&args, tokens);
 	redirect = NULL;
@@ -68,8 +69,6 @@ void	init_process(char *line, char **envp)
 	free_args(&args);
 	free_redirects(&redirect);
 	free_arr(tokens);
-	exec = init_exec(prompt);
-	ft_open_all(exec);
 	exec_process(prompt, envp);
 	// print_commands(exec);
 	//print_prompt(prompt);
@@ -92,12 +91,10 @@ void	cmdline(char *cmd_line, char **envp)
 		}
 		else
 		{
-			if (*cmd_line)
-			{
+			if (cmd_line && *cmd_line) //is_spaces
 				add_history(cmd_line);
-				if (!sintax_errors(cmd_line))
+			if (!sintax_errors(cmd_line) && ft_strlen(cmd_line) > 0) //is_spaces
 					init_process(cmd_line, envp);
-			}
 		}
 		free(cmd_line);
 		cmd_line = NULL;

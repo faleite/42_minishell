@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   wait.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 02:27:08 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/05 20:23:38 by feden-pe         ###   ########.fr       */
+/*   Created: 2024/02/05 18:38:43 by feden-pe          #+#    #+#             */
+/*   Updated: 2024/02/05 18:48:50 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parser.h"
 
-int	exit_final(t_command *command)
+int		commands_wait(t_command *head)
 {
-	free_struct(command);
-	free_envp(data()->envp);
-	clear_history();
-	exit(data()->g_status);
+	int			i;
+	t_command	*current;
+
+	i = 0;
+	current = head;
+	while (current)
+	{
+		if (current->args && !is_builtin(current->args[0]))
+			i++;
+		current = current->next;
+	}
+	return (i);
 }
