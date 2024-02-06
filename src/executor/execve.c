@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/05 18:42:40 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/06 03:43:27 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	wait_all(t_command *head)
 
 	i = commands_wait(head);
 	current = head;
-	while (i > 0)
+	while (current)
 	{
 		wait(NULL);
-		i--;
+		current = current->next;
 	}
 }
 

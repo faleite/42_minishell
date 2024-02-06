@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/05 21:18:18 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/06 04:47:17 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	exec_process(t_prompt *prompt, char **envp)
 	// print_prompt(exec->prompt);
 	executing(exec);
 	// free_envp(data()->envp);
-	free_struct(exec);
+	// free_struct(exec);
+	// free_arr(getevarr()->envp);
 }
 
 void	init_process(char *line, char **envp)
@@ -48,13 +49,6 @@ void	init_process(char *line, char **envp)
 	t_redirect	*redirect;
 	t_prompt	*prompt;
 	t_command	*exec;
-	t_envp		*getev;
-
-	getev = NULL;
-
-	fill_envp(&getev, envp);
-	data()->envp = getev;
-
 
 	tokens = ft_lexer(line);
 	// handle_heredoc(tokens);
@@ -107,6 +101,7 @@ int	main(int ac, char *av[], char *envp[])
 {
 	char	*cmd_line; 
 
+	new_envp(envp);
 	cmd_line = NULL;
 	cmdline(cmd_line, envp);
 	return (0);

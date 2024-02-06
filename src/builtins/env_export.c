@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 03:00:55 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/05 12:30:11 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/06 04:07:34 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 void	env(int outfile)
 {
-	t_envp	*current;
+	int		i;
 
-	current = data()->envp;
-	while (current)
+	i = 0;
+	while (getevarr()->envp[i])
 	{
-		ft_putstr_fd(current->name, outfile);
-		ft_putstr_fd("=", outfile);
-		ft_putendl_fd(current->value, outfile);
-		current = current->next;
+		ft_putendl_fd(getevarr()->envp[i], outfile);
+		i++;
 	}
 }
 

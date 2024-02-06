@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:08:36 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/05 19:57:02 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/06 04:21:34 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ char	**envp_exec(char *envp[])
 		new[i] = ft_strdup(envp[i]);
 		i++;
 	}
+	new[i] = NULL;
 	return (new);
 }
 
