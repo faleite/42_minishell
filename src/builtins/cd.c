@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:37:24 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/06 04:03:37 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/06 04:58:48 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void	change_directory(char *path, int flag, int outfile)
 	free(old);
 	if (flag)
 		pwd(outfile);
-	getevarr()->envp = update_env();
 }
 
 static void	cd_default(char *name, int flag, int outfile)
