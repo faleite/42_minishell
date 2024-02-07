@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/07 12:23:49 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/07 21:37:50 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ void	exec_process(t_prompt *prompt, char **envp)
 	t_command	*exec;
 
 	data()->path = var_path();
-
 	exec = init_exec(prompt);
-
+	data()->exec = exec;
 	ft_open_all(exec);
 	// print_commands(exec);
 	// print_prompt(exec->prompt);
@@ -48,7 +47,6 @@ void	init_process(char *line, char **envp, int ac, char **av)
 	t_args		*args;
 	t_redirect	*redirect;
 	t_prompt	*prompt;
-	t_command	*exec;
 
 	tokens = ft_lexer(line);
 	// handle_heredoc(tokens);
@@ -89,9 +87,9 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 			cmd_line = readline("[minishell]$ ");
 		if (!cmd_line)
 		{
-			// exit_final();
-			printf("exit\n");
-			break ;
+			exit_cmd_null(data()->exec);
+			// printf("exit\n");
+			// break ;
 		}
 		else
 		{

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/07 20:19:13 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/07 21:37:28 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ typedef struct	s_data
 	char	*path;
 	int		g_status;
 	t_envp	*envp;
+	t_command	*exec;
 }			t_data;
 
 
@@ -171,6 +172,7 @@ int			handle_newline_err(t_token *lst);
 int			handle_big_redir(t_token *lst);
 int			handle_quotes_err(t_token *lst);
 int			msg_error(t_token *lst, char *type_err, int exit_status);
+int			exit_cmd_null(t_command *command);
 void		parser_tokens(t_token **lst, char **tokens);
 void		init_struct(t_token **tail, t_token **head, char *token);
 void		insert_token_end(t_token **head, char *token);
@@ -196,7 +198,7 @@ void		print_tokens(t_token *root);
 /* Signals */
 void		new_prompt(void);
 void		handle_sigint(int sig);
-void heredoc_handle_sigint(int sig);
+void 		heredoc_handle_sigint(int sig);
 
 // Creating path
 char	*cmd_path(char *cmd);
