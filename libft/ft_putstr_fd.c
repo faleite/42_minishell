@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:25:43 by faaraujo          #+#    #+#             */
-/*   Updated: 2023/05/20 11:38:19 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/07 12:26:23 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,9 @@
  * @param s The string to output.
  * @param fd The file descriptor on which to write.
 */
-void	ft_putstr_fd(char *s, int fd)
+int		ft_putstr_fd(char *s, int fd)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
+	if (write(fd, s, ft_strlen(s)) == -1)
+		return (-1);
+	return (0);
 }

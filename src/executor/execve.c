@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/06 03:43:27 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/07 12:29:17 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ static int	exec_command(t_command *command, int infile, int outfile)
 			exit(0);
 		if (outfile != 1)
 			close(outfile);
-		execve(command->path, command->args, getevarr()->envp);
+		if (is_builtin(command->args[0]))
+			builtins(command, infile, outfile);
+		else
+			execve(command->path, command->args, getevarr()->envp);
 		exit(127);
 	}
 	if (infile != 0)
@@ -43,10 +46,8 @@ void	wait_all(t_command *head)
 {
 	t_command	*current;
 	int			wstatus;
-	int			i;
 	pid_t		pid;
 
-	i = commands_wait(head);
 	current = head;
 	while (current)
 	{
@@ -80,9 +81,7 @@ void	executing(t_command *head)
 			if (current->fd[1] != 1)
 				close(current->fd[1]);
 		}
-		if (current->args && is_builtin(current->args[0]))
-			builtins(current, infile, outfile);
-		else if (current->args && current->args[0] && !cmd_path(current->args[0]))
+		if (current->args && current->args[0] && !is_builtin(current->args[0]) && !cmd_path(current->args[0]))
 		{
 			printf("Error: %s command not found!\n", current->args[0]);
 			return ;

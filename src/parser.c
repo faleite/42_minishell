@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/06 04:47:17 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/07 12:23:49 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	exec_process(t_prompt *prompt, char **envp)
 	// free_arr(getevarr()->envp);
 }
 
-void	init_process(char *line, char **envp)
+void	init_process(char *line, char **envp, int ac, char **av)
 {
 	char		**tokens;
 	t_args		*args;
@@ -69,17 +69,27 @@ void	init_process(char *line, char **envp)
 	//free_prompt(&prompt);
 }
 
-void	cmdline(char *cmd_line, char **envp)
+static int	handle_any_args(char **cmd_line, char **envp, int ac, char **av)
 {
-	int	i;
+	if (ac == 3 && !ft_strncmp(av[1], "-c", 3))
+		*cmd_line = ft_strdup(av[2]);
+	else if (ac != 1)
+		return (1);
+	new_envp(envp);
+	return (0);
+}
 
-	i = 1;
+int	cmdline(char *cmd_line, char **envp, int ac, char **av)
+{
+	if (handle_any_args(&cmd_line, envp, ac, av))
+		return (ft_putstr_fd("Error: Wrong arguments\n", 2));
 	while (1)
 	{
 		if (!cmd_line)
 			cmd_line = readline("[minishell]$ ");
 		if (!cmd_line)
 		{
+			// exit_final();
 			printf("exit\n");
 			break ;
 		}
@@ -88,21 +98,24 @@ void	cmdline(char *cmd_line, char **envp)
 			if (cmd_line && *cmd_line) //is_spaces
 				add_history(cmd_line);
 			if (!sintax_errors(cmd_line) && ft_strlen(cmd_line) > 0) //is_spaces
-					init_process(cmd_line, envp);
+					init_process(cmd_line, envp, ac, av);
 		}
 		free(cmd_line);
 		cmd_line = NULL;
+		data()->g_status = 0;
 	}
+	return (0);
 }
 
 
 /* JUST DEBUG FOR PARSER */
 int	main(int ac, char *av[], char *envp[])
 {
-	char	*cmd_line; 
-
-	new_envp(envp);
+	char	*cmd_line;
+	
 	cmd_line = NULL;
-	cmdline(cmd_line, envp);
-	return (0);
+	signal(SIGQUIT,  SIG_IGN);
+	signal(SIGINT, handle_sigint);
+	cmdline(cmd_line, envp, ac, av);
+	return (data()->g_status);
 }
