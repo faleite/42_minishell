@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/07 12:16:57 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/07 20:19:13 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,7 @@ void		print_tokens(t_token *root);
 /* Signals */
 void		new_prompt(void);
 void		handle_sigint(int sig);
+void heredoc_handle_sigint(int sig);
 
 // Creating path
 char	*cmd_path(char *cmd);
