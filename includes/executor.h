@@ -6,102 +6,70 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/05 03:16:01 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/08 22:00:28 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTOR_H
 # define EXECUTOR_H
 
-# include "../libft/libft.h"
-# include <stdio.h> /* printf */
-# include <unistd.h> /* write */
-# include <sys/types.h> /* pid_t */
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <stdlib.h> /* getenv */
-# include <limits.h>
-# include <signal.h> /* */
-# include <sys/ioctl.h> /* */
-# include <fcntl.h> /* open */
-# include <stdbool.h>
-# include <sys/wait.h>
+// Creating path
+char		*cmd_path(char *cmd);
 
-// typedef enum e_token
-// {
-// 	NO_REDIR,
-// 	INFILE_ID,
-// 	OUTFILE_ID,
-// 	APPEND_ID,
-// 	HEREDOC_ID,
-// 	PIPE_ID,
-// 	ARGS_ID,
-// }		t_enum_token;
+// Frees
+void		free_map(char **map);
 
-// typedef struct s_prompt
-// {
-// 	char			*path;
-// 	char			**args;
-// 	t_enum_token	*tokens_id;
-// 	char			**tokens;
-// 	struct s_prompt	*next;
-// }					t_prompt;
+t_command	*init_exec(t_prompt *prompt);
+char		*var_path(void);
 
-/**
- * Estrutura que representa um prompt.
- * Contém informações relacionadas a um prompt incluindo:
- * *cmds -> Lista de comandos contendo um t_shell nó com todos os comandos
- * separados por pipes.
- * **envp -> Matriz atualizada contendo chaves e valores para o ambiente shell
- * pid -> ID do processo da instância do minishell
- */
-// typedef struct s_command
-// {
-// 	char				*path;
-// 	char				**args;
-// 	int					fd[2];
-// 	int					infile_fd;
-// 	int					outfile_fd;
-// 	pid_t				pid;
-// 	// char				*infile;
-// 	// char				*outfile;
-// 	t_prompt			*prompt;
-// 	struct s_command	*prev;
-// 	struct s_command	*next;
-// }			t_command;
+// Enviroment variables management
+void		ft_fillenvp(char *envp[]);
+void		ft_envp(char *envp[]);
+t_envp		*getev(void);
+t_envparr	*getevarr(void);
 
-// typedef struct s_envp
-// {
-// 	char		*name;
-// 	char		*value;
-// 	struct s_envp	*next;
-// }		t_envp;
+int			ft_open_all(t_command *current);
 
-// typedef struct	s_envparray
-// {
-// 	char	**envp;
-// }		t_envparr;
+int			exit_final(t_command *command);
+void		print_envp(t_envp *head);
+void		print_commands(t_command *head);
+void		free_struct(t_command *head);
+char		*add_name(char *str);
+char		*add_value(char *str);
+t_data		*data(void);
+t_envp		*insert_end_envp(t_envp **head);
 
+void		free_path(char *str);
+void		free_envp(t_envp *head);
+void		free_struct(t_command *head);
+void		free_prompt2(t_prompt *head);
 
-// // Creating path
-// char	*cmd_path(char *cmd);
+// Executing
+void		executing(t_command *head);
 
-// // Frees
-// void	free_map(char **map);
+// Builtins
+int			exit_builtin(t_command *command);
+int			is_builtin(char	*arg);
+void		echo(t_command *command, int outfile);
+void		pwd(int outfile);
+void		cd(t_command *command, int outfile);
+void		unset(t_command *command);
+void		env(int outfile);
+void		ft_export(char **key_value, int outfile);
+int			builtins(t_command *command, int infile, int outfile);
 
-// t_command	*init_exec(t_prompt *prompt);
+// Envp utils
+void		update_value(char *name, char *value);
+char		*get_value(char *name);
+void		fill_envp(t_envp **getev, char **envp);
+void		update_shlvl(char **envp);
+char		**update_env(void);
+char		**envp_exec(char *envp[]);
+void		new_envp(char **envp);
 
-// // Enviroment variables management
-// void	ft_fillenvp(char *envp[]);
-// t_envparr	*getevarr(void);
-// void	ft_envp(char *envp[]);
-// t_envp	*getev(void);
+int			commands_wait(t_command *head);
 
-// int		ft_open_all(t_command *current);
+// Builtin utils
+int			is_long(char *str);
 
-
-// void	print_commands(t_command *head);
-
-extern int	g_status;
-
-# endif /* EXECUTOR_H */
+#endif /* EXECUTOR_H */

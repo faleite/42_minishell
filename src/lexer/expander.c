@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:27:54 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/01 11:23:00 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/08 20:32:40 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/minishell.h"
 
 char	*expander_inside(char *s1)
 {
@@ -20,7 +20,7 @@ char	*expander_inside(char *s1)
 
 	i = 0;
 	sig = 1;
-	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s1) * 10 + 1));
+	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s1) * 1000 + 1));
 	if (!s2)
 		return (NULL);
 	while (*s1)
@@ -48,7 +48,7 @@ char	*expander_outside(char *s2)
 
 	i = 0;
 	sig = 1;
-	s3 = (char *)malloc(sizeof(char) * (ft_strlen(s2) * 10 + 1));
+	s3 = (char *)malloc(sizeof(char) * (ft_strlen(s2) * 1000 + 1));
 	while (*s2)
 	{
 		if (sig == 1)

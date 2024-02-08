@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:26:00 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/06 21:26:48 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:12:22 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parser.h"
+#include "../includes/minishell.h"
 
 void	new_prompt(void)
 {
@@ -18,7 +18,7 @@ void	new_prompt(void)
 	rl_cleanup_after_signal();
 	rl_replace_line("", 0);
 	rl_crlf();
-	rl_redisplay();
+	// rl_redisplay();
 }
 
 void handle_sigint(int sig) 
@@ -27,4 +27,13 @@ void handle_sigint(int sig)
 		new_prompt();
 	else if (sig)
 		printf("\n");
+}
+
+void heredoc_handle_sigint(int sig)
+{
+	if (sig == SIGINT)
+	{
+		printf("\n");
+		data()->g_status = -10;
+	}
 }

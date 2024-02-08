@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 19:00:55 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/06 16:53:34 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:14:01 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/minishell.h"
 
 void	parser_args(t_args **args, char **tokens)
 {

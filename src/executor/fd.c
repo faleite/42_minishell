@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/05 20:20:19 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:19:47 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/minishell.h"
 #include <unistd.h>
 
 static void	error_msg(char *delimiter)
@@ -23,25 +23,35 @@ static void	error_msg(char *delimiter)
 
 int		ft_open_infile_heredoc(t_command *current, char *delimiter)
 {
-	int	fd;
 	char	*str;
+	int		fd;
+	int 	pid;
 
 	if (current->infile_fd != -1)
 		close(current->infile_fd);
-	fd = open("heredoc_file", O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	while (true)
+	pid = fork();
+	if (pid == 0)
 	{
-		str = readline("> ");
-		if (!str || ft_strncmp(str, delimiter, ft_strlen(delimiter) + 1) == 0)
+		signal(SIGINT, SIG_DFL);
+		fd = open("heredoc_file", O_CREAT | O_WRONLY | O_TRUNC, 0664);
+		while (true)
 		{
-			error_msg(delimiter);
-			free(str);
-			break ;
+			str = readline("> ");
+			if (!str || ft_strncmp(str, delimiter, ft_strlen(delimiter) + 1) == 0)
+			{
+				if (!str)
+					error_msg(delimiter);
+				free(str);
+				break ;
+			}
+			write(fd, str, ft_strlen(str));
+			write(fd, "\n", 1);
 		}
-		write(fd, str, ft_strlen(str));
-		write(fd, "\n", 1);
+		close(fd);
+		exit(0);
 	}
-	close(fd);
+	waitpid(pid, NULL, 0);
+	new_prompt();
 	current->infile_fd = open("heredoc_file", O_RDONLY);
 	if (current->infile_fd == -1)
 		printf("Error on opening heredoc file\n");

@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:31:52 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/01 12:21:08 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:20:13 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/minishell.h"
 
 /* FOR DEUGB USE: print_tokens(lst); */
 int	sintax_errors(char *line)

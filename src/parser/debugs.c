@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:02:46 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/01 13:25:12 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:14:11 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/minishell.h"
 
 void	print_prompt(t_prompt *root)
 {

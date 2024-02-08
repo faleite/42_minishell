@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:11:10 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/01 12:20:07 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:20:13 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/minishell.h"
 
 static int	is_open_quotes(char *token);
 
