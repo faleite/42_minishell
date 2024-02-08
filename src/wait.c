@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   wait.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:38:43 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/05 18:48:50 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:12:09 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parser.h"
+#include "../includes/minishell.h"
 
 int		commands_wait(t_command *head)
 {

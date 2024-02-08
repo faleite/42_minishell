@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:03:40 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/17 21:24:21 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:13:46 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/minishell.h"
 
 void	fill_tokens(t_redirect *node, char **tokens, int *i, int *j)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   envp_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:46:00 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/06 04:45:34 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:20:38 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/minishell.h"
 
 void	update_value(char *name, char *value)
 {

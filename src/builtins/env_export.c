@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_export.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 03:00:55 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/06 05:01:45 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:20:38 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/minishell.h"
 
 void	env(int outfile)
 {

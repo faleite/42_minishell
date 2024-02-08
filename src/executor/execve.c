@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/07 12:29:17 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:19:47 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/minishell.h"
 
 static int	exec_command(t_command *command, int infile, int outfile)
 {

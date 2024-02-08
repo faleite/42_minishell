@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:53:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/05 18:10:40 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:12:35 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parser.h"
+#include "../includes/minishell.h"
 
 void	free_envp(t_envp *head)
 {

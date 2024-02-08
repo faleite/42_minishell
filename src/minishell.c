@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/07 21:37:50 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:10:24 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parser.h"
+#include "../includes/minishell.h"
 
 /*
 * DEBUGS:
@@ -49,7 +49,6 @@ void	init_process(char *line, char **envp, int ac, char **av)
 	t_prompt	*prompt;
 
 	tokens = ft_lexer(line);
-	// handle_heredoc(tokens);
 	strtrim_quotes(tokens);
 	trim_spaces_end(tokens);
 	args = NULL;

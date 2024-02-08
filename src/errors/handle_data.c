@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 10:27:29 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/25 14:31:22 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:20:13 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/minishell.h"
 
 void	init_struct(t_token **tail, t_token **head, char *token)
 {

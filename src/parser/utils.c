@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 21:33:41 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/31 06:38:26 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:13:34 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/minishell.h"
 
 t_redirect	*insert_end_redirects(t_redirect **root)
 {

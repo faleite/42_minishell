@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/07 20:49:02 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:19:47 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/minishell.h"
 #include <unistd.h>
 
 static void	error_msg(char *delimiter)

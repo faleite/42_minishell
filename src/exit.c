@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:27:08 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/07 21:36:43 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:12:41 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parser.h"
+#include "../includes/minishell.h"
 
 int	exit_final(t_command *command)
 {

@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:00:07 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/01/23 16:33:54 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:18:48 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/minishell.h"
 
 void	handle_pipe(char *s1, char *s2)
 {

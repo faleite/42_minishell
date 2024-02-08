@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 18:41:05 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/05 17:06:42 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:15:30 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/minishell.h"
 
 static int	have_quotes(char *s1);
 static void	utils_strtrim(char **s1, char **s2);

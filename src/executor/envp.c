@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:08:36 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/06 04:21:34 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:19:47 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/minishell.h"
 
 // static t_envp	*find_tail(t_envp **head)
 // {

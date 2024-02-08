@@ -13,16 +13,14 @@ SP			= src/parser
 SE			= src/errors
 SEC			= src/executor
 SB			= src/builtins
-SH			= src/heredoc
 # FILES 		= $(foreach dir, $(SRC_DIR), $(wildcard $(dir)/*.c))
-FILES 		= $(SRC_DIR)parser.c $(SRC_DIR)exit.c $(SRC_DIR)free.c\
+FILES 		= $(SRC_DIR)minishell.c $(SRC_DIR)exit.c $(SRC_DIR)free.c\
 			  $(SRC_DIR)wait.c $(SRC_DIR)update_shlvl.c $(SRC_DIR)signals.c\
 			  $(SL)/cmdline_split.c $(SL)/expander.c $(SL)/handle_dollar.c\
 			  $(SL)/trim_quotes.c $(SL)/lexer.c\
 			  $(SP)/parser_redirect.c $(SP)/utils.c $(SP)/parser_args.c\
 			  $(SP)/free_data.c $(SP)/parser_prompt.c $(SP)/debugs.c\
 			  $(SE)/handle_errors.c $(SE)/handle_data.c $(SE)/sintax_errors.c\
-			  $(SH)/heredoc.c $(SH)/expander_hd.c $(SH)/heredoc_utils.c\
 			  $(SEC)/envp.c $(SEC)/execve.c $(SEC)/fd.c $(SEC)/path.c\
 			  $(SEC)/init_executor.c $(SB)/builtins.c $(SB)/echo.c\
 			  $(SB)/pwd.c $(SB)/cd.c $(SB)/unset.c $(SB)/envp_utils.c\
@@ -57,7 +55,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 		@make -C libft
-		clear
+#		clear
 		@echo "$(GREEN)Compiling of $(REminishell.c:25D)$(NAME)...$(CLR_RESET)"
 		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(RDLINE) -o $(NAME)
 		@echo "$(RED)$(NAME) $(GREEN)is ready!$(CLR_RESET)\n"

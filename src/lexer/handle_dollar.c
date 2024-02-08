@@ -6,11 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 13:44:44 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/05 21:20:48 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:18:48 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/minishell.h"
 
 char	*exit_value(char *s1)
 {
