@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/08 17:10:24 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/08 20:53:23 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 	}
 	return (0);
 }
-
 
 /* JUST DEBUG FOR PARSER */
 int	main(int ac, char *av[], char *envp[])
