@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 02:03:53 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/08 17:12:17 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/08 22:05:10 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,37 @@ void	update_shlvl(char **envp)
 	free(new);
 }
 
+void	no_envp(void)
+{
+	char	*pwd;
+	char	**tmp;
+
+	pwd = getcwd(NULL, 0);
+	tmp = ft_calloc(2, sizeof(char *));
+	tmp[0] = ft_strjoin("PWD=", pwd);
+	tmp[1] = ft_strdup("SHLVL=1");
+	free(pwd);
+	getevarr()->envp = tmp;
+}
+
 void	new_envp(char **envp)
 {
 	t_envp	*getev;
 	char	**tmp;
 
 	getev = NULL;
-	tmp = envp_exec(envp);
-	getevarr()->envp = tmp;
-	update_shlvl(getevarr()->envp);
-	fill_envp(&getev, getevarr()->envp);
-	data()->envp = getev;
+	if (!envp && !envp[0])
+	{
+		no_envp();
+		fill_envp(&getev, getevarr()->envp);
+		data()->envp = getev;
+	}
+	else
+	{
+		tmp = envp_exec(envp);
+		getevarr()->envp = tmp;
+		update_shlvl(getevarr()->envp);
+		fill_envp(&getev, getevarr()->envp);
+		data()->envp = getev;
+	}
 }
