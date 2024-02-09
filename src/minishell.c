@@ -29,7 +29,7 @@ void	exec_process(t_prompt *prompt, char **envp)
 {
 	t_command	*exec;
 
-	data()->path = var_path();
+	data()->path = get_value("PATH");
 	exec = init_exec(prompt);
 	data()->exec = exec;
 	ft_open_all(exec);

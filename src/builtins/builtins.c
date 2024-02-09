@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:18:00 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/09 16:22:19 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:39:08 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,8 @@ void 	builtins(t_command *command, int infile, int outfile)
 		unset(command);
 	else if ((ft_strncmp(command->args[0], "exit", 4) == 0))
 		exit_builtin(command);
+	if (infile != 0)
+		close(infile);
+	if (outfile != 1)
+		close(outfile);
 }

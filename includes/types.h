@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:36:22 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/09 16:58:19 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:11:23 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_command
 	int					outfile_fd;
 	pid_t				pid;
 	t_prompt			*prompt;
+	int					is_last;
 	struct s_command	*next;
 }						t_command;
 

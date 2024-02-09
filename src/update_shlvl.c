@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 02:03:53 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/08 22:05:10 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:23:58 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	no_envp(void)
 	char	**tmp;
 
 	pwd = getcwd(NULL, 0);
-	tmp = ft_calloc(2, sizeof(char *));
+	tmp = ft_calloc(3, sizeof(char *));
 	tmp[0] = ft_strjoin("PWD=", pwd);
 	tmp[1] = ft_strdup("SHLVL=1");
 	free(pwd);
@@ -97,7 +97,7 @@ void	new_envp(char **envp)
 	char	**tmp;
 
 	getev = NULL;
-	if (!envp && !envp[0])
+	if (!envp || !envp[0])
 	{
 		no_envp();
 		fill_envp(&getev, getevarr()->envp);
