@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/09 16:28:18 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:18:03 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_envparr	*getevarr(void);
 
 int			ft_open_all(t_command *current);
 
-int			exit_final(t_command *command);
+int			exit_final(void);
 void		print_envp(t_envp *head);
 void		print_commands(t_command *head);
 void		free_struct(t_command *head);

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/09 17:27:11 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:17:22 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,14 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 		return (ft_putstr_fd("Error: Wrong arguments\n", 2));
 	while (1)
 	{
+		signal(SIGQUIT,  SIG_IGN);
+		signal(SIGINT, handle_sigint);
 		if (!cmd_line)
 			cmd_line = readline("[minishell]$ ");
 		if (!cmd_line)
 		{
-			exit_cmd_null(data()->exec);
-			// printf("exit\n");
+			printf("exit\n");
+			exit_final();
 			// break ;
 		}
 		else
@@ -95,7 +97,7 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 			if (cmd_line && *cmd_line) //is_spaces
 				add_history(cmd_line);
 			if (!sintax_errors(cmd_line) && ft_strlen(cmd_line) > 0) //is_spaces
-					init_process(cmd_line, envp, ac, av);
+				init_process(cmd_line, envp, ac, av);
 		}
 		free(cmd_line);
 		cmd_line = NULL;
@@ -109,8 +111,6 @@ int	main(int ac, char *av[], char *envp[])
 	char	*cmd_line;
 	
 	cmd_line = NULL;
-	signal(SIGQUIT,  SIG_IGN);
-	signal(SIGINT, handle_sigint);
 	cmdline(cmd_line, envp, ac, av);
 	return (data()->exit_status);
 }
