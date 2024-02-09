@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:36:22 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/08 17:47:20 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:11:23 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_command
 	int					outfile_fd;
 	pid_t				pid;
 	t_prompt			*prompt;
+	int					is_last;
 	struct s_command	*next;
 }						t_command;
 
@@ -99,7 +100,7 @@ typedef struct s_envparray
 typedef struct s_data
 {
 	char		*path;
-	int			g_status;
+	int			exit_status;
 	t_envp		*envp;
 	t_command	*exec;
 }				t_data;

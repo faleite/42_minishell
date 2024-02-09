@@ -6,13 +6,13 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:33:49 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/08 17:19:47 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:21:56 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static t_command	*find_tail(t_command *head)
+t_command	*find_tail(t_command *head)
 {
 	t_command	*current;
 
@@ -60,6 +60,7 @@ void	new_struct(t_prompt *prompt, t_command **head)
 	new->fd[1] = STDOUT_FILENO;
 	new->infile_fd = -1;
 	new->outfile_fd = -1;
+	new->is_last = 0;
 	if (!*head)
 	{
 		*head = new;
@@ -102,6 +103,7 @@ void	print_commands(t_command *head)
 t_command	*init_exec(t_prompt *prompt)
 {
 	t_command	*head;
+	t_command	*tail;
 
 	head = NULL;
 	while (prompt)
@@ -109,6 +111,8 @@ t_command	*init_exec(t_prompt *prompt)
 		new_struct(prompt, &head);
 		prompt = prompt->next;
 	}
+	tail = find_tail(head);
+	tail->is_last = 1;
 	return (head);
 }
 
@@ -130,56 +134,3 @@ void	free_struct(t_command *head)
 	head = NULL;
 	free(head);
 }
-
-// void	print_envp(void)
-// {
-// 	t_envp	*current;
-//
-// 	current = getev();
-// 	while (current)
-// 	{
-// 		printf("Name: %s\nValue: %s\n", current->name, current->value);
-// 		current = current->next;
-// 	}
-// }
-
-// int		main(int ac, char **av, char **ev)
-// {
-// 	t_prompt	test;
-// 	t_prompt	test2;
-// 	t_command	*head;
-//
-// 	// head = ft_calloc(1, sizeof(t_command));
-// 	test.args = ft_calloc(3, sizeof(char *));
-// 	test.tokens = ft_calloc(3, sizeof(char *));
-// 	test.tokens_id = ft_calloc(3, sizeof(t_enum_token));
-//
-// 	test2.args = ft_calloc(3, sizeof(char *));
-// 	test2.tokens = ft_calloc(3, sizeof(char *));
-// 	test2.tokens_id = ft_calloc(3, sizeof(t_enum_token));
-//
-//
-// 	test.args[0] = "cat";
-// 	test.args[1] = "-e";
-// 	test.args[3] = NULL;
-// 	test.tokens[0] = "lol.txt";
-// 	test.tokens_id[0] = INFILE_ID;
-// 	test.next = &test2;
-//
-// 	test2.args[0] = "wc";
-// 	test2.args[1] = "-w";
-// 	test2.args[2] = NULL;
-// 	test2.next = NULL;
-// 	
-// 	ft_fillenvp(ev);
-// 	ft_envp(getevarr()->envp);
-// 	// print_envp();
-//
-// 	int	i = 0;
-// 	head = init_exec(&test);
-// 	ft_open_all(head);
-// 	
-// 	print_commands(head);
-//
-// 	// free_struct(head);
-// }

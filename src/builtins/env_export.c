@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 03:00:55 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/08 17:20:38 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:32:48 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,9 @@ static void	ft_export_noarg(int outfile)
 	{
 		ft_putstr_fd("declare -x ", outfile);
 		ft_putstr_fd(current->name, outfile);
-		ft_putstr_fd("=", outfile);
-		ft_putstr_fd("\"", outfile);
+		ft_putstr_fd("=\"", outfile);
 		ft_putstr_fd(current->value, outfile);
-		ft_putstr_fd("\"", outfile);
-		ft_putstr_fd("\n", outfile);
+		ft_putstr_fd("\"\n", outfile);
 		current = current->next;
 	}
 }
@@ -48,7 +46,6 @@ void	ft_export(char **key_value, int outfile)
 {
 	int		i;
 	t_envp	*new_node;
-
 
 	i = 0;
 	if (key_value && key_value[i + 1] == NULL)

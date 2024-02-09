@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/08 22:02:35 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:10:36 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,9 @@ static int	exec_command(t_command *command, int infile, int outfile)
 			exit(0);
 		if (outfile != 1)
 			close(outfile);
-		if (is_builtin(command->args[0]))
-			builtins(command, infile, outfile);
 		else
 			execve(command->path, command->args, getevarr()->envp);
+		printf("Error: %s command not found!\n", command->args[0]);
 		exit(127);
 	}
 	if (infile != 0)
@@ -45,12 +44,20 @@ static int	exec_command(t_command *command, int infile, int outfile)
 void	wait_all(t_command *head)
 {
 	t_command	*current;
-	int			wstatus;
+	t_command	*tail;
+	int			status;
+	pid_t		pid;
 
 	current = head;
+	tail = find_tail(head);
 	while (current)
 	{
-		wait(NULL);
+		pid = waitpid(-1, &status, NULL);
+		if (pid == tail->pid)
+		{
+			if (WIFEXITED(status))
+				data()->exit_status = status;
+		}
 		current = current->next;
 	}
 }
@@ -80,13 +87,8 @@ void	executing(t_command *head)
 			if (current->fd[1] != 1)
 				close(current->fd[1]);
 		}
-		if (current->args && !current->next && is_builtin(current->args[0]))
+		if (current->args && is_builtin(current->args[0]))
 			builtins(current, infile, outfile);
-		else if (current->args && current->args[0] && !cmd_path(current->args[0]))
-		{
-			printf("Error: %s command not found!\n", current->args[0]);
-			return ;
-		}
 		else
 			exec_command(current, infile, outfile);
 		infile = current->fd[0];

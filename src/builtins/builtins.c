@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:18:00 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/08 22:05:14 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:39:08 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	is_builtin(char	*arg)
 	return (0);
 }
 
-int 	builtins(t_command *command, int infile, int outfile)
+void 	builtins(t_command *command, int infile, int outfile)
 {
 	if ((ft_strncmp(command->args[0], "echo", 5) == 0))
 		echo(command, outfile);
@@ -49,4 +49,8 @@ int 	builtins(t_command *command, int infile, int outfile)
 		unset(command);
 	else if ((ft_strncmp(command->args[0], "exit", 4) == 0))
 		exit_builtin(command);
+	if (infile != 0)
+		close(infile);
+	if (outfile != 1)
+		close(outfile);
 }
