@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/08 20:53:23 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/09 17:27:11 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 		}
 		free(cmd_line);
 		cmd_line = NULL;
-		data()->g_status = 0;
 	}
 	return (0);
 }
@@ -113,5 +112,5 @@ int	main(int ac, char *av[], char *envp[])
 	signal(SIGQUIT,  SIG_IGN);
 	signal(SIGINT, handle_sigint);
 	cmdline(cmd_line, envp, ac, av);
-	return (data()->g_status);
+	return (data()->exit_status);
 }

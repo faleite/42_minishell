@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/08 22:02:35 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/09 17:18:36 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ void	executing(t_command *head)
 			builtins(current, infile, outfile);
 		else if (current->args && current->args[0] && !cmd_path(current->args[0]))
 		{
-			printf("Error: %s command not found!\n", current->args[0]);
+			data()->exit_status = 127;
+			printf("%s: command not found!\n", current->args[0]);
 			return ;
 		}
 		else

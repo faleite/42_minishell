@@ -1,5 +1,14 @@
 # Testes da linha de comando
 
+# Exit status
+```bash
+shell$ cat
+^C
+shell$ $?
+130: command not found
+shell$ 
+
+
 # Principal
 ```bash
 cat<<EOF test>>append|echo "$PWD <$?> | 'hola'" "$HOME"/src |<infile echo $? '$?'|'tr' -d />outfile

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:26:00 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/08 17:12:22 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:57:42 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	new_prompt(void)
 
 void handle_sigint(int sig) 
 {
-	if (sig && data()->g_status == 0)
+	if (sig && data()->exit_status == 0)
 		new_prompt();
 	else if (sig)
 		printf("\n");
@@ -34,6 +34,6 @@ void heredoc_handle_sigint(int sig)
 	if (sig == SIGINT)
 	{
 		printf("\n");
-		data()->g_status = -10;
+		data()->exit_status = -10;
 	}
 }

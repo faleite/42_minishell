@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:20:17 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/08 17:20:38 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:57:42 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	print_error(char *arg)
 
 int		exit_builtin(t_command *command)
 {
-	data()->g_status = 0;
+	data()->exit_status = 0;
 	if (command->args[1])
 	{
 		ft_putendl_fd("exit", 2);
@@ -32,11 +32,11 @@ int		exit_builtin(t_command *command)
 		}
 		if (!is_long(command->args[1]))
 		{
-			data()->g_status = 2;
+			data()->exit_status = 2;
 			print_error(command->args[1]);
 		}
 		else if (!command->args[2])
-			data()->g_status = ft_atoi(command->args[1]);
+			data()->exit_status = ft_atoi(command->args[1]);
 	}
 	return (exit_final(command));
 }

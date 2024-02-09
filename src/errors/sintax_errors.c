@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:31:52 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/08 17:20:13 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:57:42 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	sintax_errors(char *line)
 	parser_tokens(&lst, tokens);
 	free_arr(tokens);
 	if (handle_pipe_err(lst))
-		return (2);
+		return (data()->exit_status = 2);
 	else if (handle_big_redir(lst))
-		return (2);
+		return (data()->exit_status = 2);
 	else if (handle_newline_err(lst))
-		return (2);
+		return (data()->exit_status = 2);
 	if (handle_quotes_err(lst))
-		return (2);
+		return (data()->exit_status = 2);
 	free_tokens(&lst);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 13:44:44 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/08 20:42:30 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:57:42 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*exit_value(char *s1)
 
 	i = 0;
 	j = 0;
-	s2 = ft_itoa(data()->g_status);
+	s2 = ft_itoa(data()->exit_status);
 	s3 = (char *)(malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1)));
 	if (!s3)
 		return (NULL);
