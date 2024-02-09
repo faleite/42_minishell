@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/09 18:32:45 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:44:22 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void		free_prompt2(t_prompt *head);
 
 // Executing
 void		executing(t_command *head);
+t_command	*find_tail(t_command *head);
 
 // Builtins
 int			exit_builtin(t_command *command);

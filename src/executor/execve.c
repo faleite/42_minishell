@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/09 19:10:36 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:45:09 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	wait_all(t_command *head)
 	tail = find_tail(head);
 	while (current)
 	{
-		pid = waitpid(-1, &status, NULL);
+		pid = waitpid(-1, &status, 0);
 		if (pid == tail->pid)
 		{
 			if (WIFEXITED(status))
