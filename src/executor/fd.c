@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/08 17:19:47 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:59:58 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	error_msg(char *delimiter)
 	ft_putstr_fd("minishell: warning: here-document ", STDERR_FILENO);
 	ft_putstr_fd("delimited by end-of-file (wanted `", STDERR_FILENO);
 	ft_putstr_fd(delimiter, STDERR_FILENO);
-	ft_putendl_fd("')", STDERR_FILENO);
+	ft_putstr_fd("')", STDERR_FILENO);
 }
 
 int		ft_open_infile_heredoc(t_command *current, char *delimiter)
@@ -51,7 +51,6 @@ int		ft_open_infile_heredoc(t_command *current, char *delimiter)
 		exit(0);
 	}
 	waitpid(pid, NULL, 0);
-	new_prompt();
 	current->infile_fd = open("heredoc_file", O_RDONLY);
 	if (current->infile_fd == -1)
 		printf("Error on opening heredoc file\n");

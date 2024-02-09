@@ -6,7 +6,14 @@ shell$ cat
 ^C
 shell$ $?
 130: command not found
-shell$ 
+shell$
+
+[minishell]$ $?
+Error: 32512 command not found!
+
+[minishell]$ echo oi
+oi[minishell]$ 
+```
 
 
 # Principal
