@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:53:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/08 17:12:35 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/12 20:09:14 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,4 @@ void	free_envp(t_envp *head)
 		free(tmp);
 	}
 	head = NULL;
-}
-
-void	free_path(char	*str)
-{
-	free(str);
 }

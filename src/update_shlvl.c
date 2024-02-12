@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 02:03:53 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/09 18:23:58 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/12 20:50:43 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	*etoa(char *name, char *value)
 {
 	char	*new;
 	int		i;
+	int		j;
 
 	i = 0;
 	new = ft_calloc(ft_strlen(name) + ft_strlen(value) + 2, sizeof(char));
@@ -25,21 +26,22 @@ char	*etoa(char *name, char *value)
 		i++;
 	}
 	new[i] = '=';
-	i = 0;
-	while (value[i])
+	j = 0;
+	while (value[j])
 	{
-		new[i] = value[i];
-		i++;
+		new[i + j] = value[j];
+		j++;
 	}
 	return (new);
 }
 
-char	**update_env(void)
+char	**update_env(char **old)
 {
 	t_envp	*current;
 	int		i;
 	char	**new;
 
+	free_arr(old);
 	i = 0;
 	current = data()->envp;
 	while (current && current->name)
@@ -60,21 +62,16 @@ char	**update_env(void)
 	return (new);
 }
 
-void	update_shlvl(char **envp)
+void	update_shlvl(void)
 {
-	int		i;
 	int		shlvl;
 	char	*new;
 
-	i = 0;
-	while (ft_strncmp(envp[i], "SHLVL", 5))
-		i++;
-	new = ft_substr(envp[i], 6, ft_strlen(envp[i]));
+	new = ft_strdup(get_value("SHLVL"));
 	shlvl = ft_atoi(new);
 	free(new);
-	free(envp[i]);
 	new = ft_itoa(shlvl + 1);
-	envp[i] = ft_strjoin("SHLVL=", new);
+	update_value("SHLVL", new);
 	free(new);
 }
 
@@ -107,8 +104,8 @@ void	new_envp(char **envp)
 	{
 		tmp = envp_exec(envp);
 		getevarr()->envp = tmp;
-		update_shlvl(getevarr()->envp);
 		fill_envp(&getev, getevarr()->envp);
 		data()->envp = getev;
+		update_shlvl();
 	}
 }

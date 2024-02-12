@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:37:24 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/12 16:44:09 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/12 19:56:07 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	change_directory(char *path, int flag, int outfile)
 	free(old);
 	if (flag)
 		pwd(outfile);
+	data()->exit_status = 0;
 }
 
 static void	cd_default(char *name, int flag, int outfile)
