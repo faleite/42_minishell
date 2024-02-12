@@ -6,11 +6,12 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/09 20:39:15 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/12 18:08:20 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <stdlib.h>
 
 static int	exec_command(t_command *command, int infile, int outfile)
 {
@@ -56,7 +57,9 @@ void	wait_all(t_command *head)
 		if (pid == tail->pid)
 		{
 			if (WIFEXITED(status))
-				data()->exit_status = status;
+				data()->exit_status = WEXITSTATUS(status);
+			// else if (WIFSIGNALED(status))
+			// 	data()->exit_status = WTERMSIG(status) + 128;
 		}
 		current = current->next;
 	}

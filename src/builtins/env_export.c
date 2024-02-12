@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 03:00:55 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/09 18:32:48 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:11:38 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,19 @@ void	ft_export(char **key_value, int outfile)
 	}
 	while (key_value && key_value[++i])
 	{
-		new_node = insert_end_envp(&data()->envp);
-		new_node->name = ft_strdup(add_name(key_value[i]));
-		new_node->value = ft_strdup(add_value(key_value[i]));
+		if (in_str(key_value[i], '-'))
+		{
+			ft_putstr_fd("minishell: export: `", 2);
+			ft_putstr_fd(key_value[i], 2);
+			ft_putendl_fd("': not a valid identifier", 2);
+			data()->exit_status = 1;
+		}
+		else if (in_str(key_value[i], '='))
+		{
+			new_node = insert_end_envp(&data()->envp);
+			new_node->name = ft_strdup(add_name(key_value[i]));
+			new_node->value = ft_strdup(add_value(key_value[i]));
+		}
 	}
 	getevarr()->envp = update_env();
 }

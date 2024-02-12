@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:20:17 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/08 17:20:38 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:45:05 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int		exit_builtin(t_command *command)
 	data()->exit_status = 0;
 	if (command->args[1])
 	{
-		ft_putendl_fd("exit", 2);
 		if (command->args[2])
 		{
 			ft_putendl_fd("minishell: exit: too many arguments", 2);

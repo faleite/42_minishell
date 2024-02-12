@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:37:04 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/08 17:20:38 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:01:05 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,20 @@ int	is_long(char *str)
 			return (0);
 	}
 	return (1);
+}
+
+int	in_str(char *str, char c)
+{
+	int	i;
+	int	flag;
+
+	i = 0;
+	flag = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			flag = 1;
+		i++;
+	}
+	return (flag);
 }
