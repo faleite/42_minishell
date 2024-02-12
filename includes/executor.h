@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/12 17:02:14 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/12 20:50:58 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void		builtins(t_command *command, int infile, int outfile);
 void		update_value(char *name, char *value);
 char		*get_value(char *name);
 void		fill_envp(t_envp **getev, char **envp);
-void		update_shlvl(char **envp);
-char		**update_env(void);
+void		update_shlvl(void);
+char		**update_env(char **old);
 char		**envp_exec(char *envp[]);
 void		new_envp(char **envp);
 
