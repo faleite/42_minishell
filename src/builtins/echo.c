@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:23:51 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/09 18:57:20 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:35:11 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	ft_print(char **map, int outfile, int flag)
 		i++;
 	}
 	if (flag)
-		ft_putendl_fd(map[i], outfile);
-	else
 		ft_putstr_fd(map[i], outfile);
+	else
+		ft_putendl_fd(map[i], outfile);
 }
 
 static int	is_flag(t_command *command)
