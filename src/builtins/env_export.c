@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 03:00:55 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/12 17:11:38 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/12 20:51:45 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	env(int outfile)
 		ft_putendl_fd(current->value, outfile);
 		current = current->next;
 	}
+	data()->exit_status = 0;
 }
 
 static void	ft_export_noarg(int outfile)
@@ -40,6 +41,7 @@ static void	ft_export_noarg(int outfile)
 		ft_putstr_fd("\"\n", outfile);
 		current = current->next;
 	}
+	data()->exit_status = 0;
 }
 
 void	ft_export(char **key_value, int outfile)
@@ -69,6 +71,7 @@ void	ft_export(char **key_value, int outfile)
 			new_node->value = ft_strdup(add_value(key_value[i]));
 		}
 	}
-	getevarr()->envp = update_env();
+	data()->exit_status = 0;
+	getevarr()->envp = update_env(getevarr()->envp);
 }
 
