@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/09 19:44:22 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:02:14 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ int			commands_wait(t_command *head);
 
 // Builtin utils
 int			is_long(char *str);
+int			in_str(char *str, char c);
 
 #endif /* EXECUTOR_H */
