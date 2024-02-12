@@ -28,8 +28,9 @@ int		ft_open_infile_heredoc(t_command *current, char *delimiter)
 	int 	pid;
 
 	if (current->infile_fd != -1)
-		close(current->infile_fd);
+	 	close(current->infile_fd);
 	pid = fork();
+	signal(SIGINT, handle_sigint);
 	if (pid == 0)
 	{
 		signal(SIGINT, SIG_DFL);
@@ -53,7 +54,7 @@ int		ft_open_infile_heredoc(t_command *current, char *delimiter)
 	waitpid(pid, NULL, 0);
 	current->infile_fd = open("heredoc_file", O_RDONLY);
 	if (current->infile_fd == -1)
-		printf("Error on opening heredoc file\n");
+	 	printf("Error on opening heredoc file\n");
 	return (1);
 }
 
