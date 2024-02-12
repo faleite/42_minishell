@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:27:08 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/12 17:48:50 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:46:16 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,3 +22,4 @@ int	exit_final(void)
 	exit(data()->exit_status);
 	return (0);
 }
+

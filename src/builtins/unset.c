@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 01:34:27 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/08 17:20:38 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:42:28 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ void	delete_node(char *name)
 	t_envp	*tmp;
 
 	current = data()->envp;
-	if (current->name == name)
+	if (!ft_strcmp(current->next->name, name))
 	{
 		data()->envp = current->next;
 		free_node(current);
 		return ;
 	}
-	while (current->next)
+	while (current)
 	{
-		if (current->next->name == name)
+		if (!ft_strcmp(current->next->name, name))
 		{
 			tmp = current->next;
 			current->next = current->next->next;
@@ -44,12 +44,12 @@ void	delete_node(char *name)
 	}
 }
 
-static void	print_error(char *arg)
-{
-	ft_putstr_fd("minishell: unset: ", 2);
-	ft_putstr_fd(arg, 2);
-	ft_putendl_fd(": invalid option", 2);
-}
+// static void	print_error(char *arg)
+// {
+// 	ft_putstr_fd("minishell: unset: ", 2);
+// 	ft_putstr_fd(arg, 2);
+// 	ft_putendl_fd(": invalid option", 2);
+// }
 
 void	unset(t_command *command)
 {
@@ -57,10 +57,5 @@ void	unset(t_command *command)
 
 	i = 0;
 	while (command->args[++i])
-	{
-		if (ft_strchr(command->args[i], '-'))
-			print_error(command->args[i]);
-		else
 			delete_node(command->args[i]);
-	}
 }
