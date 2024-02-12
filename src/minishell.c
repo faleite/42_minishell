@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/09 21:05:24 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:46:22 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,7 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 		if (!cmd_line)
 			cmd_line = readline("[minishell]$ ");
 		if (!cmd_line)
-		{
-			printf("exit\n");
 			exit_final();
-		}
 		else
 		{
 			if (cmd_line && *cmd_line)
