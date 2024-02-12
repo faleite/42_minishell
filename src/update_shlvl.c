@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 02:03:53 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/09 18:23:58 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/12 20:34:01 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void	new_envp(char **envp)
 	{
 		tmp = envp_exec(envp);
 		getevarr()->envp = tmp;
+		
 		update_shlvl(getevarr()->envp);
 		fill_envp(&getev, getevarr()->envp);
 		data()->envp = getev;

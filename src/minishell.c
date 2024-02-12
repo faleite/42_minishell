@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/12 17:46:22 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/12 19:52:58 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,14 @@ void	exec_process(t_prompt *prompt, char **envp)
 	t_command	*exec;
 
 	data()->path = get_value("PATH");
+	data()->h_flag = 0;
 	exec = init_exec(prompt);
 	data()->exec = exec;
 	ft_open_all(exec);
 	// print_commands(exec);
 	// print_prompt(exec->prompt);
-	executing(exec);
+	if (!data()->h_flag)
+		executing(exec);
 	// free_envp(data()->envp);
 	// free_struct(exec);
 	// free_arr(getevarr()->envp);

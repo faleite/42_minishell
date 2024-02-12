@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/12 18:10:07 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/12 20:01:13 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ int		ft_open_infile_heredoc(t_command *current, char *delimiter)
 	int 	pid;
 
 	if (current->infile_fd != -1)
-		close(current->infile_fd);
+	 	close(current->infile_fd);
 	pid = fork();
+	signal(SIGINT, handle_sigint);
 	if (pid == 0)
 	{
 		signal(SIGINT, SIG_DFL);
@@ -53,7 +54,7 @@ int		ft_open_infile_heredoc(t_command *current, char *delimiter)
 	waitpid(pid, NULL, 0);
 	current->infile_fd = open("heredoc_file", O_RDONLY);
 	if (current->infile_fd == -1)
-		printf("Error on opening heredoc file\n");
+	 	printf("Error on opening heredoc file\n");
 	return (1);
 }
 
@@ -74,8 +75,6 @@ int		ft_open_infile(t_command *current, char *file)
 	}
 	return (1);
 }
-signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
 int		ft_open_outfile_append(t_command *current, char *outfile)
 {
 	int	error_id;
