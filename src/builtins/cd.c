@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:37:24 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/08 17:20:38 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:44:09 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ static void	change_directory(char *path, int flag, int outfile)
 	
 	old = getcwd(NULL, 0);
 	if (chdir(path) == -1)
+	{
+		ft_putendl_fd("minishell: cd: No such file or directory", 2);
+		data()->exit_status = 1;
 		return ;
+	}
 	else
 	{
 		update_value("OLDPWD", old);
@@ -59,7 +63,8 @@ void	cd(t_command *command, int outfile)
 	{
 		if (command->args[2])
 		{
-			ft_putendl_fd("minishell: cd: Too many arguments", 2);
+			ft_putendl_fd("minishell: cd: too many arguments", 2);
+			data()->exit_status = 1;
 			return ;
 		}
 		else
