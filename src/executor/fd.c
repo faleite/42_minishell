@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/12 18:10:07 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/12 18:30:29 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ int		ft_open_infile(t_command *current, char *file)
 	}
 	return (1);
 }
-signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
+
 int		ft_open_outfile_append(t_command *current, char *outfile)
 {
 	int	error_id;
