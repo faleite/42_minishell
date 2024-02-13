@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:26:00 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/13 18:56:15 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/13 21:30:50 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ void handle_sigint(int sig)
 void handle_sigint_clean(int sig)
 {
     clean_newline();
+	close(data()->h_fd);
     exit(data()->exit_status);
 }
