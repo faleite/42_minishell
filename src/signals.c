@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:26:00 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/12 19:48:58 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:56:15 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,10 @@ void handle_sigint(int sig)
 		rl_replace_line("", 0);
 		rl_on_new_line();
 	}
+}
+
+void handle_sigint_clean(int sig)
+{
+    clean_newline();
+    exit(data()->exit_status);
 }

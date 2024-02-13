@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/12 18:33:15 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:33:09 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static int	exec_command(t_command *command, int infile, int outfile)
 		else
 			execve(command->path, command->args, getevarr()->envp);
 		printf("Error: %s command not found!\n", command->args[0]);
+		clean_newline();
 		exit(127);
 	}
 	if (infile != 0)

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/12 18:30:29 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:00:02 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int		ft_open_infile_heredoc(t_command *current, char *delimiter)
 	signal(SIGINT, handle_sigint);
 	if (pid == 0)
 	{
-		signal(SIGINT, SIG_DFL);
+		signal(SIGINT, handle_sigint_clean);
+		//signal(SIGINT, SIG_DFL);
 		fd = open("heredoc_file", O_CREAT | O_WRONLY | O_TRUNC, 0664);
 		while (true)
 		{
@@ -43,6 +44,7 @@ int		ft_open_infile_heredoc(t_command *current, char *delimiter)
 				if (!str)
 					error_msg(delimiter);
 				free(str);
+				clean_newline();
 				break ;
 			}
 			write(fd, str, ft_strlen(str));
