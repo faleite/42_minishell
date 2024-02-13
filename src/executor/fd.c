@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/12 18:30:29 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/13 21:30:10 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void	error_msg(char *delimiter)
 int		ft_open_infile_heredoc(t_command *current, char *delimiter)
 {
 	char	*str;
-	int		fd;
 	int 	pid;
 
 	if (current->infile_fd != -1)
@@ -33,8 +32,9 @@ int		ft_open_infile_heredoc(t_command *current, char *delimiter)
 	signal(SIGINT, handle_sigint);
 	if (pid == 0)
 	{
-		signal(SIGINT, SIG_DFL);
-		fd = open("heredoc_file", O_CREAT | O_WRONLY | O_TRUNC, 0664);
+		signal(SIGINT, handle_sigint_clean);
+		//signal(SIGINT, SIG_DFL);
+		data()->h_fd = open("heredoc_file", O_CREAT | O_WRONLY | O_TRUNC, 0664);
 		while (true)
 		{
 			str = readline("> ");
@@ -43,12 +43,13 @@ int		ft_open_infile_heredoc(t_command *current, char *delimiter)
 				if (!str)
 					error_msg(delimiter);
 				free(str);
+				clean_newline();
 				break ;
 			}
-			write(fd, str, ft_strlen(str));
-			write(fd, "\n", 1);
+			write(data()->h_fd, str, ft_strlen(str));
+			write(data()->h_fd, "\n", 1);
 		}
-		close(fd);
+		close(data()->h_fd);
 		exit(0);
 	}
 	waitpid(pid, NULL, 0);

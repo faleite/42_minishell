@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/12 19:52:58 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/13 20:35:09 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	exec_process(t_prompt *prompt, char **envp)
 	// print_prompt(exec->prompt);
 	if (!data()->h_flag)
 		executing(exec);
+	free_struct(exec);
 	// free_envp(data()->envp);
-	// free_struct(exec);
 	// free_arr(getevarr()->envp);
 }
 
@@ -87,7 +87,7 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 		if (!cmd_line)
 			cmd_line = readline("[minishell]$ ");
 		if (!cmd_line)
-			exit_final();
+			exit_finald();
 		else
 		{
 			if (cmd_line && *cmd_line)

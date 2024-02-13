@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:23:51 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/12 19:56:25 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/13 20:19:04 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,23 @@ void	ft_print(char **map, int outfile, int flag)
 		return ;
 	while (map[i + 1])
 	{
-		ft_putstr_fd(map[i], outfile);
-		ft_putchar_fd(' ', outfile);
-		i++;
+		if (!ft_strncmp(map[i], "\"\"", 2))
+			i++;
+		else
+		{
+			ft_putstr_fd(map[i], outfile);
+			ft_putchar_fd(' ', outfile);
+			i++;
+		}
 	}
-	if (flag)
+	if (!ft_strncmp(map[i], "\"\"", 2))
+	 	ft_putchar_fd('\2', outfile);
+	else if (flag)
 		ft_putstr_fd(map[i], outfile);
 	else
-		ft_putendl_fd(map[i], outfile);
+		ft_putstr_fd(map[i], outfile);
+	if (!flag)
+	 	ft_putchar_fd('\n', outfile);
 	data()->exit_status = 0;
 }
 
