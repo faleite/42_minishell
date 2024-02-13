@@ -334,4 +334,7 @@ pip-selfcheck.json
 .ionide
 .vscode
 
+minishell
+heredoc_file
+
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,vim,c,python,virtualenv,macos,linux
