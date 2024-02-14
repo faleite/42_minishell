@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/13 21:30:10 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/14 17:18:37 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int		ft_open_infile_heredoc(t_command *current, char *delimiter)
 	if (pid == 0)
 	{
 		signal(SIGINT, handle_sigint_clean);
-		//signal(SIGINT, SIG_DFL);
 		data()->h_fd = open("heredoc_file", O_CREAT | O_WRONLY | O_TRUNC, 0664);
 		while (true)
 		{
@@ -44,6 +43,7 @@ int		ft_open_infile_heredoc(t_command *current, char *delimiter)
 					error_msg(delimiter);
 				free(str);
 				clean_newline();
+				close(data()->h_fd);
 				break ;
 			}
 			write(data()->h_fd, str, ft_strlen(str));
@@ -71,6 +71,7 @@ int		ft_open_infile(t_command *current, char *file)
 		if (access(file, F_OK | R_OK) == -1)
 		{
 			printf("File doesn't have privieliges to read!\n");
+			clean_newline();
 			exit(0);
 		}
 	}
@@ -89,6 +90,7 @@ int		ft_open_outfile_append(t_command *current, char *outfile)
 		if (access(outfile, F_OK | W_OK | R_OK) == -1)
 		{
 			printf("File doesn't have privieliges to read &| write!\n");
+			clean_newline();
 			// exit(0);
 		}
 	}
@@ -107,6 +109,7 @@ int		ft_open_outfile(t_command *current, char *outfile)
 		if (access(outfile, F_OK | W_OK | R_OK) == -1)
 		{
 			printf("File doesn't have privieliges to read &| write!\n");
+			clean_newline();
 			exit(0);
 		}
 	}
