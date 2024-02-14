@@ -6,11 +6,19 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:23:51 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/13 20:19:04 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:37:20 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static int	is_just_quotes(char *map)
+{
+	if (!ft_strncmp(map, "\"\"", 2) || \
+		!ft_strncmp(map, "\'\'", 2))
+		return (1);
+	return (0);
+}
 
 void	ft_print(char **map, int outfile, int flag)
 {
@@ -21,7 +29,7 @@ void	ft_print(char **map, int outfile, int flag)
 		return ;
 	while (map[i + 1])
 	{
-		if (!ft_strncmp(map[i], "\"\"", 2))
+		if (is_just_quotes(map[i]))
 			i++;
 		else
 		{
@@ -30,7 +38,7 @@ void	ft_print(char **map, int outfile, int flag)
 			i++;
 		}
 	}
-	if (!ft_strncmp(map[i], "\"\"", 2))
+	if (is_just_quotes(map[i]))
 	 	ft_putchar_fd('\2', outfile);
 	else if (flag)
 		ft_putstr_fd(map[i], outfile);
