@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/13 20:34:29 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/14 21:25:43 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ char		**envp_exec(char *envp[]);
 void		new_envp(char **envp);
 
 int			commands_wait(t_command *head);
+
+void	command_error(t_command *command);
+int	to_execute(t_command *head);
 
 // Builtin utils
 int			is_long(char *str);
