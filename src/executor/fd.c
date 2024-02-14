@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/14 17:18:37 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/14 21:28:32 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,20 @@ int		ft_open_infile(t_command *current, char *file)
 	current->infile_fd = open(file, O_RDONLY);
 	if (current->infile_fd == -1)
 	{
-		if (access(file, F_OK | R_OK) == -1)
+		if (access(file, F_OK) == -1)
 		{
-			printf("File doesn't have privieliges to read!\n");
+			ft_putstr_fd("minishell: ", STDERR_FILENO);
+			ft_putstr_fd(file, STDERR_FILENO);
+			ft_putendl_fd(": No such file or directory", STDERR_FILENO);
+			return (0);
+		}
+		else if (access(file, F_OK | R_OK) == -1)
+		{
+			ft_putstr_fd("minishell: ", STDERR_FILENO);
+			ft_putstr_fd(file, STDERR_FILENO);
+			ft_putendl_fd(": Permission denied", STDERR_FILENO);
 			clean_newline();
-			exit(0);
+			return (0);
 		}
 	}
 	return (1);
@@ -91,7 +100,8 @@ int		ft_open_outfile_append(t_command *current, char *outfile)
 		{
 			printf("File doesn't have privieliges to read &| write!\n");
 			clean_newline();
-			// exit(0);
+			current->is_exec = 0;
+			return (0);
 		}
 	}
 	return (1);
@@ -110,13 +120,14 @@ int		ft_open_outfile(t_command *current, char *outfile)
 		{
 			printf("File doesn't have privieliges to read &| write!\n");
 			clean_newline();
-			exit(0);
+			current->is_exec = 0;
+			return (0);
 		}
 	}
 	return (1);
 }
 
-void		ft_open_all_infile(t_command *current)
+int		ft_open_all_infile(t_command *current)
 {
 	int	i;
 	t_enum_token	token_id;
@@ -126,14 +137,21 @@ void		ft_open_all_infile(t_command *current)
 	{
 		token_id = current->prompt->tokens_id[i];
 		if (token_id == INFILE_ID)
-			ft_open_infile(current, current->prompt->tokens[i]);
+		{
+			if (ft_open_infile(current, current->prompt->tokens[i]) == 0)
+				return (0);
+		}
 		else if (token_id == HEREDOC_ID)
-			ft_open_infile_heredoc(current, current->prompt->tokens[i]);
+		{
+			if (ft_open_infile_heredoc(current, current->prompt->tokens[i]) == 0)
+				return (0);
+		}
 		i++;
 	}
+	return (1);
 }
 
-void		ft_open_all_outfile(t_command *current)
+int		ft_open_all_outfile(t_command *current)
 {
 	int	i;
 	t_enum_token	token_id;
@@ -143,11 +161,18 @@ void		ft_open_all_outfile(t_command *current)
 	{
 		token_id = current->prompt->tokens_id[i];
 		if (token_id == OUTFILE_ID)
-			ft_open_outfile(current, current->prompt->tokens[i]);
+		{
+			if (ft_open_outfile(current, current->prompt->tokens[i]) == 0)
+				return (0);
+		}
 		else if (token_id == APPEND_ID)
-			ft_open_outfile_append(current, current->prompt->tokens[i]);
+		{
+			if (ft_open_outfile_append(current, current->prompt->tokens[i]) == 0)
+				return (0);
+		}
 		i++;
 	}
+	return (1);
 }
 
 int		ft_open_all(t_command *head)
@@ -162,9 +187,21 @@ int		ft_open_all(t_command *head)
 		while (current)
 		{
 			if (i == 0)
-				ft_open_all_infile(current);
+			{
+				if (ft_open_all_infile(current) == 0)
+				{
+					current->is_exec = 0;
+					break ;
+				}
+			}
 			else if (i == 1)
-				ft_open_all_outfile(current);
+			{
+				if (ft_open_all_outfile(current) == 0)
+				{
+					current->is_exec = 0;
+					break ;
+				}
+			}
 			current = current->next;
 		}
 		i++;

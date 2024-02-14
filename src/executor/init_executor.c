@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:33:49 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/09 19:21:56 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:20:37 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	new_struct(t_prompt *prompt, t_command **head)
 	new->infile_fd = -1;
 	new->outfile_fd = -1;
 	new->is_last = 0;
+	new->is_exec = 1;
 	if (!*head)
 	{
 		*head = new;

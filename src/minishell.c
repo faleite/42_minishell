@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/14 17:22:58 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/14 21:26:37 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	exec_process(t_prompt *prompt, char **envp)
 	ft_open_all(exec);
 	// print_commands(exec);
 	// print_prompt(exec->prompt);
-	if (!data()->h_flag)
+	if (!data()->h_flag && to_execute(exec))
 		executing(exec);
 	free_struct(exec);
 	// free_envp(data()->envp);
