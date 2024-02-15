@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:18:00 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/15 17:08:37 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/15 21:03:22 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,14 @@ int	is_builtin(char	*arg)
 
 void	builtins(t_command *command, int infile, int outfile)
 {
+	// printf("Infile: %d Outfile: %d\n", infile, outfile);
+	// return ;
+	if (infile != 0)
+		close(infile);
 	if (command->is_exec == 1)
 	{
 		if ((ft_strncmp(command->args[0], "echo", 5) == 0))
-			echo(command, outfile);
+			echo(command, outfile, infile);
 		else if ((ft_strncmp(command->args[0], "pwd", 3) == 0))
 			pwd(outfile);
 		else if ((ft_strncmp(command->args[0], "cd", 2) == 0))
@@ -52,8 +56,6 @@ void	builtins(t_command *command, int infile, int outfile)
 		else if ((ft_strncmp(command->args[0], "exit", 4) == 0))
 			exit_builtin(command);
 	}
-	if (infile != 0)
-		close(infile);
 	if (outfile != 1)
 		close(outfile);
 }
