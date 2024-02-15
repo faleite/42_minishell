@@ -25,6 +25,10 @@ cat <<EOF test >>append| echo "$PWD <$?> | 'hola'" "$HOME"/src | <infile echo $?
 
 # Teste de estrutura
 ```bash
+quebrando:
+echo oi <outfile | wc
+
+
 cat >test file
 
 # Uso de mais de um redirecionamento em um unico pipe:

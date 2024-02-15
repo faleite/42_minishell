@@ -19,9 +19,7 @@ static int	exec_command(t_command *command, int infile, int outfile)
 	if (command->is_exec == 1)
 	{
 		command->pid = fork();
-		if (command->pid < 0)
-			exit(0);
-		if (!command->pid)
+		if (command->pid == 0)
 		{
 			if (dup2(infile, STDIN_FILENO) < 0)
 				exit(0);
@@ -50,27 +48,25 @@ static int	exec_command(t_command *command, int infile, int outfile)
 void	wait_all(t_command *head)
 {
 	t_command	*current;
-	t_command	*tail;
+	// t_command	*tail;
 	int			status;
 	pid_t		pid;
 	int	 		i;
 
 	i = 0;
 	current = head;
-	tail = find_tail(head);
+	status = 0;
+	// tail = find_tail(head);
 	// print_commands(current);
 	while (current)
 	{
-		if (current->is_exec == 1)
+		if (!is_builtin(current->args[0]))
 		{
 			pid = waitpid(-1, &status, 0);
-			if (pid == tail->pid)
-			{
-				if (WIFEXITED(status))
-					data()->exit_status = WEXITSTATUS(status);
-				else if (WIFSIGNALED(status))
-					data()->exit_status = WTERMSIG(status) + 128;
-			}
+			if (WIFEXITED(status))
+				data()->exit_status = WEXITSTATUS(status);
+			else if (WIFSIGNALED(status))
+				data()->exit_status = WTERMSIG(status) + 128;
 		}
 		// printf("%d\n", i++);
 		current = current->next;
@@ -107,7 +103,7 @@ void	executing(t_command *head)
 				close(current->fd[1]);
 		}
 		if (current->args && is_builtin(current->args[0]))
-			builtins(current, infile, outfile);
+		 	builtins(current, infile, outfile);
 		else
 			exec_command(current, infile, outfile);
 		infile = current->fd[0];
