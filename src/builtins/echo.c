@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:23:51 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/14 16:37:20 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:44:47 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,8 @@ static int	is_flag(t_command *command)
 
 void	echo(t_command *command, int outfile)
 {
-	ft_print(command->args, outfile, is_flag(command));
+	if (command->args[1])
+		ft_print(command->args, outfile, is_flag(command));
+	else
+		ft_putstr_fd("\n", outfile);
 }
