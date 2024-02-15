@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 03:00:55 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/12 20:51:45 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:12:57 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@ static void	ft_export_noarg(int outfile)
 	data()->exit_status = 0;
 }
 
+static void	exit_msg(char *str)
+{
+	ft_putstr_fd("minishell: export: `", 2);
+	ft_putstr_fd(str, 2);
+	ft_putendl_fd("': not a valid identifier", 2);
+	data()->exit_status = 1;
+}
+
 void	ft_export(char **key_value, int outfile)
 {
 	int		i;
@@ -58,12 +66,7 @@ void	ft_export(char **key_value, int outfile)
 	while (key_value && key_value[++i])
 	{
 		if (in_str(key_value[i], '-'))
-		{
-			ft_putstr_fd("minishell: export: `", 2);
-			ft_putstr_fd(key_value[i], 2);
-			ft_putendl_fd("': not a valid identifier", 2);
-			data()->exit_status = 1;
-		}
+			exit_msg(key_value[i]);
 		else if (in_str(key_value[i], '='))
 		{
 			new_node = insert_end_envp(&data()->envp);
@@ -74,4 +77,3 @@ void	ft_export(char **key_value, int outfile)
 	data()->exit_status = 0;
 	getevarr()->envp = update_env(getevarr()->envp);
 }
-
