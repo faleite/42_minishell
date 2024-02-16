@@ -6,13 +6,13 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:26:00 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/13 21:30:50 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:11:12 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void handle_sigint(int sig) 
+void	handle_sigint(int sig)
 {
 	if (sig == SIGINT)
 	{
@@ -24,9 +24,9 @@ void handle_sigint(int sig)
 	}
 }
 
-void handle_sigint_clean(int sig)
+void	handle_sigint_clean(int sig)
 {
-    clean_newline();
+	clean_newline();
 	close(data()->h_fd);
-    exit(data()->exit_status);
+	exit(data()->exit_status);
 }
