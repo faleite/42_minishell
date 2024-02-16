@@ -6,18 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:08:36 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/13 20:45:03 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:30:30 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-t_envparr *getevarr(void)
-{
-	static t_envparr envp;
-
-	return (&envp);
-}
 
 char	**envp_exec(char *envp[])
 {
@@ -58,7 +51,7 @@ char	*add_name(char *str)
 
 char	*add_value(char *str)
 {
-	char *curr;
+	char	*curr;
 
 	curr = str;
 	if (!curr)
@@ -69,23 +62,6 @@ char	*add_value(char *str)
 		return (NULL);
 	curr++;
 	return (curr);
-}
-
-void	print_envp(t_envp *head)
-{
-	t_envp	*current;
-
-	current = head;
-	while (current)
-	{
-		printf("Name: %s\nValue: %s\n", current->name, current->value);
-		current = current->next;
-	}
-}
-
-void	ft_fillenvp(char *envp[])
-{
-	getevarr()->envp = envp_exec(envp);
 }
 
 t_envp	*insert_end_envp(t_envp **head)
@@ -123,19 +99,3 @@ void	fill_envp(t_envp **getev, char **envp)
 		i++;
 	}
 }
-
-t_data *data(void)
-{
-	static t_data d;
-
-	return (&d);
-}
-
-
-// int	main(int ac, char **av, char **ev)
-// {
-// 	ft_envp(ev);
-// 	export("a=f3k");
-// 	print_envp();
-// 	return (0);
-// }

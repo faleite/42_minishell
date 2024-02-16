@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/15 20:59:11 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:49:24 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,10 @@ static int	exec_command(t_command *command, int infile, int outfile)
 		command->pid = fork();
 		if (command->pid == 0)
 		{
-			if (dup2(infile, STDIN_FILENO) < 0)
-				exit(0);
-			if (infile != 0)
-				close(infile);
-			if (dup2(outfile, STDOUT_FILENO) < 0)
-				exit(0);
-			if (outfile != 1)
-				close(outfile);
+			ft_dup2(infile, outfile);
 			if (command->path && \
-					execve(command->path, command->args, getevarr()->envp) == -1)
+					execve(command->path, command->args, \
+					getevarr()->envp) == -1)
 				command_error(command);
 			else
 				command_error(command);
@@ -48,16 +42,13 @@ static int	exec_command(t_command *command, int infile, int outfile)
 void	wait_all(t_command *head)
 {
 	t_command	*current;
-	// t_command	*tail;
 	int			status;
 	pid_t		pid;
-	int	 		i;
+	int			i;
 
 	i = 0;
 	current = head;
 	status = 0;
-	// tail = find_tail(head);
-	// print_commands(current);
 	while (current)
 	{
 		if (!is_builtin(current->args[0]))
@@ -68,7 +59,6 @@ void	wait_all(t_command *head)
 			else if (WIFSIGNALED(status))
 				data()->exit_status = WTERMSIG(status) + 128;
 		}
-		// printf("%d\n", i++);
 		current = current->next;
 	}
 }
@@ -89,21 +79,10 @@ void	executing(t_command *head)
 			clean_newline();
 			break ;
 		}
-		if (current->infile_fd != -1)
-		{
-			infile = current->infile_fd;
-			if (current->fd[0] != 0)
-				close(current->fd[0]);
-		}
-		outfile = current->fd[1];
-		if (current->outfile_fd != -1)
-		{
-			outfile = current->outfile_fd;
-			if (current->fd[1] != 1)
-				close(current->fd[1]);
-		}
+		infile = change_in(current, infile);
+		outfile = change_out(current, infile);
 		if (current->args && is_builtin(current->args[0]))
-		 	builtins(current, infile, outfile);
+			builtins(current, infile, outfile);
 		else
 			exec_command(current, infile, outfile);
 		infile = current->fd[0];
@@ -114,7 +93,7 @@ void	executing(t_command *head)
 
 int	to_execute(t_command *head)
 {
-	t_command *current;
+	t_command	*current;
 
 	current = head;
 	while (current)

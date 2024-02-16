@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/15 21:06:08 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:00:11 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static void	error_msg(char *delimiter)
 	ft_putendl_fd("')", STDERR_FILENO);
 }
 
-int		ft_open_infile_heredoc(t_command *current, char *delimiter)
+int	ft_open_infile_heredoc(t_command *current, char *delimiter)
 {
 	char	*str;
-	int 	pid;
+	int		pid;
 
 	if (current->infile_fd != -1)
-	 	close(current->infile_fd);
+		close(current->infile_fd);
 	pid = fork();
 	signal(SIGINT, handle_sigint);
 	if (pid == 0)
@@ -37,17 +37,19 @@ int		ft_open_infile_heredoc(t_command *current, char *delimiter)
 		while (true)
 		{
 			str = readline("> ");
-			if (!str || ft_strncmp(str, delimiter, ft_strlen(delimiter) + 1) == 0)
-			{
-				if (!str)
-					error_msg(delimiter);
-				free(str);
-				clean_newline();
-				close(data()->h_fd);
+			if (check_readline(str, delimiter))
 				break ;
-			}
-			write(data()->h_fd, str, ft_strlen(str));
-			write(data()->h_fd, "\n", 1);
+			// if (!str || \
+			// 	ft_strncmp(str, delimiter, ft_strlen(delimiter) + 1) == 0)
+			// {
+			// 	if (!str)
+			// 		error_msg(delimiter);
+			// 	free(str);
+			// 	clean_newline();
+			// 	close(data()->h_fd);
+			// 	break ;
+			// }
+			ft_putendl_fd(str, data()->h_fd);
 		}
 		close(data()->h_fd);
 		exit(0);
@@ -55,7 +57,7 @@ int		ft_open_infile_heredoc(t_command *current, char *delimiter)
 	waitpid(pid, NULL, 0);
 	current->infile_fd = open("heredoc_file", O_RDONLY);
 	if (current->infile_fd == -1)
-	{ 	
+	{
 		current->is_exec = 0;
 		printf("Error on opening heredoc file\n");
 	}
@@ -167,13 +169,3 @@ int		ft_open_all(t_command *head)
 	}
 	return (1);
 }
-
-
-// int	main(void)
-// {
-// 	char *str = "lol.txt";
-// 	static t_command new;
-// 	new.infile = str;
-// 	ft_open_infile(&new);
-// 	printf("%d", new.fd[0]);
-// }
