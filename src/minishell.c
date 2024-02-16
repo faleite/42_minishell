@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/16 16:16:14 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/16 21:48:28 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	init_process(char *line, char **envp, int ac, char **av)
 
 	tokens = ft_lexer(line);
 	strtrim_quotes(tokens);
-	trim_spaces_end(tokens);
+	//trim_spaces_end(tokens);
 	args = NULL;
 	parser_args(&args, tokens);
 	redirect = NULL;

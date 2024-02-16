@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:46:00 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/13 20:44:22 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/16 21:49:32 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	update_value(char *name, char *value)
 	current = data()->envp;
 	while (current)
 	{
-		if (ft_strncmp(current->name, name, ft_strlen(name)) == 0)
+		if (ft_strcmp(current->name, name) == 0)
 		{
 			free(current->value);
 			current->value = ft_strdup(value);
@@ -41,7 +41,7 @@ char	*get_value(char *name)
 	current = data()->envp;
 	while (current)
 	{
-		if (ft_strncmp(current->name, name, ft_strlen(name)) == 0)
+		if (ft_strcmp(current->name, name) == 0)
 			return (current->value);
 		current = current->next;
 	}
