@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:23:51 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/15 21:22:38 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/16 18:38:16 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,24 +58,39 @@ void	ft_print(char **map, int outfile, int flag)
 	print_last(map[i], outfile, flag);
 }
 
-static int	is_flag(t_command *command)
+static int	is_flag(t_command *command, int i, int j, int flag)
 {
-	int	i;
-
-	i = 0;
-	if (!command->args[1] || !command->args[1][0])
-		return (0);
-	if (command->args[1][0] != '-' || !command->args[1][1])
-		return (0);
-	while (command->args[1][++i])
+	while (command->args[i][j])
 	{
-		if (command->args[1][i] != 'n')
-			return (0);
+		i++;
+		if (command->args[i][j] == '-')
+		{
+			j++;
+			if (!command->args[i][j])
+				return (flag);
+			while (command->args[i][j])
+			{
+				if (command->args[i][j] != 'n')
+					return (flag);
+				j++;
+			}
+		}
+		else
+			return (flag);
+		flag++;
+		j = 0;
 	}
-	return (1);
+	return (flag);
 }
 
 void	echo(t_command *command, int outfile, int infile)
 {
-	ft_print(command->args, outfile, is_flag(command));
+	int	i;
+	int	j;
+	int	flag;
+
+	i = 0;
+	j = 0;
+	flag = 0;
+	ft_print(command->args, outfile, is_flag(command, i, j, flag));
 }

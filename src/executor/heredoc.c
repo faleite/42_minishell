@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:55:36 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/16 16:36:12 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:57:49 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ static int	check_readline(char *str, char *delimiter)
 			ft_strncmp(str, delimiter, ft_strlen(delimiter) + 1) == 0)
 	{
 		if (!str)
+		{
+			close(data()->h_fd);
 			error_msg(delimiter);
+		}
 		free(str);
 		clean_newline();
 		close(data()->h_fd);
