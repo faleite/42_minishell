@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:42:39 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/09 18:28:50 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:48:09 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,11 @@ void	free_map(char **map)
 	free(map);
 }
 
-char	*cmd_path(char *cmd)
+static char	*get_path(char **path_cmds, char **tmp, char *path, char *cmd)
 {
-	char	**path_cmds;
-	char	**tmp;
-	char	*path;
-	int		p_len;
-	int		c_len;
+	int	p_len;
+	int	c_len;
 
-	if (access(cmd, F_OK) == 0 || !data()->path)
-		return (ft_strdup(cmd));
-	path_cmds = ft_split(data()->path, ':');
-	path = NULL;
-	tmp = path_cmds;
 	while (*path_cmds)
 	{
 		p_len = ft_strlen(*path_cmds);
@@ -83,6 +75,23 @@ char	*cmd_path(char *cmd)
 		free(path);
 		path_cmds++;
 	}
-	free_arr(tmp);
 	return (NULL);
+}
+
+char	*cmd_path(char *cmd)
+{
+	char	**path_cmds;
+	char	**tmp;
+	char	*path;
+
+	if (access(cmd, F_OK) == 0 || !data()->path)
+		return (ft_strdup(cmd));
+	path_cmds = ft_split(data()->path, ':');
+	path = NULL;
+	tmp = path_cmds;
+	path = get_path(path_cmds, tmp, path, cmd);
+	if (path != NULL)
+		return (path);
+	free_arr(tmp);
+	return (path);
 }

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/15 20:58:42 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:35:06 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,12 @@ int	to_execute(t_command *head);
 // Builtin utils
 int			is_long(char *str);
 int			in_str(char *str, char c);
+
+
+int	change_in(t_command *command, int infile);
+int	change_out(t_command *command, int outfile);
+void	ft_dup2(int infile, int outfile);
+
+int	ft_open_infile_heredoc(t_command *current, char *delimiter);
 
 #endif /* EXECUTOR_H */
