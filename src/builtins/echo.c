@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:23:51 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/16 18:38:16 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/16 18:46:35 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	ft_print(char **map, int outfile, int flag)
 
 static int	is_flag(t_command *command, int i, int j, int flag)
 {
+	if (!command->args[1])
+		return (0);
 	while (command->args[i][j])
 	{
 		i++;
