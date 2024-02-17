@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/17 17:30:02 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/17 17:31:25 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	ft_open_infile(t_command *current, char *file)
 			ft_putstr_fd("minishell: ", STDERR_FILENO);
 			ft_putstr_fd(file, STDERR_FILENO);
 			ft_putendl_fd(": No such file or directory", STDERR_FILENO);
+			data()->exit_status = 1;
 		}
 		else if (access(file, F_OK | R_OK) == -1)
 		{
@@ -51,6 +52,7 @@ int	ft_open_outfile_append(t_command *current, char *outfile)
 		{
 			printf("File doesn't have privieliges to read &| write!\n");
 			current->is_exec = 0;
+			data()->exit_status = 1;
 		}
 	}
 	return (current->is_exec);
@@ -69,6 +71,7 @@ int	ft_open_outfile(t_command *current, char *outfile)
 		{
 			printf("File doesn't have privieliges to read &| write!\n");
 			current->is_exec = 0;
+			data()->exit_status = 1;
 		}
 	}
 	return (current->is_exec);

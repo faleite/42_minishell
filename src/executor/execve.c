@@ -6,12 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/17 16:51:07 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:30:59 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <unistd.h>
 
 static int	exec_command(t_command *command, int infile, int outfile)
 {
@@ -42,6 +41,7 @@ static int	exec_command(t_command *command, int infile, int outfile)
 void	wait_all(t_command *head)
 {
 	t_command	*current;
+	t_command	*tail;
 	int			status;
 	pid_t		pid;
 	int			i;
@@ -49,17 +49,22 @@ void	wait_all(t_command *head)
 	i = 0;
 	current = head;
 	status = 0;
+	tail = find_tail(current);
 	while (current)
 	{
 		if (!is_builtin(current->args[0]))
 		{
 			pid = waitpid(-1, &status, 0);
-			if (!ft_strcmp(current->args[0], "\3"))
-				data()->exit_status = 0;
-			else if (WIFEXITED(status))
-				data()->exit_status = WEXITSTATUS(status);
-			else if (WIFSIGNALED(status))
-				data()->exit_status = WTERMSIG(status) + 128;
+			if (pid == tail->pid)
+			{
+                if (!ft_strcmp(current->args[0], "\3"))
+				    data()->exit_status = 0;
+				else if (WIFEXITED(status))
+					data()->exit_status = WEXITSTATUS(status);
+				else if (WIFSIGNALED(status))
+					data()->exit_status = WTERMSIG(status) + 128;
+			}
+	
 		}
 		current = current->next;
 	}
@@ -73,7 +78,6 @@ void	executing(t_command *head)
 
 	current = head;
 	infile = 0;
-	// print_commands(current);
 	while (current)
 	{
 		if (current->next && pipe(current->fd) == -1)
