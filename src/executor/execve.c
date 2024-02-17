@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/16 15:49:24 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/17 14:56:21 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	wait_all(t_command *head)
 			else if (WIFSIGNALED(status))
 				data()->exit_status = WTERMSIG(status) + 128;
 		}
+		i++;
 		current = current->next;
 	}
 }
