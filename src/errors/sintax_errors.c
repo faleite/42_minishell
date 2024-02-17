@@ -6,11 +6,34 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:31:52 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/09 20:22:47 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:11:05 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+/**
+ * Substitui separador
+ * echo "hello      there" how are 'you 'doing? $USER |wc -l >outfile
+ * echo/2"hello      there"/2how/2are/2'you 'doing?/2$USER/2|wc/2-l/2>outfile
+*/
+char	**lexer_sintax_error(char *s1)
+{
+	char	*s2;
+	char	*s3;
+	char	*s4;
+	char	*s5;
+	char	**arr;
+
+	arr = NULL;
+	s2 = split_pipes(s1);
+	s3 = split_redirects(s2);
+	free(s2);
+	replace_spaces(s3);
+	arr = ft_split(s3, '\2');
+	free(s3);
+	return (arr);
+}
 
 /* FOR DEUGB USE: print_tokens(lst); */
 int	sintax_errors(char *line)
@@ -19,7 +42,7 @@ int	sintax_errors(char *line)
 	t_token		*lst;
 
 	lst = NULL;
-	tokens = ft_lexer(line);
+	tokens = lexer_sintax_error(line);
 	parser_tokens(&lst, tokens);
 	free_arr(tokens);
 	if (handle_pipe_err(lst))

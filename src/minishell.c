@@ -65,7 +65,6 @@ void	init_process(char *line, char **envp, int ac, char **av)
 
 	tokens = ft_lexer(line);
 	strtrim_quotes(tokens);
-	trim_spaces_end(tokens);
 	args = NULL;
 	parser_args(&args, tokens);
 	redirect = NULL;
@@ -74,7 +73,6 @@ void	init_process(char *line, char **envp, int ac, char **av)
 	parser_prompt(&prompt, args, redirect, tokens);
 	free_args(&args);
 	free_redirects(&redirect);
-	free_arr(tokens);
 	exec_process(prompt, envp);
 }
 

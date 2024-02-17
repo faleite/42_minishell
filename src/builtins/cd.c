@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:37:24 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/17 15:33:58 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:00:26 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ void	cd(t_command *command, int outfile)
 		cd_default("OLDPWD", 1, outfile);
 	else
 	{
+		if (!is_just_quotes(command->args[1]) && !command->args[2])
+		{
+			data()->exit_status = 0;
+			return ;
+		}
 		if (command->args[2])
 		{
 			ft_putendl_fd("minishell: cd: too many arguments", 2);
