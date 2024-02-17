@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/17 16:02:04 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/17 16:51:07 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ void	wait_all(t_command *head)
 		if (!is_builtin(current->args[0]))
 		{
 			pid = waitpid(-1, &status, 0);
-			if (WIFEXITED(status))
+			if (!ft_strcmp(current->args[0], "\3"))
+				data()->exit_status = 0;
+			else if (WIFEXITED(status))
 				data()->exit_status = WEXITSTATUS(status);
 			else if (WIFSIGNALED(status))
 				data()->exit_status = WTERMSIG(status) + 128;

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/17 13:49:20 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/17 17:30:02 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	ft_open_infile(t_command *current, char *file)
 			ft_putstr_fd("minishell: ", STDERR_FILENO);
 			ft_putstr_fd(file, STDERR_FILENO);
 			ft_putendl_fd(": Permission denied", STDERR_FILENO);
-			clean_newline();
 		}
 		current->is_exec = 0;
 	}
@@ -51,7 +50,6 @@ int	ft_open_outfile_append(t_command *current, char *outfile)
 		if (access(outfile, F_OK | W_OK | R_OK) == -1)
 		{
 			printf("File doesn't have privieliges to read &| write!\n");
-			clean_newline();
 			current->is_exec = 0;
 		}
 	}
@@ -70,7 +68,6 @@ int	ft_open_outfile(t_command *current, char *outfile)
 		if (access(outfile, F_OK | W_OK | R_OK) == -1)
 		{
 			printf("File doesn't have privieliges to read &| write!\n");
-			clean_newline();
 			current->is_exec = 0;
 		}
 	}

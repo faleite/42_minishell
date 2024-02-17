@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:31:52 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/17 15:44:52 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:11:05 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * echo "hello      there" how are 'you 'doing? $USER |wc -l >outfile
  * echo/2"hello      there"/2how/2are/2'you 'doing?/2$USER/2|wc/2-l/2>outfile
 */
-char	**ft_lexerd(char *s1)
+char	**lexer_sintax_error(char *s1)
 {
 	char	*s2;
 	char	*s3;
@@ -30,10 +30,6 @@ char	**ft_lexerd(char *s1)
 	s3 = split_redirects(s2);
 	free(s2);
 	replace_spaces(s3);
-	//s4 = expander_outside(s3);
-	//free(s3);
-	//s5 = expander_inside(s4);
-	//free(s4);
 	arr = ft_split(s3, '\2');
 	free(s3);
 	return (arr);
@@ -46,7 +42,7 @@ int	sintax_errors(char *line)
 	t_token		*lst;
 
 	lst = NULL;
-	tokens = ft_lexerd(line);
+	tokens = lexer_sintax_error(line);
 	parser_tokens(&lst, tokens);
 	free_arr(tokens);
 	if (handle_pipe_err(lst))

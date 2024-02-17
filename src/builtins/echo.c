@@ -6,13 +6,13 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:23:51 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/16 18:46:35 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/17 17:56:31 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	is_just_quotes(char *map)
+int	is_just_quotes(char *map)
 {
 	if (!ft_strncmp(map, "\"\"", 2) || \
 		!ft_strncmp(map, "\'\'", 2))
@@ -65,7 +65,7 @@ static int	is_flag(t_command *command, int i, int j, int flag)
 	while (command->args[i][j])
 	{
 		i++;
-		if (command->args[i][j] == '-')
+		if (command->args[i] && command->args[i][j] == '-')
 		{
 			j++;
 			if (!command->args[i][j])
