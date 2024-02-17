@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:20:17 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/12 17:45:05 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:13:36 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	print_error(char *arg)
 	ft_putendl_fd(": numeric argument required", 2);
 }
 
-int		exit_builtin(t_command *command)
+int	exit_builtin(t_command *command)
 {
 	data()->exit_status = 0;
 	if (command->args[1])

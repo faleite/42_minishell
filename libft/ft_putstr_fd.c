@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:25:43 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/08 17:52:39 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:02:01 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,10 @@ int	ft_putstr_fd(char *s, int fd)
 		return (-1);
 	return (0);
 }
+
+// int	ft_putstr_fd(char *s, int fd)
+// {
+// 	if (write(fd, s, ft_strlen(s)) == -1)
+// 		return (-1);
+// 	return (0);
+// }

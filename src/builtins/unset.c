@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 01:34:27 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/12 19:57:24 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:09:02 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ void	unset(t_command *command)
 
 	i = 0;
 	while (command->args[++i])
-			delete_node(command->args[i]);
+		delete_node(command->args[i]);
 	data()->exit_status = 0;
 }

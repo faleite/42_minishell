@@ -6,36 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:08:36 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/08 17:19:47 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:30:30 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-// static t_envp	*find_tail(t_envp **head)
-// {
-// 	t_envp	*current;
-//
-// 	current = *head;
-// 	while (current->next)
-// 		current = current->next;
-// 	return (current);
-// }
-
-
-// t_envp	*getev(void)
-// {
-// 	static t_envp envp;
-//
-// 	return (&envp);
-// }
-
-t_envparr *getevarr(void)
-{
-	static t_envparr envp;
-
-	return (&envp);
-}
 
 char	**envp_exec(char *envp[])
 {
@@ -68,71 +43,25 @@ char	*add_name(char *str)
 	while (str[i] && str[i] != '=')
 		i++;
 	new = ft_calloc(i + 1, sizeof(char));
-	while (i--)
+	new[i] = '\0';
+	while (--i >= 0)
 		new[i] = str[i];
 	return (new);
 }
 
 char	*add_value(char *str)
 {
-	if (!str)
+	char	*curr;
+
+	curr = str;
+	if (!curr)
 		return (NULL);
-	while (*str && *str != '=')
-		str++;
-	str++;
-	return (str);
-}
-
-// static void	add_tail(t_envp *head, char *envp)
-// {
-// 	t_envp	*new;
-// 	t_envp	*current;
-//
-// 	new = malloc(sizeof(t_envp));
-// 	if (add_name(envp) && add_value(envp))
-// 	{
-// 		new->name = add_name(envp);
-// 		new->value = add_value(envp);
-// 	}
-// 	if (!head)
-// 	{
-// 		new->next = NULL;
-// 		head = new;
-// 		return ;
-// 	}
-// 	current = find_tail(&head);
-// 	current->next = new;
-// }
-
-// void	ft_envp(char *envp[])
-// {
-// 	int		i;
-// 	t_envp	*head;
-//
-// 	i = 0;
-// 	head = NULL;
-// 	while (envp[i])
-// 	{
-// 		add_tail(getev(), envp[i]);
-// 		i++;
-// 	}
-// }
-
-void	print_envp(t_envp *head)
-{
-	t_envp	*current;
-
-	current = head;
-	while (current)
-	{
-		printf("Name: %s\nValue: %s\n", current->name, current->value);
-		current = current->next;
-	}
-}
-
-void	ft_fillenvp(char *envp[])
-{
-	getevarr()->envp = envp_exec(envp);
+	while (*curr && *curr != '=')
+		curr++;
+	if (*curr == '\0')
+		return (NULL);
+	curr++;
+	return (curr);
 }
 
 t_envp	*insert_end_envp(t_envp **head)
@@ -170,19 +99,3 @@ void	fill_envp(t_envp **getev, char **envp)
 		i++;
 	}
 }
-
-t_data *data(void)
-{
-	static t_data d;
-
-	return (&d);
-}
-
-
-// int	main(int ac, char **av, char **ev)
-// {
-// 	ft_envp(ev);
-// 	export("a=f3k");
-// 	print_envp();
-// 	return (0);
-// }

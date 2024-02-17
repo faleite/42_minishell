@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:33:49 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/09 19:21:56 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:39:44 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_command	*find_tail(t_command *head)
 
 char	**cpy_arr(char **map)
 {
-	int	i;
+	int		i;
 	char	**new;
 
 	i = 0;
@@ -61,6 +61,7 @@ void	new_struct(t_prompt *prompt, t_command **head)
 	new->infile_fd = -1;
 	new->outfile_fd = -1;
 	new->is_last = 0;
+	new->is_exec = 1;
 	if (!*head)
 	{
 		*head = new;
@@ -70,18 +71,6 @@ void	new_struct(t_prompt *prompt, t_command **head)
 	current->next = new;
 }
 
-void	print_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map && map[i])
-	{
-		printf("%s\n", map[i]);
-		i++;
-	}
-}
-
 void	print_commands(t_command *head)
 {
 	t_command	*current;
@@ -89,16 +78,16 @@ void	print_commands(t_command *head)
 	current = head;
 	while (current)
 	{
-		print_map(current->args);
+		print_arr(current->args);
 		printf("Path: %s\n", current->path);
 		printf("Fds: %d, %d\n", current->fd[0], current->fd[1]);
-		printf("Infile_fd: %d Outfile_fd: %d\n", current->infile_fd, current->outfile_fd);
+		printf("Infile_fd: %d Outfile_fd: %d\n", \
+				current->infile_fd, current->outfile_fd);
 		printf("Current: %p\n", current);
 		printf("Next: %p\n\n\n", current->next);
 		current = current->next;
 	}
 }
-
 
 t_command	*init_exec(t_prompt *prompt)
 {
@@ -114,23 +103,4 @@ t_command	*init_exec(t_prompt *prompt)
 	tail = find_tail(head);
 	tail->is_last = 1;
 	return (head);
-}
-
-void	free_struct(t_command *head)
-{
-	t_command	*current;
-	t_command	*tmp;
-
-	current = head;
-	while (current)
-	{
-		tmp = current;
-		current = current->next;
-		free_arr(tmp->args);
-		free(tmp->path);
-		free_prompt2(tmp->prompt);
-		free(tmp);
-	}
-	head = NULL;
-	free(head);
 }

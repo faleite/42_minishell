@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:18:00 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/09 18:39:08 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/15 21:03:22 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,29 @@ int	is_builtin(char	*arg)
 	return (0);
 }
 
-void 	builtins(t_command *command, int infile, int outfile)
+void	builtins(t_command *command, int infile, int outfile)
 {
-	if ((ft_strncmp(command->args[0], "echo", 5) == 0))
-		echo(command, outfile);
-	else if ((ft_strncmp(command->args[0], "pwd", 3) == 0))
-		pwd(outfile);
-	else if ((ft_strncmp(command->args[0], "cd", 2) == 0))
-		cd(command, outfile);
-	else if ((ft_strncmp(command->args[0], "env", 3) == 0))
-		env(outfile);
-	else if ((ft_strncmp(command->args[0], "export", 6) == 0))
-		ft_export(command->args, outfile);
-	else if ((ft_strncmp(command->args[0], "unset", 5) == 0))
-		unset(command);
-	else if ((ft_strncmp(command->args[0], "exit", 4) == 0))
-		exit_builtin(command);
+	// printf("Infile: %d Outfile: %d\n", infile, outfile);
+	// return ;
 	if (infile != 0)
 		close(infile);
+	if (command->is_exec == 1)
+	{
+		if ((ft_strncmp(command->args[0], "echo", 5) == 0))
+			echo(command, outfile, infile);
+		else if ((ft_strncmp(command->args[0], "pwd", 3) == 0))
+			pwd(outfile);
+		else if ((ft_strncmp(command->args[0], "cd", 2) == 0))
+			cd(command, outfile);
+		else if ((ft_strncmp(command->args[0], "env", 3) == 0))
+			env(outfile);
+		else if ((ft_strncmp(command->args[0], "export", 6) == 0))
+			ft_export(command->args, outfile);
+		else if ((ft_strncmp(command->args[0], "unset", 5) == 0))
+			unset(command);
+		else if ((ft_strncmp(command->args[0], "exit", 4) == 0))
+			exit_builtin(command);
+	}
 	if (outfile != 1)
 		close(outfile);
 }

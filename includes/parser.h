@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/09 21:10:05 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:56:56 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ void		print_tokens(t_token *root);
 
 /* Signals */
 void		handle_sigint(int sig);
+void 		handle_sigint_clean(int sig);
 
 #endif /* PARSER_H */

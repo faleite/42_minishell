@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/12 20:50:58 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:35:06 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ t_envparr	*getevarr(void);
 int			ft_open_all(t_command *current);
 
 int			exit_final(void);
+int			exit_finald(void);
+int			clean_newline(void);
 void		print_envp(t_envp *head);
 void		print_commands(t_command *head);
 void		free_struct(t_command *head);
@@ -51,7 +53,7 @@ t_command	*find_tail(t_command *head);
 // Builtins
 int			exit_builtin(t_command *command);
 int			is_builtin(char	*arg);
-void		echo(t_command *command, int outfile);
+void		echo(t_command *command, int outfile, int infile);
 void		pwd(int outfile);
 void		cd(t_command *command, int outfile);
 void		unset(t_command *command);
@@ -70,8 +72,18 @@ void		new_envp(char **envp);
 
 int			commands_wait(t_command *head);
 
+void	command_error(t_command *command);
+int	to_execute(t_command *head);
+
 // Builtin utils
 int			is_long(char *str);
 int			in_str(char *str, char c);
+
+
+int	change_in(t_command *command, int infile);
+int	change_out(t_command *command, int outfile);
+void	ft_dup2(int infile, int outfile);
+
+int	ft_open_infile_heredoc(t_command *current, char *delimiter);
 
 #endif /* EXECUTOR_H */

@@ -6,13 +6,13 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:38:43 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/08 17:12:09 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:41:12 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int		commands_wait(t_command *head)
+int	commands_wait(t_command *head)
 {
 	int			i;
 	t_command	*current;
@@ -21,7 +21,7 @@ int		commands_wait(t_command *head)
 	current = head;
 	while (current)
 	{
-		if (current->args && !is_builtin(current->args[0]))
+		if (current->args && !is_builtin(current->args[0]) && current->is_exec)
 			i++;
 		current = current->next;
 	}
