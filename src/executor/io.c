@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:34:11 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/16 15:48:15 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/17 13:29:27 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,7 @@
 int	change_in(t_command *command, int infile)
 {
 	if (command->infile_fd != -1)
-	{
 		infile = command->infile_fd;
-		if (command->fd[0] != 0)
-			close(command->fd[0]);
-	}
 	return (infile);
 }
 
@@ -46,8 +42,4 @@ void	ft_dup2(int infile, int outfile)
 		exit(0);
 	if (infile != 0)
 		close(infile);
-	if (dup2(outfile, STDOUT_FILENO) < 0)
-		exit(0);
-	if (outfile != 1)
-		close(outfile);
 }

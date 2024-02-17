@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:37:24 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/15 17:10:29 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:33:58 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,16 @@ static void	change_directory(char *path, int flag, int outfile)
 {
 	char	*old;
 	char	*new;
+	char	*tmp;
 
 	old = getcwd(NULL, 0);
+	if (*path == '~')
+	{
+		path++;
+		tmp = ft_strjoin("/home/", get_value("USER"));
+		path = ft_strjoin(tmp, path);
+		free(tmp);
+	}
 	if (chdir(path) == -1)
 	{
 		ft_putendl_fd("minishell: cd: No such file or directory", 2);
@@ -56,7 +64,7 @@ static void	cd_default(char *name, int flag, int outfile)
 
 void	cd(t_command *command, int outfile)
 {
-	if (!command->args[1])
+	if (!command->args[1] || !ft_strcmp("~", command->args[1]))
 		cd_default("HOME", 0, outfile);
 	else if (command->args[1][0] == '-' && !command->args[1][1])
 		cd_default("OLDPWD", 1, outfile);
