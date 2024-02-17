@@ -61,7 +61,7 @@ void	new_struct(t_prompt *prompt, t_command **head)
 	new->infile_fd = -1;
 	new->outfile_fd = -1;
 	new->is_last = 0;
-	new->is_exec = (*prompt->args[0] != '\0');
+	new->is_exec = (prompt->args[0] && *prompt->args[0] != '\0');
 	if (!*head)
 	{
 		*head = new;

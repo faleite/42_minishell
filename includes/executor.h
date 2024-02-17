@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/16 16:35:06 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:00:10 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ t_command	*find_tail(t_command *head);
 // Builtins
 int			exit_builtin(t_command *command);
 int			is_builtin(char	*arg);
+int			is_just_quotes(char *map);
 void		echo(t_command *command, int outfile, int infile);
 void		pwd(int outfile);
 void		cd(t_command *command, int outfile);

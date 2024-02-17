@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/13 18:56:56 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:11:38 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 /* Lexer */
 char		**ft_lexer(char *s1);
+char		**lexer_sintax_error(char *s1);
 char		*split_pipes(char *s1);
 char		*split_redirects(char *s1);
 void		strtrim_quotes(char **arr);

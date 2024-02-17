@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-static int	is_just_quotes(char *map)
+int	is_just_quotes(char *map)
 {
 	if (!ft_strncmp(map, "\"\"", 2) || \
 		!ft_strncmp(map, "\'\'", 2))

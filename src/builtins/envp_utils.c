@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:46:00 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/17 15:09:24 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/17 17:08:21 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,5 @@ char	*get_value(char *name)
 			return (current->value);
 		current = current->next;
 	}
-	return (ft_strdup(""));
+	return ("\3");
 }

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 18:41:05 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/16 16:08:49 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/16 21:50:22 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,17 @@ void	strtrim_quotes(char **arr)
 
 	i = 0;
 	status = 0;
-	while (arr && arr[i])
+	if (!arr)
+		return ;
+	if (arr && arr[i] && (!ft_strcmp(arr[i], "\"\"") || \
+		!ft_strcmp(arr[i], "\'\'")))
+		i++;
+	while (arr && arr[i] != NULL)
 	{
 		val = 0;
-		if (!ft_strcmp(arr[i], "\"\"") || !ft_strcmp(arr[i], "\'\'"))
-			i++;
-		else if (!have_quotes(arr[i]))
+		// if (!ft_strcmp(arr[i], "\"\"") || !ft_strcmp(arr[i], "\'\'"))
+		//  	i++;
+		if (!have_quotes(arr[i]))
 			i++;
 		else
 		{
