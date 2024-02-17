@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/16 19:31:53 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/17 13:37:08 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void	executing(t_command *head)
 			clean_newline();
 			break ;
 		}
+		outfile = change_out(current, outfile);
 		infile = change_in(current, infile);
-		outfile = change_out(current, infile);
 		if (current->args && is_builtin(current->args[0]))
 			builtins(current, infile, outfile);
 		else
