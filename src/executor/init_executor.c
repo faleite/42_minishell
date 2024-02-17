@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:33:49 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/17 15:35:19 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/17 17:26:36 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ void	print_commands(t_command *head)
 	current = head;
 	while (current)
 	{
-		print_arr(current->args);
+		if (current->args)
+			print_arr(current->args);
 		printf("Path: %s\n", current->path);
 		printf("Fds: %d, %d\n", current->fd[0], current->fd[1]);
 		printf("Infile_fd: %d Outfile_fd: %d\n", \
