@@ -6,11 +6,24 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:02:46 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/17 15:50:51 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:41:26 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	print_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr && arr[i] != NULL)
+	{
+		printf("%s, ", arr[i]);
+		i++;
+	}
+	printf("\n");
+}
 
 void	print_prompt(t_prompt *root)
 {

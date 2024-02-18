@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 19:32:22 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/08 20:47:26 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:43:01 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,23 @@ char	*split_pipes(char *s1)
 	return (s2);
 }
 
-void	print_arr(char **arr)
+void	space_end(char **tokens)
 {
 	int	i;
+	int	len;
 
 	i = 0;
-	while (arr && arr[i] != NULL)
-	{
-		printf("%s\n", arr[i]);
+	while (tokens[i])
 		i++;
+	i--;
+	len = ft_strlen(tokens[i]) - 1;
+	if (tokens[i] && !ft_strcmp(tokens[i], " "))
+	{
+		free(tokens[i]);
+		tokens[i] = NULL;
 	}
+	else if (tokens[i] && tokens[i][len] == ' ')
+		tokens[i][len] = '\0';
 }
 
 void	free_arr(char **arr)

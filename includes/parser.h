@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/18 16:52:51 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:46:09 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		handle_pipe(char *s1, char *s2);
 void		handle_redirects(char *s1, char *s2);
 void		replace_spaces(char *s1);
 void		end_quote(char *sig, char **s1, char **s2);
-void		trim_spaces_end(char **tokens);
+void		space_end(char **tokens);
 
 /* Expander */
 int			dollar(char **src, char **dst, int i);
@@ -67,7 +67,6 @@ int			handle_newline_err(t_token *lst);
 int			handle_big_redir(t_token *lst);
 int			handle_quotes_err(t_token *lst);
 int			msg_error(t_token *lst, char *type_err, int exit_status);
-int			exit_cmd_null(t_command *command);
 void		parser_tokens(t_token **lst, char **tokens);
 void		init_struct(t_token **tail, t_token **head, char *token);
 void		insert_token_end(t_token **head, char *token);
