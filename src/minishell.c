@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/18 16:04:45 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/18 17:11:54 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,8 @@
 * print_prompt(exec->prompt);
 *
 * EXECUTOR:
-* init_exec(prompt); // Put in line 43
 * free_envp(data()->envp);
 * free_arr(getevarr()->envp);
-*
-* ATTENTION:
-* delete fct print_prompt() at the line 46
-* call free_prompt() after fill struct executor
 */
 void	exec_process(t_prompt *prompt, char **envp)
 {

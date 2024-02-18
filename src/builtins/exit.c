@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:20:17 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/15 17:13:36 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/18 17:18:25 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ int	exit_builtin(t_command *command)
 		else if (!command->args[2])
 			data()->exit_status = ft_atoi(command->args[1]);
 	}
+	ft_putendl_fd("exit", 1);
 	return (exit_final());
 }
