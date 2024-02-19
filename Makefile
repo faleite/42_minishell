@@ -13,7 +13,6 @@ SP			= src/parser
 SE			= src/errors
 SEC			= src/executor
 SB			= src/builtins
-# FILES 		= $(foreach dir, $(SRC_DIR), $(wildcard $(dir)/*.c))
 FILES 		= $(SRC_DIR)minishell.c $(SRC_DIR)exit.c $(SRC_DIR)free.c\
 			  $(SRC_DIR)wait.c $(SRC_DIR)update_shlvl.c $(SRC_DIR)signals.c\
 			  $(SL)/cmdline_split.c $(SL)/expander.c $(SL)/handle_dollar.c\
@@ -30,7 +29,6 @@ FILES 		= $(SRC_DIR)minishell.c $(SRC_DIR)exit.c $(SRC_DIR)free.c\
 OBJS		= $(FILES:.c=.o)
 LIBFT		= ./libft/libft.a
 RDLINE		= -lreadline -lhistory
-# RDLINE		= -L/usr/local/opt/readline/lib -lreadline -lhistory # for mac
 RM			= rm -f
 
 .c.o:
@@ -80,7 +78,7 @@ re: fclean all
 	@echo "$(PURPLE)====================================$(CLR_RESET)"
 
 v:
-	make re && valgrind --suppressions=readline.supp --leak-check=full --show-leak-kinds=all --track-fds=yes ./$(NAME)
+	make re && valgrind --suppressions=readline.supp --leak-check=full --show-leak-kinds=all --track-fds=all --trace-children=yes ./$(NAME)
 
 # a flag --show-leak-kinds=all 
 # pode ajudar a identificar vazamentos de memória que de outra forma poderiam passar despercebidos.

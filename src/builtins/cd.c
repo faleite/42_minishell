@@ -6,26 +6,31 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:37:24 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/17 18:00:26 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:25:41 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+static char	*get_home(char *path)
+{
+	char	*tmp;
+
+	path++;
+	tmp = ft_strjoin("/home/", get_value("USER"));
+	path = ft_strjoin(tmp, path);
+	free(tmp);
+	return (path);
+}
+
 static void	change_directory(char *path, int flag, int outfile)
 {
 	char	*old;
 	char	*new;
-	char	*tmp;
 
 	old = getcwd(NULL, 0);
 	if (*path == '~')
-	{
-		path++;
-		tmp = ft_strjoin("/home/", get_value("USER"));
-		path = ft_strjoin(tmp, path);
-		free(tmp);
-	}
+		path = get_home(path);
 	if (chdir(path) == -1)
 	{
 		ft_putendl_fd("minishell: cd: No such file or directory", 2);
@@ -50,7 +55,7 @@ static void	cd_default(char *name, int flag, int outfile)
 	char	*path;
 
 	path = get_value(name);
-	if (!path)
+	if (!ft_strcmp(path, "\3"))
 	{
 		ft_putstr_fd("minishell: cd: ", 2);
 		ft_putstr_fd(name, 2);
