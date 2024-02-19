@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/18 16:43:03 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:45:03 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	exec_command(t_command *command, int infile, int outfile)
 		command->pid = fork();
 		if (command->pid == 0)
 		{
-			ft_dup2(infile, outfile);
+			ft_dup2(command, infile, outfile);
 			if (command->path && \
 					execve(command->path, command->args, \
 					getevarr()->envp) == -1)
@@ -51,7 +51,7 @@ void	wait_all(t_command *head)
 	tail = find_tail(current);
 	while (current)
 	{
-		if (!is_builtin(current->args[0]))
+		if (current->args && !is_builtin(current->args[0]))
 		{
 			pid = waitpid(-1, &status, 0);
 			if (pid == tail->pid)
@@ -78,6 +78,7 @@ void	executing(t_command *head)
 	infile = 0;
 	while (current)
 	{
+		outfile = 1;
 		if (current->next && pipe(current->fd) == -1)
 		{
 			ft_putendl_fd("Error creating pipe", STDERR_FILENO);

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:33:49 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/17 17:26:36 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:32:00 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	new_struct(t_prompt *prompt, t_command **head)
 		new->args = cpy_arr(prompt->args);
 	}
 	new->prompt = prompt;
-	new->fd[0] = STDIN_FILENO;
-	new->fd[1] = STDOUT_FILENO;
+	new->fd[0] = -1;
+	new->fd[1] = -1;
 	new->infile_fd = -1;
 	new->outfile_fd = -1;
 	new->is_last = 0;

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+#include <unistd.h>
 
 /**
 * DEBUGS:
@@ -101,6 +102,7 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 		}
 		free(cmd_line);
 		cmd_line = NULL;
+		unlink_heredoc();
 	}
 	return (0);
 }
@@ -108,8 +110,12 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 int	main(int ac, char *av[], char *envp[])
 {
 	char	*cmd_line;
+	char	*cwd;
 
 	cmd_line = NULL;
+	cwd = getcwd(NULL, 0);
+	data()->heredoc_path = ft_strjoin(cwd, "/heredoc_file");
+	free(cwd);
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, handle_sigint);
 	cmdline(cmd_line, envp, ac, av);

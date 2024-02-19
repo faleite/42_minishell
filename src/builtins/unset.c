@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 01:34:27 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/15 17:09:02 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:29:09 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	delete_node(char *name)
 	t_envp	*tmp;
 
 	current = data()->envp;
-	if (!ft_strcmp(current->next->name, name))
+	if (current->next && !ft_strcmp(current->next->name, name))
 	{
 		data()->envp = current->next;
 		free_node(current);
@@ -33,7 +33,7 @@ void	delete_node(char *name)
 	}
 	while (current)
 	{
-		if (!ft_strcmp(current->next->name, name))
+		if (current->next && !ft_strcmp(current->next->name, name))
 		{
 			tmp = current->next;
 			current->next = current->next->next;
