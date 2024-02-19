@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 19:00:55 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/17 13:43:12 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/18 16:59:52 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,6 @@ void	fill_args(t_args *node, char **tokens, int *i)
 			!ft_strcmp(tokens[*i], ">>") || !ft_strcmp(tokens[*i], "<<")) \
 			&& tokens[(*i) + 1])
 			(*i) += 2;
-		// else if (tokens[*i] && !ft_strcmp(tokens[*i], ""))
-		// {
-		// 	(*i)++;
-		// 	break ;
-		// }
 		else if (ft_strcmp(tokens[*i], "| "))
 			node->args[j++] = ft_strdup(tokens[(*i)++]);
 		else
