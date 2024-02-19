@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/19 16:44:24 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:27:14 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	init_process(char *line, char **envp, int ac, char **av)
 	t_prompt	*prompt;
 
 	tokens = ft_lexer(line);
-	space_end(tokens);
 	strtrim_quotes(tokens);
 	args = NULL;
 	parser_args(&args, tokens);

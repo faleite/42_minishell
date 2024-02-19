@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 19:32:22 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/18 21:43:01 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:06:26 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	**ft_lexer(char *s1)
 	s5 = expander_inside(s4);
 	free(s4);
 	arr = ft_split(s5, '\2');
+	space_end(arr);
 	free(s5);
 	return (arr);
 }
