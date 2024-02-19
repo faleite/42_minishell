@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:55:36 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/17 16:02:32 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:33:04 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,13 @@ static int	check_readline(char *str, char *delimiter)
 static void	open_heredoc(t_command *command)
 {
 	command->infile_fd = open("heredoc_file", O_RDONLY);
+	if (!command->next && command->infile_fd != -1)
+		close(command->infile_fd);
 	if (command->infile_fd == -1)
 	{
 		command->is_exec = 0;
-		ft_putendl_fd("Error on opening heredoc file", STDERR_FILENO);
+		ft_putendl_fd("minishell: error on opening heredoc file" \
+		, STDERR_FILENO);
 	}
 }
 

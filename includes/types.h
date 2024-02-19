@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:36:22 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/18 16:28:31 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:22:40 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct s_data
 	int			h_flag;
 	int			h_fd;
 	int			signal;
+	char		*heredoc_path;
 	t_envp		*envp;
 	t_command	*exec;
 }				t_data;
