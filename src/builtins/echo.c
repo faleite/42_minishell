@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:23:51 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/17 17:55:48 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:55:03 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	is_just_quotes(char *map)
 {
 	if (!ft_strncmp(map, "\"\"", 2) || \
-		!ft_strncmp(map, "\'\'", 2))
+		!ft_strncmp(map, "\'\'", 2) || \
+		!ft_strncmp(map, "\3", 1))
 		return (1);
 	return (0);
 }
