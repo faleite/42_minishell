@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:23:51 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/17 17:55:48 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:42:49 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,22 @@
 
 int	is_just_quotes(char *map)
 {
-	if (!ft_strncmp(map, "\"\"", 2) || \
-		!ft_strncmp(map, "\'\'", 2))
+	if (!ft_strcmp(map, "\"\"") || \
+		!ft_strcmp(map, "\'\'") || \
+		!ft_strcmp(map, "\3"))
 		return (1);
 	return (0);
 }
 
 static void	print_last(char *map, int outfile, int flag)
 {
-	if (is_just_quotes(map))
-		ft_putchar_fd('\2', outfile);
-	else if (flag)
-		ft_putstr_fd(map, outfile);
-	else
-		ft_putstr_fd(map, outfile);
+	if (ft_strcmp(map, "\3"))
+	{
+		if (flag)
+			ft_putstr_fd(map, outfile);
+		else
+			ft_putstr_fd(map, outfile);
+	}
 	if (!flag)
 		ft_putchar_fd('\n', outfile);
 	data()->exit_status = 0;

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 19:32:22 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/19 18:35:48 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/20 22:33:39 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ char	**ft_lexer(char *s1)
 	char	**arr;
 
 	arr = NULL;
-	s2 = split_pipes(s1);
-	s3 = split_redirects(s2);
+	s2 = str_spaces_end(s1);
+	s3 = split_pipes(s2);
 	free(s2);
-	replace_spaces(s3);
-	s4 = expander_outside(s3);
+	s2 = split_redirects(s3);
 	free(s3);
+	replace_spaces(s2);
+	s4 = expander_outside(s2);
+	free(s2);
 	s5 = expander_inside(s4);
 	free(s4);
 	arr = ft_split(s5, '\2');
@@ -77,20 +79,4 @@ void	space_end(char **tokens)
 	}
 	else if (tokens[i] && tokens[i][len] == ' ')
 		tokens[i][len] = '\0';
-}
-
-void	free_arr(char **arr)
-{
-	int	i;
-
-	i = 0;
-	if (arr)
-	{
-		while (arr && arr[i])
-		{
-			free(arr[i]);
-			i++;
-		}
-		free(arr);
-	}
 }
