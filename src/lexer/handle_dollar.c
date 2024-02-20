@@ -6,41 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 13:44:44 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/17 14:05:01 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:01:49 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-char	*exit_value(char *s1)
-{
-	int		i;
-	int		j;
-	char	*s2;
-	char	*s3;
-
-	i = 0;
-	j = 0;
-	s2 = ft_itoa(data()->exit_status);
-	s3 = (char *)(malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1)));
-	if (!s3)
-		return (NULL);
-	while (s2[j])
-		s3[i++] = s2[j++];
-	while (*s1++)
-		s3[i++] = *s1;
-	s3[i] = '\0';
-	free(s2);
-	return (s3);
-}
-
-static int	print_dollar(char c)
-{
-	return (c == '/' || c == '.' || c == ',' || c == '%' || \
-			c == ':' || c == '=' || c == ';' || c == ')' || \
-			c == '+' || c == ']' || c == '}' || c == '!' || \
-			c == '~' || c == '^' || c == '|');
-}
 
 int	dollar(char **src, char **dst, int i)
 {
@@ -50,8 +20,8 @@ int	dollar(char **src, char **dst, int i)
 	char	*value;
 
 	start = ++(*src);
-	while (**src != ' ' && **src != '\2' && **src != '\'' && \
-			**src != '\"' && **src != '$' && !print_dollar(**src) && **src)
+	while (!is_dollar_quotes(**src) && !print_dollar(**src) \
+			&& !white_space(**src) && **src)
 		(*src)++;
 	end = *src;
 	var = (char *)malloc(sizeof(char) * ((end - start) + 1));
@@ -100,4 +70,26 @@ int	outside_quotes(char **s2, char **s3, int i)
 	else if (**s2)
 		(*s3)[i++] = *(*s2)++;
 	return (i);
+}
+
+char	*exit_value(char *s1)
+{
+	int		i;
+	int		j;
+	char	*s2;
+	char	*s3;
+
+	i = 0;
+	j = 0;
+	s2 = ft_itoa(data()->exit_status);
+	s3 = (char *)(malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1)));
+	if (!s3)
+		return (NULL);
+	while (s2[j])
+		s3[i++] = s2[j++];
+	while (*s1++)
+		s3[i++] = *s1;
+	s3[i] = '\0';
+	free(s2);
+	return (s3);
 }
