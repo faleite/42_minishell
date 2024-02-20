@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/18 21:46:09 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:02:15 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define PARSER_H
 
 /* Lexer */
+int			white_space(char c);
+int			is_dollar_quotes(char c);
+int			just_spaces(char *str);
+int			print_dollar(char c);
 char		**ft_lexer(char *s1);
 char		**lexer_sintax_error(char *s1);
 char		*split_pipes(char *s1);
@@ -24,6 +28,7 @@ void		handle_redirects(char *s1, char *s2);
 void		replace_spaces(char *s1);
 void		end_quote(char *sig, char **s1, char **s2);
 void		space_end(char **tokens);
+
 
 /* Expander */
 int			dollar(char **src, char **dst, int i);

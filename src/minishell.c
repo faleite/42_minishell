@@ -85,6 +85,11 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 			cmd_line = readline("[minishell]$ ");
 		if (!cmd_line)
 			exit_finald();
+		if (!just_spaces(cmd_line))
+		{
+			free(cmd_line);
+			cmd_line = NULL;
+		}
 		else
 		{
 			if (cmd_line && *cmd_line)
