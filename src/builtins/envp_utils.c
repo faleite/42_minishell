@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:46:00 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/17 17:08:21 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/19 19:25:00 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,18 @@ char	*get_value(char *name)
 		current = current->next;
 	}
 	return ("\3");
+}
+
+int		node_exists(char *name)
+{
+	t_envp	*current;
+
+	current = data()->envp;
+	while (current)
+	{
+		if (ft_strcmp(current->name, name) == 0)
+			return (1);
+		current = current->next;
+	}
+	return (0);
 }

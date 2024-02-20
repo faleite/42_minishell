@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/19 16:40:21 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/19 19:25:08 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,7 @@ void		ft_dup2(t_command *command, int infile, int outfile);
 void		unlink_heredoc(void);
 
 int			ft_open_infile_heredoc(t_command *current, char *delimiter);
+void		update_value(char *name, char *value);
+int			node_exists(char *name);
 
 #endif /* EXECUTOR_H */
