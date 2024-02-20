@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 02:03:53 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/13 18:16:13 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:22:42 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,21 @@ char	**update_env(char **old)
 	return (new);
 }
 
-void	update_shlvl(void)
+void	update_shlvl(char **envp)
 {
+	int		i;
 	int		shlvl;
 	char	*new;
 
-	new = ft_strdup(get_value("SHLVL"));
+	i = 0;
+	while (ft_strncmp(envp[i], "SHLVL", 5))
+		i++;
+	new = ft_substr(envp[i], 6, ft_strlen(envp[i]));
 	shlvl = ft_atoi(new);
 	free(new);
+	free(envp[i]);
 	new = ft_itoa(shlvl + 1);
-	update_value("SHLVL", new);
+	envp[i] = ft_strjoin("SHLVL=", new);
 	free(new);
 }
 
@@ -104,9 +109,9 @@ void	new_envp(char **envp)
 	else
 	{
 		tmp = envp_exec(envp);
+		update_shlvl(tmp);
 		getevarr()->envp = tmp;
 		fill_envp(&getev, getevarr()->envp);
 		data()->envp = getev;
-		update_shlvl();
 	}
 }
