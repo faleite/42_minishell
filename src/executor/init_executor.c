@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:33:49 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/21 22:11:12 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/21 23:22:13 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	**cpy_arr(char **map)
 	i = 0;
 	while (map[i])
 		i++;
-	new = ft_calloc(i + 1, sizeof(char *));
+	new = ft_calloc(i + 2, sizeof(char *));
 	i = 0;
 	while (map[i])
 	{

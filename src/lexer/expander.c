@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:27:54 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/21 23:02:22 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/21 23:33:30 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,14 @@ int check_str(char *str)
 	len = 0;
 	if (str && *str == '$' && *str++)
 	{
+		if (ft_isdigit(*str))
+			return (1);
 		while (str[len] && ft_isalnum(str[len]))
 			len++;
 		if (len == 0 && *str == '?')
 			len = 1;
+		if (len == 0 && !(*str == '\'' || *str == '\"'))
+			return (-1);
 		// printf("len: %i\n", len);
 		return (len);
 	}
@@ -50,6 +54,11 @@ static char *expander(char *str, int start, int len)
 	result = ft_strjoin(key, part2);
 	free(key);
 	free(str);
+	if (result && *result == '\3')
+	{
+		free(result);
+		return (NULL);
+	}
 	return (expander_str(result));
 }
 
@@ -62,6 +71,8 @@ static char	*expander_str(char *str)
 	i = 0;
 	flag = 0;
 	len = 0;
+	if (!str)
+		return (NULL);
 	while (str[i])
 	{
 		if (flag == 0 && (str[i] == '\'' || str[i] == '\"'))
@@ -71,7 +82,7 @@ static char	*expander_str(char *str)
 		else if (flag != '\'')
 		{	
 			len = check_str(&str[i]);
-			if (len > 0)
+			if (len != -1)
 				return (expander(str, i, len));
 		}
 		i++;
@@ -82,12 +93,23 @@ static char	*expander_str(char *str)
 char	**expander_args(char **args)
 {
 	size_t i;
+	size_t j;
 
 	i = 0;
 	while (args[i])
 	{
 		args[i] = expander_str(args[i]);
-		i++;
+		if (args[i] == NULL)
+		{
+			j = i;
+			while (args[++j])
+			{	
+				args[j - 1] = args[j];
+				args[j] = NULL;
+			}
+		}
+		else
+			i++;
 	}
 	return (args);
 }
