@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/20 23:51:15 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/21 00:01:10 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	init_process(char *line, char **envp, int ac, char **av)
 	parser_redirects(&redirect, tokens);
 	prompt = NULL;
 	parser_prompt(&prompt, args, redirect, tokens);
-	print_arr(tokens);
 	free_arr(tokens);
 	free_args(&args);
 	free_redirects(&redirect);
