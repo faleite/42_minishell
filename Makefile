@@ -54,7 +54,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 		@make -C libft
-#		clear
+		clear
 		@echo "$(GREEN)Compiling of $(REminishell.c:25D)$(NAME)...$(CLR_RESET)"
 		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(RDLINE) -o $(NAME)
 		@echo "$(RED)$(NAME) $(GREEN)is ready!$(CLR_RESET)\n"

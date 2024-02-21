@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 19:32:22 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/20 22:33:39 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/21 23:03:40 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char	**ft_lexer(char *s1)
 	char	*s2;
 	char	*s3;
 	char	*s4;
-	char	*s5;
 	char	**arr;
 
 	arr = NULL;
@@ -32,13 +31,9 @@ char	**ft_lexer(char *s1)
 	s2 = split_redirects(s3);
 	free(s3);
 	replace_spaces(s2);
-	s4 = expander_outside(s2);
-	free(s2);
-	s5 = expander_inside(s4);
-	free(s4);
-	arr = ft_split(s5, '\2');
+	arr = ft_split(s2, '\2');
 	space_end(arr);
-	free(s5);
+	free(s2);
 	return (arr);
 }
 

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/21 00:01:10 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/21 23:00:23 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	init_process(char *line, char **envp, int ac, char **av)
 	t_prompt	*prompt;
 
 	tokens = ft_lexer(line);
-	strtrim_quotes(tokens);
 	args = NULL;
 	parser_args(&args, tokens);
 	redirect = NULL;
@@ -104,10 +103,13 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 	return (0);
 }
 
+
+
 int	main(int ac, char *av[], char *envp[])
 {
 	char	*cmd_line;
 	char	*cwd;
+	int		*a;
 
 	cmd_line = NULL;
 	cwd = getcwd(NULL, 0);

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:03:40 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/08 17:13:46 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/21 22:27:52 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@ void	fill_tokens(t_redirect *node, char **tokens, int *i, int *j)
 	if (!ft_strcmp(tokens[*i], "<") && tokens[(*i) + 1])
 	{
 		node->tokens_id[*j] = INFILE_ID;
-		node->tokens[(*j)++] = ft_strdup(tokens[++(*i)]);
+		node->tokens[(*j)++] = strtrim_quote(ft_strdup(tokens[++(*i)]));
 	}
 	else if (!ft_strcmp(tokens[*i], ">") && tokens[(*i) + 1])
 	{
 		node->tokens_id[*j] = OUTFILE_ID;
-		node->tokens[(*j)++] = ft_strdup(tokens[++(*i)]);
+		node->tokens[(*j)++] = strtrim_quote(ft_strdup(tokens[++(*i)]));
 	}
 	else if (!ft_strcmp(tokens[*i], ">>") && tokens[(*i) + 1])
 	{
 		node->tokens_id[*j] = APPEND_ID;
-		node->tokens[(*j)++] = ft_strdup(tokens[++(*i)]);
+		node->tokens[(*j)++] = strtrim_quote(ft_strdup(tokens[++(*i)]));
 	}
 	else if (!ft_strcmp(tokens[*i], "<<") && tokens[(*i) + 1])
 	{
 		node->tokens_id[*j] = HEREDOC_ID;
-		node->tokens[(*j)++] = ft_strdup(tokens[++(*i)]);
+		node->tokens[(*j)++] = strtrim_quote(ft_strdup(tokens[++(*i)]));
 	}
 }
 

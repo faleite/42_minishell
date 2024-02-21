@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:46:00 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/20 20:03:40 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/21 22:43:36 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ char	*get_value(char *name)
 	t_envp	*current;
 
 	current = data()->envp;
+	if (ft_strcmp("?", name) == 0)
+		return (ft_itoa(data()->exit_status));
 	while (current)
 	{
 		if (ft_strcmp(current->name, name) == 0)
