@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/17 17:31:25 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:30:06 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,8 @@ int	ft_open_heredoc_all(t_command *current)
 	while (current->prompt->tokens[++i])
 	{
 		token_id = current->prompt->tokens_id[i];
-		if (token_id == HEREDOC_ID && \
-			!ft_open_infile_heredoc(current, current->prompt->tokens[i]))
-			break ;
+		if (token_id == HEREDOC_ID)
+			ft_open_infile_heredoc(current, current->prompt->tokens[i]);
 	}
 	return (current->is_exec);
 }

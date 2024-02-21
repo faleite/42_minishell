@@ -6,11 +6,39 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 03:00:55 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/19 19:29:57 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:35:43 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static void	exit_msg(char *str)
+{
+	ft_putstr_fd("minishell: export: `", 2);
+	ft_putstr_fd(str, 2);
+	ft_putendl_fd("': not a valid identifier", 2);
+	data()->exit_status = 1;
+}
+
+static char	*get_name(char *str)
+{
+	char	*new;
+	int		i;
+
+	i = 0;
+	new = NULL;
+	if (*str == '=')
+	{
+		exit_msg(str);
+		return (NULL);
+	}
+	while (str[i] && str[i] != '=')
+		i++;
+	new = ft_calloc(i + 1, sizeof(char));
+	while (--i >= 0)
+		new[i] = str[i];
+	return (new);
+}
 
 void	env(int outfile)
 {
@@ -44,13 +72,6 @@ static void	ft_export_noarg(int outfile)
 	data()->exit_status = 0;
 }
 
-static void	exit_msg(char *str)
-{
-	ft_putstr_fd("minishell: export: `", 2);
-	ft_putstr_fd(str, 2);
-	ft_putendl_fd("': not a valid identifier", 2);
-	data()->exit_status = 1;
-}
 
 void	ft_export(char **key_value, int outfile)
 {
@@ -66,10 +87,12 @@ void	ft_export(char **key_value, int outfile)
 	}
 	while (key_value && key_value[++i])
 	{
-		if (in_str(key_value[i], '-'))
+		name = get_name(key_value[i]);
+		if (!name)
+			continue ;
+		if (in_str(name, '-') || in_str(name, '?') || in_str(name, '@') || is_num(name))
 			exit_msg(key_value[i]);
-		name = add_name(key_value[i]);
-		if (node_exists(name))
+		else if (node_exists(name))
 			update_value(name, add_value(key_value[i]));
 		else if (in_str(key_value[i], '='))
 		{

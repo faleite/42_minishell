@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:08:36 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/16 15:30:30 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:57:17 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ char	*add_name(char *str)
 	while (str[i] && str[i] != '=')
 		i++;
 	new = ft_calloc(i + 1, sizeof(char));
-	new[i] = '\0';
 	while (--i >= 0)
 		new[i] = str[i];
 	return (new);

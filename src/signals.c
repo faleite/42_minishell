@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:26:00 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/18 16:40:37 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:54:33 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	handle_sigint(int sig)
 {
+	t_command	*current;
+
 	if (sig == SIGINT)
 	{
 		data()->exit_status = 130;
@@ -25,6 +27,12 @@ void	handle_sigint(int sig)
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		data()->signal = 0;
+		current = data()->exec;
+		while (current)
+		{
+			current->is_exec = 0;
+			current = current->next;
+		}
 	}
 }
 

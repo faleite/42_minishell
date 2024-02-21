@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/20 18:23:02 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:30:58 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int			to_execute(t_command *head);
 
 // Builtin utils
 int			is_long(char *str);
+int			is_num(char *str);
 int			in_str(char *str, char c);
 
 int			change_in(t_command *command, int infile);
