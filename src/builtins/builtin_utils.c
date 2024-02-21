@@ -6,13 +6,13 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:37:04 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/12 17:01:05 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:30:39 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	is_num(char *str)
+int	is_num(char *str)
 {
 	int	flag;
 
@@ -25,9 +25,7 @@ static int	is_num(char *str)
 		if (!ft_isdigit(*str++))
 			return (0);
 	}
-	if (flag)
-		return (1);
-	return (0);
+	return (flag);
 }
 
 int	is_long(char *str)
@@ -60,6 +58,8 @@ int	in_str(char *str, char c)
 
 	i = 0;
 	flag = 0;
+	if (!str)
+		return (0);
 	while (str[i])
 	{
 		if (str[i] == c)
