@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:59:24 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/19 21:05:07 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/20 22:21:02 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,3 +46,30 @@ int	print_dollar(char c)
 			c == '+' || c == ']' || c == '}' || c == '!' || \
 			c == '~' || c == '^' || c == '|'); 
 }
+
+char	*str_spaces_end(char *str)
+{
+	char	*cpy;
+	int 	end;
+
+	cpy = ft_strdup(str);
+	end = ft_strlen(str) - 1;
+	while (end > 0 && white_space(cpy[end]))
+	{
+		cpy[end] = '\0';
+		end--;
+	}
+	return (cpy);
+}
+
+// int	main(void)
+// {
+// 	char	*str;
+// 	char	*cpy;
+
+// 	str = "ola    \t     \t";
+// 	cpy = str_spaces_end(str);
+// 	printf("%s\n", cpy);
+// 	free(cpy);
+// 	return (0);
+// }

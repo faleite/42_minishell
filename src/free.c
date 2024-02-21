@@ -6,11 +6,27 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:53:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/16 16:39:32 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:59:56 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	free_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	if (arr)
+	{
+		while (arr && arr[i])
+		{
+			free(arr[i]);
+			i++;
+		}
+		free(arr);
+	}
+}
 
 void	free_envp(t_envp *head)
 {
