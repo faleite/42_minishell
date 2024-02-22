@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 03:00:55 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/22 11:16:28 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/22 21:06:11 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,12 @@ void	env(int outfile)
 	current = data()->envp;
 	while (current)
 	{
-		ft_putstr_fd(current->name, outfile);
-		ft_putstr_fd("=", outfile);
-		ft_putendl_fd(current->value, outfile);
+		if (current->value)
+		{
+			ft_putstr_fd(current->name, outfile);
+			ft_putstr_fd("=", outfile);
+			ft_putendl_fd(current->value, outfile);
+		}
 		current = current->next;
 	}
 	data()->exit_status = 0;
@@ -64,9 +67,13 @@ static void	ft_export_noarg(int outfile)
 	{
 		ft_putstr_fd("declare -x ", outfile);
 		ft_putstr_fd(current->name, outfile);
-		ft_putstr_fd("=\"", outfile);
-		ft_putstr_fd(current->value, outfile);
-		ft_putstr_fd("\"\n", outfile);
+		if (current->value)
+		{
+			ft_putstr_fd("=\"", outfile);
+			ft_putstr_fd(current->value, outfile);
+			ft_putstr_fd("\"", outfile);
+		}
+		ft_putstr_fd("\n", outfile);
 		current = current->next;
 	}
 	data()->exit_status = 0;
@@ -90,7 +97,7 @@ void	ft_export(char **key_value, int outfile)
 		name = get_name(key_value[i]);
 		if (!name)
 			continue ;
-		if (in_str(name, '-') || in_str(name, '?') || in_str(name, '@') || is_num(name))
+		if (in_str(name, '-') || in_str(name, '?') || in_str(name, '@') || is_num(name) || (!in_str(key_value[i], '=') && (in_str(name, '+'))))
 			exit_msg(key_value[i]);
 		else if (node_exists(name))
 			update_value(name, add_value(key_value[i]));
@@ -99,6 +106,13 @@ void	ft_export(char **key_value, int outfile)
 			new_node = insert_end_envp(&data()->envp);
 			new_node->name = ft_strdup(add_name(key_value[i]));
 			new_node->value = ft_strdup(add_value(key_value[i]));
+			data()->exit_status = 0;
+		}
+		else if (!in_str(key_value[i], '='))
+		{
+			new_node = insert_end_envp(&data()->envp);
+			new_node->name = ft_strdup(add_name(key_value[i]));
+			new_node->value = NULL;
 			data()->exit_status = 0;
 		}
 		free(name);

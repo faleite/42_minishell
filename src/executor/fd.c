@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/22 11:23:12 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/22 19:23:36 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	ft_open_infile(t_command *current, char *file)
 			ft_putstr_fd(file, STDERR_FILENO);
 			ft_putendl_fd(": No such file or directory", STDERR_FILENO);
 			data()->exit_status = 1;
+			current->is_exec = 0;
 		}
 		else if (access(file, F_OK | R_OK) == -1)
 		{
@@ -35,6 +36,7 @@ int	ft_open_infile(t_command *current, char *file)
 			ft_putstr_fd(file, STDERR_FILENO);
 			ft_putendl_fd(": Permission denied", STDERR_FILENO);
 			data()->exit_status = 1;
+			current->is_exec = 0;
 		}
 		current->is_exec = 0;
 	}

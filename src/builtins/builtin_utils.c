@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:37:04 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/21 16:30:39 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/22 19:01:56 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,10 @@ int	is_num(char *str)
 int	is_long(char *str)
 {
 	int		len;
-	char	pre;
+	int		i;
 
-	if (!is_num(str))
-		return (0);
-	pre = '\0';
-	if (*str == '-')
-		pre = *str++;
 	len = ft_strlen(str);
+	i = 0;
 	if (len > 20 || len < 1)
 		return (0);
 	if (len == 19)
@@ -47,6 +43,19 @@ int	is_long(char *str)
 			return (0);
 		if (ft_strncmp(str, "-9223372036854775808", 20) > 0)
 			return (0);
+	}
+	if (!ft_isdigit(str[i]) && str[i] != '-' && str[i] != '+')
+	{
+		data()->exit_status = 2;
+		return (0);
+	}
+	while (str[++i])
+	{
+		if (!ft_isdigit(str[i]))
+		{
+			data()->exit_status = 2;
+			return (0);
+		}
 	}
 	return (1);
 }
