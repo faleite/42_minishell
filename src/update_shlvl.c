@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 02:03:53 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/20 18:22:42 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/22 21:08:39 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*etoa(char *name, char *value)
 	}
 	new[i] = '=';
 	j = 0;
-	while (value[j])
+	while (value && value[j])
 	{
 		new[i + j] = value[j];
 		j++;

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/19 16:45:03 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/22 19:42:58 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	exec_command(t_command *command, int infile, int outfile)
 {
-	// return printf("Infile: %d Outfile: %d\n", infile, outfile);
+	// return printf("%s Infile: %d Outfile: %d\n",command->args[0], infile, outfile);
 	data()->signal = 1;
 	if (command->is_exec == 1)
 	{
@@ -23,8 +23,8 @@ static int	exec_command(t_command *command, int infile, int outfile)
 		{
 			ft_dup2(command, infile, outfile);
 			if (command->path && \
-					execve(command->path, command->args, \
-					getevarr()->envp) == -1)
+				execve(command->path, command->args, \
+				getevarr()->envp) == -1)
 				command_error(command);
 			else
 				command_error(command);
@@ -87,8 +87,8 @@ void	executing(t_command *head)
 		}
 		outfile = change_out(current, outfile);
 		infile = change_in(current, infile);
-		if (current->args && is_builtin(current->args[0]))
-			builtins(current, infile, outfile);
+		if (current->is_exec && current->args && is_builtin(current->args[0]))
+			builtins(current, infile, outfile, 1);
 		else
 			exec_command(current, infile, outfile);
 		infile = current->fd[0];
