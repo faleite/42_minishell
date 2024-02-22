@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:36:22 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/21 18:45:04 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:48:24 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct s_data
 	int			signal;
 	int			dbquotei;
 	int			dbquoteo;
+	int			single_cmd;
 	char		*heredoc_path;
 	t_envp		*envp;
 	t_command	*exec;
