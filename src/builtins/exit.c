@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:20:17 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/22 21:08:28 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:29:32 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	exit_builtin(t_command *command)
 		}
 		else if (command->args[2])
 		{
-			ft_putendl_fd("exit\nminishell: exit: too many arguments", 2);
+			ft_putendl_fd("minishell: exit: too many arguments", 2);
 			if (data()->exit_status == 0)
 				data()->exit_status = 1;
 			return (1);
@@ -39,6 +39,10 @@ int	exit_builtin(t_command *command)
 		else if (!command->args[2])
 			data()->exit_status = ft_atoi(command->args[1]);
 	}
-	ft_putendl_fd("exit", 1);
-	return (exit_final());
+	if (data()->single_cmd == 1)
+	{
+		ft_putendl_fd("exit", 1);
+		return (exit_final());
+	}
+	return (1);
 }

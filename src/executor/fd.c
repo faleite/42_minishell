@@ -6,11 +6,12 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/22 21:19:07 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:30:38 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <unistd.h>
 
 int	ft_open_infile(t_command *current, char *file)
 {
@@ -27,6 +28,7 @@ int	ft_open_infile(t_command *current, char *file)
 			ft_putstr_fd(file, STDERR_FILENO);
 			ft_putendl_fd(": No such file or directory", STDERR_FILENO);
 			data()->exit_status = 1;
+			current->is_exec = 0;
 		}
 		else if (access(file, F_OK | R_OK) == -1)
 		{
@@ -34,6 +36,7 @@ int	ft_open_infile(t_command *current, char *file)
 			ft_putstr_fd(file, STDERR_FILENO);
 			ft_putendl_fd(": Permission denied", STDERR_FILENO);
 			data()->exit_status = 1;
+			current->is_exec = 0;
 		}
 		current->is_exec = 0;
 	}

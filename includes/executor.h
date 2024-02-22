@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/21 16:30:58 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:50:41 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void		free_envp(t_envp *head);
 void		free_struct(t_command *head);
 void		free_prompt2(t_prompt *head);
 
+int			list_len(t_command *head);
+
 // Executing
 void		executing(t_command *head);
 t_command	*find_tail(t_command *head);
@@ -60,7 +62,7 @@ void		cd(t_command *command, int outfile);
 void		unset(t_command *command);
 void		env(int outfile);
 void		ft_export(char **key_value, int outfile);
-void		builtins(t_command *command, int infile, int outfile);
+void		builtins(t_command *command, int infile, int outfile, int flag);
 
 // Envp utils
 void		update_value(char *name, char *value);
@@ -87,6 +89,7 @@ void		ft_dup2(t_command *command, int infile, int outfile);
 void		unlink_heredoc(void);
 
 int			ft_open_infile_heredoc(t_command *current, char *delimiter);
+int			ft_open_infile(t_command *current, char *file);
 void		update_value(char *name, char *value);
 int			node_exists(char *name);
 
