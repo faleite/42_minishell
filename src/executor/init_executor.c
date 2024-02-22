@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:33:49 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/21 23:22:13 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:10:34 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ void	new_struct(t_prompt *prompt, t_command **head)
 {
 	t_command	*new;
 	t_command	*current;
-	int			i;
 
-	i = 0;
 	new = ft_calloc(1, sizeof(t_command));
 	if (prompt && prompt->args[0])
 	{

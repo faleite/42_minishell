@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/21 22:27:36 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:03:18 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 
 /* Lexer */
 int			white_space(char c);
-int			is_dollar_quotes(char c);
 int			just_spaces(char *str);
-int			print_dollar(char c);
 char		**ft_lexer(char *s1);
 char		**lexer_sintax_error(char *s1);
 char		*split_pipes(char *s1);
@@ -32,15 +30,7 @@ void		end_quote(char *sig, char **s1, char **s2);
 void		space_end(char **tokens);
 
 /* Expander */
-int			dollar(char **src, char **dst, int i);
-int			outside_quotes(char **s2, char **s3, int i);
-int			inside_dbquotes(char **s1, char **s2, int i, char *sig);
-int			inside_spquotes(char **s1, char **s2, int i, char *sig);
-char		*exit_value(char *s1);
 char		**expander_args(char **args);
-
-// char		*expander_inside(char *s1);
-// char		*expander_outside(char *s2);
 
 /* Parser */
 void		parser_prompt(t_prompt **prompt, t_args *arg, \

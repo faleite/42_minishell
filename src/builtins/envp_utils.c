@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:46:00 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/21 22:43:36 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:16:28 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,32 @@ void	update_value(char *name, char *value)
 
 char	*get_value(char *name)
 {
-	t_envp	*current;
+	static char	str[20];
+	char		*status;
+	t_envp		*current;
+	size_t		i;
 
 	current = data()->envp;
 	if (ft_strcmp("?", name) == 0)
-		return (ft_itoa(data()->exit_status));
+	{
+		status = ft_itoa(data()->exit_status);
+		i = -1;
+		while (status[++i])
+			str[i] = status[i];
+		str[i] = '\0';
+		free(status);
+		return (str);
+	}
 	while (current)
 	{
 		if (ft_strcmp(current->name, name) == 0)
 			return (current->value);
 		current = current->next;
 	}
-	return ("\3");
+	return ("\0");
 }
 
-int		node_exists(char *name)
+int	node_exists(char *name)
 {
 	t_envp	*current;
 

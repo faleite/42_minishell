@@ -1,17 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   handle_dollar.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/17 13:44:44 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/21 21:13:41 by faaraujo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+# Handle dollar
 
-#include "../../includes/minishell.h"
-
+```c
 static void	dollar_utils(char **var, char **start, char **end, char **value);
 
 int	dollar(char **src, char **dst, int i)
@@ -101,3 +90,4 @@ static void	dollar_utils(char **var, char **start, char **end, char **value)
 	else
 		*value = get_value(*var);
 }
+```

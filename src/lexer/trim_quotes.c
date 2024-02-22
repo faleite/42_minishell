@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 18:41:05 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/21 22:23:28 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:22:12 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*strtrim_quote(char *str)
 		return (str);
 	tmp = handle_trim_quotes(str, &val);
 	if (!(val % 2) && tmp)
-	{	
+	{
 		free(str);
 		return (tmp);
 	}
@@ -37,9 +37,7 @@ char	*strtrim_quote(char *str)
 void	strtrim_quotes(char **arr)
 {
 	int		i;
-	int		val;
 	int		status;
-	char	*tmp;
 
 	i = 0;
 	status = 0;
@@ -49,6 +47,7 @@ void	strtrim_quotes(char **arr)
 		i++;
 	}
 }
+
 static int	have_quotes(char *s1)
 {
 	int	i;
