@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:33:49 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/21 23:22:13 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:52:08 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,10 @@ t_command	*init_exec(t_prompt *prompt)
 		new_struct(prompt, &head);
 		prompt = prompt->next;
 	}
+	if (list_len(head) == 1)
+		data()->single_cmd = 1;
+	else
+		data()->single_cmd = 0;
 	tail = find_tail(head);
 	tail->is_last = 1;
 	return (head);

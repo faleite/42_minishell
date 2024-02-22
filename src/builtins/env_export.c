@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 03:00:55 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/21 16:35:43 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:16:28 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static void	exit_msg(char *str)
 {
+	data()->exit_status = 1;
 	ft_putstr_fd("minishell: export: `", 2);
 	ft_putstr_fd(str, 2);
 	ft_putendl_fd("': not a valid identifier", 2);
-	data()->exit_status = 1;
 }
 
 static char	*get_name(char *str)
@@ -99,9 +99,9 @@ void	ft_export(char **key_value, int outfile)
 			new_node = insert_end_envp(&data()->envp);
 			new_node->name = ft_strdup(add_name(key_value[i]));
 			new_node->value = ft_strdup(add_value(key_value[i]));
+			data()->exit_status = 0;
 		}
 		free(name);
 	}
-	data()->exit_status = 0;
 	getevarr()->envp = update_env(getevarr()->envp);
 }
