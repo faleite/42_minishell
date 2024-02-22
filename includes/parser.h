@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/20 22:11:17 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/21 22:27:36 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ char		*split_pipes(char *s1);
 char		*split_redirects(char *s1);
 char		*str_spaces_end(char *str);
 void		strtrim_quotes(char **arr);
+char		*strtrim_quote(char *str);
 void		handle_pipe(char *s1, char *s2);
 void		handle_redirects(char *s1, char *s2);
 void		replace_spaces(char *s1);
@@ -36,8 +37,10 @@ int			outside_quotes(char **s2, char **s3, int i);
 int			inside_dbquotes(char **s1, char **s2, int i, char *sig);
 int			inside_spquotes(char **s1, char **s2, int i, char *sig);
 char		*exit_value(char *s1);
-char		*expander_inside(char *s1);
-char		*expander_outside(char *s2);
+char		**expander_args(char **args);
+
+// char		*expander_inside(char *s1);
+// char		*expander_outside(char *s2);
 
 /* Parser */
 void		parser_prompt(t_prompt **prompt, t_args *arg, \

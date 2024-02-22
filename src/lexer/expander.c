@@ -6,72 +6,88 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:27:54 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/20 23:50:24 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/21 23:02:22 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*expander_inside(char *s1)
-{
-	int		i;
-	char	sig;
-	char	*s2;
+static char	*expander_str(char *str);
 
-	i = 0;
-	sig = 1;
-	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s1) * 1000 + 1));
-	if (!s2)
-		return (NULL);
-	while (*s1)
+int check_str(char *str)
+{
+	int len;
+
+	len = 0;
+	if (str && *str == '$' && *str++)
 	{
-		if (sig == 1)
-		{
-			if (*s1 == '\"' || *s1 == '\'')
-				sig = *s1;
-			s2[i++] = *s1++;
-		}
-		else if (sig == '\'')
-			i = inside_spquotes(&s1, &s2, i, &sig);
-		else
-			i = inside_dbquotes(&s1, &s2, i, &sig);
+		while (str[len] && ft_isalnum(str[len]))
+			len++;
+		if (len == 0 && *str == '?')
+			len = 1;
+		// printf("len: %i\n", len);
+		return (len);
 	}
-	s2[i] = '\0';
-	return (s2);
+	return (-1);
 }
 
-char	*expander_outside(char *s2)
+static char *expander(char *str, int start, int len)
 {
-	int		i;
-	char	sig;
-	char	*s3;
+	char *key;
+	char *value;
+	char *part1;
+	char *part2;
+	char *result;
 
-	i = 0;
-	sig = 1;
-	s3 = (char *)malloc(sizeof(char) * (ft_strlen(s2) * 1000 + 1));
-	while (*s2)
-	{
-		if (sig == 1)
-		{
-			if (*s2 == '\"' || *s2 == '\'')
-				sig = *s2;
-			i = outside_quotes(&s2, &s3, i);
-		}
-		else
-		{
-			if (*s2 == sig)
-				sig = 1;
-			s3[i++] = *s2++;
-		}
-	}
-	s3[i] = '\0';
-	return (s3);
+	key = ft_substr(str, start + 1, len);
+	value = get_value(key);
+	part2 = &str[start + 1 + len];
+	str[start] = 0;
+	part1 = str;
+	// printf("key: %s value: %s part1: %s part2: %s\n", key, value, part1, part2);
+	free(key);
+	key = ft_strjoin(part1, value);
+	result = ft_strjoin(key, part2);
+	free(key);
+	free(str);
+	return (expander_str(result));
 }
 
-int	inside_spquotes(char **s1, char **s2, int i, char *sig)
+static char	*expander_str(char *str)
 {
-	if (**s1 == '\'')
-		*sig = 1;
-	(*s2)[i++] = *(*s1)++;
-	return (i);
+	size_t 	i;
+	char	flag;
+	int 	len;
+
+	i = 0;
+	flag = 0;
+	len = 0;
+	while (str[i])
+	{
+		if (flag == 0 && (str[i] == '\'' || str[i] == '\"'))
+			flag = str[i];
+		else if (flag == str[i])
+			flag = 0;
+		else if (flag != '\'')
+		{	
+			len = check_str(&str[i]);
+			if (len > 0)
+				return (expander(str, i, len));
+		}
+		i++;
+	}
+	return (str);
+}
+
+char	**expander_args(char **args)
+{
+	size_t i;
+
+	i = 0;
+	while (args[i])
+	{
+		args[i] = expander_str(args[i]);
+		i++;
+	}
+	return (args);
 }

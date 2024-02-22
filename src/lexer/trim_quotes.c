@@ -6,15 +6,33 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 18:41:05 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/19 21:00:47 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/21 22:23:28 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 static int	have_quotes(char *s1);
-static void	utils_strtrim(char **s1, char **s2);
 static char	*handle_trim_quotes(char const *s1, int *val);
+
+char	*strtrim_quote(char *str)
+{
+	int		val;
+	char	*tmp;
+
+	val = 0;
+	if (!have_quotes(str))
+		return (str);
+	tmp = handle_trim_quotes(str, &val);
+	if (!(val % 2) && tmp)
+	{	
+		free(str);
+		return (tmp);
+	}
+	else
+		free(tmp);
+	return (str);
+}
 
 void	strtrim_quotes(char **arr)
 {
@@ -25,33 +43,12 @@ void	strtrim_quotes(char **arr)
 
 	i = 0;
 	status = 0;
-	if (arr && arr[i] && (!ft_strcmp(arr[i], "\"\"") || \
-		!ft_strcmp(arr[i], "\'\'")))
-		i++;
 	while (arr && arr[i] != NULL)
 	{
-		val = 0;
-		if (!have_quotes(arr[i]))
-			i++;
-		else
-		{
-			tmp = handle_trim_quotes(arr[i], &val);
-			if (!(val % 2) && tmp)
-				utils_strtrim(&arr[i], &tmp);
-			else
-				free(tmp);
-			i++;
-		}
+		arr[i] = strtrim_quote(arr[i]);
+		i++;
 	}
 }
-
-static void	utils_strtrim(char **s1, char **s2)
-{
-	free(*s1);
-	*s1 = ft_strdup(*s2);
-	free(*s2);
-}
-
 static int	have_quotes(char *s1)
 {
 	int	i;

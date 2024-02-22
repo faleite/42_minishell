@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 13:44:44 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/20 23:13:31 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/21 21:13:41 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ int	dollar(char **src, char **dst, int i)
 	while (!is_dollar_quotes(**src) && !print_dollar(**src) \
 			&& !white_space(**src) && **src)
 	{
-		(*src)++;
-		if (ft_isdigit(**src))
+		if (ft_isdigit(*(*src)++))
 			break ;
 	}
 	end = *src;
@@ -58,15 +57,7 @@ int	inside_dbquotes(char **s1, char **s2, int i, char *sig)
 
 int	outside_quotes(char **s2, char **s3, int i)
 {
-	if (**s2 && (**s2 == '<' && *(*s2 + 1) == '<'))
-	{
-		(*s3)[i++] = *(*s2)++;
-		(*s3)[i++] = *(*s2)++;
-		while (**s2 == '\2')
-			(*s3)[i++] = *(*s2)++;
-		(*s3)[i++] = *(*s2)++;
-	}
-	else if ((**s2 && **s2 == '$') && !print_dollar(*(*s2 + 1)))
+	if ((**s2 && **s2 == '$') && !print_dollar(*(*s2 + 1)))
 	{
 		if (*(*s2 + 1) == '\'' || *(*s2 + 1) == '\"')
 			(*s2)++;
