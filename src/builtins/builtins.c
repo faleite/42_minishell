@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:18:00 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/23 19:06:59 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:23:40 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ int	is_builtin(char	*arg)
 
 void	builtins(t_command *command, int infile, int outfile, int flag)
 {
-	// printf("%s Infile: %d Outfile: %d\n",command->args[0], infile, outfile);
-	// return ;
 	if (command->is_exec == 1 && data()->is_exec_all == 1)
 	{
 		if ((ft_strcmp(command->args[0], "echo") == 0))

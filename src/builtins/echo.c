@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:23:51 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/22 22:29:08 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/23 20:05:58 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	print_last(char *map, int outfile, int flag)
 	}
 	if (!flag)
 		ft_putchar_fd('\n', outfile);
-	// if (data()->exit_status != 1)
 	data()->exit_status = 0;
 }
 

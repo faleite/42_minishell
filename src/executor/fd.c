@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/22 22:30:38 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:56:11 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_open_outfile_append(t_command *current, char *outfile)
 	{
 		if (access(outfile, F_OK | W_OK | R_OK) == -1)
 		{
-			ft_putendl_fd("File doesn't have privieliges to read &| write!", 2);
+			ft_putendl_fd(" Permission denied", 2);
 			current->is_exec = 0;
 			data()->exit_status = 1;
 		}
@@ -73,7 +73,7 @@ int	ft_open_outfile(t_command *current, char *outfile)
 	{
 		if (access(outfile, F_OK | W_OK | R_OK) == -1)
 		{
-			ft_putendl_fd("File doesn't have privieliges to read &| write!", 2);
+			ft_putendl_fd(" Permission denied", 2);
 			current->is_exec = 0;
 			data()->exit_status = 1;
 		}
