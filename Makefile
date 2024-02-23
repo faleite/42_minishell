@@ -53,7 +53,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 		@make -C libft
-		# clear
+		clear
 		@echo "$(GREEN)Compiling of $(REminishell.c:25D)$(NAME)...$(CLR_RESET)"
 		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(RDLINE) -o $(NAME)
 		@echo "$(RED)$(NAME) $(GREEN)is ready!$(CLR_RESET)\n"
@@ -62,13 +62,13 @@ $(NAME): $(OBJS)
 clean:
 		$(RM) $(OBJS)
 		@make clean -C libft
-		# clear
+		clear
 		@echo "$(RED)$(NAME) object $(GREEN)files have been deleted.$(CLR_RESET)\n"
 
 fclean: clean
 		$(RM) $(NAME)
 		$(RM) $(LIBFT)
-		# clear
+		clear
 		@echo "$(RED)$(NAME) $(GREEN)has been deleted.$(CLR_RESET)\n"
 		@echo "$(RED)libft $(GREEN)has been deleted.$(CLR_RESET)\n"
 
