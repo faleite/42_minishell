@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:42:39 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/22 20:25:08 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/23 20:41:41 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	*cmd_path(char *cmd)
 	char	**tmp;
 	char	*path;
 
-	if (access(cmd, F_OK | X_OK) == 0 && !ft_strcmp(data()->path, "\0"))
+	if (access(cmd, F_OK | X_OK) == 0 || !data()->path)
 		return (ft_strdup(cmd));
 	path_cmds = ft_split(data()->path, ':');
 	path = NULL;

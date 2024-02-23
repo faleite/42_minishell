@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:27:54 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/22 22:21:22 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:34:50 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	check_str(char *str)
 /**
  * DEBUG:
  * printf("key: %s value: %s part1: %s part2: %s\n", key, value, part1, part2);
-*/ 
+*/
 static char	*expander(char *str, int start, int len)
 {
 	char	*key;
