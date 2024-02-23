@@ -6,11 +6,12 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:46:00 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/21 22:43:36 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:10:47 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <math.h>
 
 void	update_value(char *name, char *value)
 {
@@ -22,7 +23,10 @@ void	update_value(char *name, char *value)
 		if (ft_strcmp(current->name, name) == 0)
 		{
 			free(current->value);
-			current->value = ft_strdup(value);
+			if (current->value)
+				current->value = ft_strdup(value);
+			else
+				current->value = NULL;
 			getevarr()->envp = update_env(getevarr()->envp);
 			return ;
 		}

@@ -6,11 +6,12 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:37:24 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/20 20:06:24 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:22:23 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <linux/limits.h>
 
 static char	*get_home(char *path)
 {
@@ -25,10 +26,10 @@ static char	*get_home(char *path)
 
 static void	change_directory(char *path, int flag, int outfile)
 {
-	char	*old;
-	char	*new;
+	char	old[PATH_MAX];
+	char	new[PATH_MAX];
 
-	old = getcwd(NULL, 0);
+	getcwd(old, PATH_MAX);
 	if (*path == '~')
 		path = get_home(path);
 	if (chdir(path) == -1)
@@ -40,11 +41,9 @@ static void	change_directory(char *path, int flag, int outfile)
 	else
 	{
 		update_value("OLDPWD", old);
-		new = getcwd(NULL, 0);
+		getcwd(new, PATH_MAX);
 		update_value("PWD", new);
-		free(new);
 	}
-	free(old);
 	if (flag)
 		pwd(outfile);
 	data()->exit_status = 0;
