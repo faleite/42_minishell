@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/22 19:10:41 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:08:36 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 		return (ft_putstr_fd("Error: Wrong arguments\n", 2));
 	while (true)
 	{
+		data()->is_exec_all = 1;
 		if (!cmd_line)
 			cmd_line = readline("[minishell]$ ");
 		if (!cmd_line)
