@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:29:28 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/22 11:50:04 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:32:43 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_envparr	*getevarr(void)
 	return (&envp);
 }
 
-int		list_len(t_command *head)
+int	list_len(t_command *head)
 {
 	t_command	*current;
 	int			i;
