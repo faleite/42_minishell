@@ -56,7 +56,7 @@ void	wait_all(t_command *head)
 			pid = waitpid(-1, &status, 0);
 			if (pid == tail->pid)
 			{
-				if (!ft_strcmp(current->args[0], "\3"))
+				if (!current->args[0])
 					data()->exit_status = 0;
 				else if (WIFEXITED(status))
 					data()->exit_status = WEXITSTATUS(status);

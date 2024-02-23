@@ -1,5 +1,20 @@
 # Testes da linha de comando
 
+# parser
+```bash
+echo ""$"" # ok
+
+echo "'$'"
+'$'
+echo $'"' # ok
+"
+echo $"'" # ok
+'
+echo $"ola'" # ok
+ola'
+
+```
+
 # Exit status
 ```bash
 shell$ cat

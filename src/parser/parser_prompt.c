@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 17:09:18 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/08 17:13:54 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:06:16 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	parser_prompt(t_prompt **prompt, t_args *arg, \
 	fill_prompt(new_node, curr_args, curr_red, toks);
 }
 
-/* node->path = fct_path(); put in line: 46 */
 void	fill_prompt(t_prompt *node, t_args *arg, t_redirect *red, char **toks)
 {
 	int	i;

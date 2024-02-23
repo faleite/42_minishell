@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:37:24 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/23 18:22:23 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:39:25 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	cd_default(char *name, int flag, int outfile)
 	char	*path;
 
 	path = get_value(name);
-	if (!ft_strcmp(path, "\3"))
+	if (!ft_strcmp(path, "\0"))
 	{
 		ft_putstr_fd("minishell: cd: ", 2);
 		ft_putstr_fd(name, 2);

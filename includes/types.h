@@ -105,8 +105,6 @@ typedef struct s_data
 	int			h_flag;
 	int			h_fd;
 	int			signal;
-	int			dbquotei;
-	int			dbquoteo;
 	int			single_cmd;
 	int			is_exec_all;
 	char		*heredoc_path;

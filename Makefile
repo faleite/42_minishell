@@ -15,7 +15,7 @@ SEC			= src/executor
 SB			= src/builtins
 FILES 		= $(SRC_DIR)minishell.c $(SRC_DIR)exit.c $(SRC_DIR)free.c\
 			  $(SRC_DIR)wait.c $(SRC_DIR)update_shlvl.c $(SRC_DIR)signals.c\
-			  $(SL)/cmdline_split.c $(SL)/expander.c $(SL)/handle_dollar.c\
+			  $(SL)/cmdline_split.c $(SL)/expander.c\
 			  $(SL)/trim_quotes.c $(SL)/lexer.c $(SL)/checks.c\
 			  $(SP)/parser_redirect.c $(SP)/utils.c $(SP)/parser_args.c\
 			  $(SP)/free_data.c $(SP)/parser_prompt.c $(SP)/debugs.c\
@@ -54,7 +54,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 		@make -C libft
-		clear
+#		clear
 		@echo "$(GREEN)Compiling of $(REminishell.c:25D)$(NAME)...$(CLR_RESET)"
 		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(RDLINE) -o $(NAME)
 		@echo "$(RED)$(NAME) $(GREEN)is ready!$(CLR_RESET)\n"

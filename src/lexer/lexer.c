@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 19:32:22 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/21 23:03:40 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/22 21:50:51 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ char	**ft_lexer(char *s1)
 {
 	char	*s2;
 	char	*s3;
-	char	*s4;
 	char	**arr;
 
 	arr = NULL;
