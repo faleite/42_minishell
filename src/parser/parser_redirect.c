@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:03:40 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/21 22:27:52 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:09:48 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	fill_redirects(t_redirect *node, char **tokens, int *i)
 
 void	fill_null_redirects(t_redirect *node)
 {
-	int			i;
-
 	node->tokens_id = ft_calloc(1, sizeof(int));
 	if (!node->tokens_id)
 		exit(1);

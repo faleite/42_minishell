@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 03:00:55 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/23 21:28:40 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:14:03 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ void	ft_export(char **key_value, int outfile)
 {
 	int		i;
 	char	*name;
-	t_envp	**tmp;
 
 	i = 0;
 	if (key_value && key_value[i + 1] == NULL)

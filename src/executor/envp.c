@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:08:36 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/23 21:22:50 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:11:08 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 char	**envp_exec(char *envp[])
 {
 	int		i;
-	int		len_e;
 	char	**new;
 
 	i = 0;

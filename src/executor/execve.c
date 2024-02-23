@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/23 21:24:13 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:13:08 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	executing(t_command *head)
 		outfile = change_out(current, outfile);
 		infile = change_in(current, infile);
 		if (current->args && is_builtin(current->args[0]))
-			builtins(current, infile, outfile, 1);
+			builtins(current, infile, outfile);
 		else
 			exec_command(current, infile, outfile);
 		infile = current->fd[0];

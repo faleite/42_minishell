@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/23 21:33:05 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:11:22 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ int	ft_open_infile(t_command *current, char *file)
 
 int	ft_open_outfile_append(t_command *current, char *outfile)
 {
-	int	error_id;
-
 	if (current->outfile_fd != -1)
 		close(current->outfile_fd);
 	current->outfile_fd = open(outfile, O_RDWR | O_CREAT | O_APPEND, 0644);
@@ -62,8 +60,6 @@ int	ft_open_outfile_append(t_command *current, char *outfile)
 
 int	ft_open_outfile(t_command *current, char *outfile)
 {
-	int	error_id;
-
 	if (current->outfile_fd != -1)
 		close(current->outfile_fd);
 	current->outfile_fd = open(outfile, O_RDWR | O_CREAT | O_TRUNC, 0644);

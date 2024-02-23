@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:18:00 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/23 21:31:39 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:12:21 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	is_builtin(char	*arg)
 	return (0);
 }
 
-void	builtins(t_command *command, int infile, int outfile, int flag)
+void	builtins(t_command *command, int infile, int outfile)
 {
 	if (command->is_exec == 1 && data()->is_exec_all == 1)
 	{
