@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/23 19:06:27 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:24:13 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static int	exec_command(t_command *command, int infile, int outfile)
 {
-	// return printf("%s Infile: %d Outfile: %d\n",command->args[0], infile, outfile);
-	data()->signal = 1;
 	if (command->is_exec == 1 && data()->is_exec_all == 1)
 	{
 		command->pid = fork();

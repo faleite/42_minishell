@@ -6,11 +6,12 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/23 19:08:36 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:35:07 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+#include <linux/limits.h>
 #include <unistd.h>
 
 /**
@@ -109,13 +110,11 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 int	main(int ac, char *av[], char *envp[])
 {
 	char	*cmd_line;
-	char	*cwd;
-	int		*a;
+	char	cwd[PATH_MAX];
 
 	cmd_line = NULL;
-	cwd = getcwd(NULL, 0);
-	data()->heredoc_path = ft_strjoin(cwd, "/heredoc_file");
-	free(cwd);
+	getcwd(cwd, PATH_MAX);
+	data()->cwd = cwd;
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, handle_sigint);
 	cmdline(cmd_line, envp, ac, av);

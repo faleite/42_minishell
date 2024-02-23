@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 15:53:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/22 19:31:13 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:21:08 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	free_envp(t_envp *head)
 	t_envp	*tmp;
 
 	current = head;
-	while (current && current->value && current->name)
+	while (current)
 	{
 		tmp = current;
 		current = current->next;

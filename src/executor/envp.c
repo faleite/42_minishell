@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:08:36 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/21 15:57:17 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:22:50 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,17 @@ t_envp	*insert_end_envp(t_envp **head)
 
 	new_node = ft_calloc(1, sizeof(t_envp));
 	if (!new_node)
-		exit(1);
+		exit_final();
 	if (!*head)
 	{
 		*head = new_node;
 		return (new_node);
 	}
 	current = *head;
-	while (current && current->next)
+	while (current->next)
 		current = current->next;
-	if (current)
-		current->next = new_node;
+	current->next = new_node;
+	new_node->next = NULL;
 	return (new_node);
 }
 
