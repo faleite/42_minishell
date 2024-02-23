@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/23 19:56:11 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:33:05 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 int	ft_open_infile(t_command *current, char *file)
 {
-	int	error_id;
-
 	if (current->infile_fd != -1)
 		close(current->infile_fd);
 	current->infile_fd = open(file, O_RDONLY);

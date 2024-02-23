@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/23 19:35:07 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:34:29 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	exec_process(t_prompt *prompt, char **envp)
 {
 	t_command	*exec;
 
+	data()->is_exec_all = 1;
 	data()->path = get_value("PATH");
 	data()->h_flag = 0;
 	exec = init_exec(prompt);
@@ -81,7 +82,6 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 		return (ft_putstr_fd("Error: Wrong arguments\n", 2));
 	while (true)
 	{
-		data()->is_exec_all = 1;
 		if (!cmd_line)
 			cmd_line = readline("[minishell]$ ");
 		if (!cmd_line)
@@ -104,8 +104,6 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 	}
 	return (0);
 }
-
-
 
 int	main(int ac, char *av[], char *envp[])
 {
