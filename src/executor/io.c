@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:34:11 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/19 17:32:14 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/23 23:26:12 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	change_out(t_command *command, int outfile)
 	if (command->outfile_fd != -1)
 	{
 		outfile = command->outfile_fd;
-		close(command->fd[1]);
+		if (command->fd[1] > 0)
+			close(command->fd[1]);
 	}
 	else if (command->next)
 		outfile = command->fd[1];
