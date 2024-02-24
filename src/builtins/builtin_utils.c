@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:37:04 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/23 21:03:39 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/24 15:18:15 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,19 @@ void	export_keys(char **key_value, char *name, int i)
 		new_node->value = NULL;
 		data()->exit_status = 0;
 	}
+}
+
+int		index_heredoc(t_command *current)
+{
+	int			i;
+	int			ret;
+
+	i = 0;
+	ret = 0;
+	while (current->prompt->tokens_id[i++])
+	{
+		if (current->prompt->tokens_id[i] == HEREDOC_ID)
+			ret = i;
+	}
+	return (ret);
 }
