@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/24 15:18:06 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/24 16:34:27 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char		*add_name(char *str);
 char		*add_value(char *str);
 t_data		*data(void);
 t_envp		*insert_end_envp(t_envp **head);
+t_envp		*get_node(char *name);
 
 void		free_path(char *str);
 void		free_envp(t_envp *head);

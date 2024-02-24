@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 03:00:55 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/23 23:20:41 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/24 16:39:39 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,6 @@ void	ft_export(char **key_value, int outfile)
 		while (key_value && key_value[++i])
 		{
 			name = get_name(key_value[i]);
-			if (!name)
-				continue ;
 			if (in_str(name, '-') || in_str(name, '?') \
 					|| in_str(name, '@') || is_num(name) \
 					|| (!in_str(key_value[i], '=') && (in_str(name, '+'))))
@@ -105,6 +103,6 @@ void	ft_export(char **key_value, int outfile)
 				export_keys(key_value, name, i);
 			free(name);
 		}
-		getevarr()->envp = update_env(getevarr()->envp);
+		// getevarr()->envp = update_env(getevarr()->envp);
 	}
 }

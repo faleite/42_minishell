@@ -77,6 +77,6 @@ re: fclean all
 	@echo "$(PURPLE)====================================$(CLR_RESET)"
 
 v:
-	make re && valgrind --suppressions=readline.supp --leak-check=full --show-leak-kinds=all --track-fds=all ./$(NAME)
+	make re && valgrind --suppressions=readline.supp --leak-check=full --show-leak-kinds=all --track-fds=yes ./$(NAME)
 
 .PHONY: all clean fclean re

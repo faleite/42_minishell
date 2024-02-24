@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/24 15:20:40 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/24 15:30:36 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	ft_open_all(t_command *head)
 				!ft_open_infile(current, current->prompt->tokens[i]))
 				break ;
 		}
-		if (index_heredoc(current) >= i - 1)
+		if (current->infile_fd != -1 && index_heredoc(current) >= i - 1)
 		{
 			close(current->infile_fd);
 			open_heredoc(current);

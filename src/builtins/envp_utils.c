@@ -6,12 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:46:00 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/23 18:10:47 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/24 16:44:55 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <math.h>
 
 void	update_value(char *name, char *value)
 {
@@ -23,11 +22,11 @@ void	update_value(char *name, char *value)
 		if (ft_strcmp(current->name, name) == 0)
 		{
 			free(current->value);
-			if (current->value)
+			if (current->value && value)
 				current->value = ft_strdup(value);
 			else
 				current->value = NULL;
-			getevarr()->envp = update_env(getevarr()->envp);
+			// getevarr()->envp = update_env(getevarr()->envp);
 			return ;
 		}
 		current = current->next;
@@ -35,7 +34,7 @@ void	update_value(char *name, char *value)
 	current = insert_end_envp(&data()->envp);
 	current->name = ft_strdup(name);
 	current->value = ft_strdup(value);
-	getevarr()->envp = update_env(getevarr()->envp);
+	// getevarr()->envp = update_env(getevarr()->envp);
 }
 
 char	*get_value(char *name)
@@ -77,4 +76,33 @@ int	node_exists(char *name)
 		current = current->next;
 	}
 	return (0);
+}
+
+int	index_heredoc(t_command *current)
+{
+	int			i;
+	int			ret;
+
+	i = 0;
+	ret = 0;
+	while (current->prompt->tokens_id[i++])
+	{
+		if (current->prompt->tokens_id[i] == HEREDOC_ID)
+			ret = i;
+	}
+	return (ret);
+}
+
+t_envp	*get_node(char *name)
+{
+	t_envp	*current;
+
+	current = data()->envp;
+	while (current)
+	{
+		if (ft_strcmp(current->name, name) == 0)
+			return (current);
+		current = current->next;
+	}
+	return (NULL);
 }
