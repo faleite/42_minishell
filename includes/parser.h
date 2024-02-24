@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/22 22:03:18 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/24 15:57:08 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void		end_quote(char *sig, char **s1, char **s2);
 void		space_end(char **tokens);
 
 /* Expander */
+char		*expander_str(char *str);
 char		**expander_args(char **args);
 
 /* Parser */
