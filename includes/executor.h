@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/23 20:14:48 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:12:35 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void		cd(t_command *command, int outfile);
 void		unset(t_command *command);
 void		env(int outfile);
 void		ft_export(char **key_value, int outfile);
-void		builtins(t_command *command, int infile, int outfile, int flag);
+void		builtins(t_command *command, int infile, int outfile);
 
 // Envp utils
 void		update_value(char *name, char *value);

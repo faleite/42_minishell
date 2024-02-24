@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 03:00:55 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/23 21:28:40 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/23 23:20:41 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ void	ft_export(char **key_value, int outfile)
 {
 	int		i;
 	char	*name;
-	t_envp	**tmp;
 
 	i = 0;
 	if (key_value && key_value[i + 1] == NULL)
@@ -91,18 +90,21 @@ void	ft_export(char **key_value, int outfile)
 		ft_export_noarg(outfile);
 		return ;
 	}
-	while (key_value && key_value[++i])
+	if (data()->single_cmd == 1)
 	{
-		name = get_name(key_value[i]);
-		if (!name)
-			continue ;
-		if (in_str(name, '-') || in_str(name, '?') \
-			|| in_str(name, '@') || is_num(name) \
-			|| (!in_str(key_value[i], '=') && (in_str(name, '+'))))
-			exit_msg(key_value[i]);
-		else
-			export_keys(key_value, name, i);
-		free(name);
+		while (key_value && key_value[++i])
+		{
+			name = get_name(key_value[i]);
+			if (!name)
+				continue ;
+			if (in_str(name, '-') || in_str(name, '?') \
+					|| in_str(name, '@') || is_num(name) \
+					|| (!in_str(key_value[i], '=') && (in_str(name, '+'))))
+				exit_msg(key_value[i]);
+			else
+				export_keys(key_value, name, i);
+			free(name);
+		}
+		getevarr()->envp = update_env(getevarr()->envp);
 	}
-	getevarr()->envp = update_env(getevarr()->envp);
 }

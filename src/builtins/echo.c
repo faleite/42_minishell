@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:23:51 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/23 20:05:58 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:13:47 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	echo(t_command *command, int outfile, int infile)
 	int	j;
 	int	flag;
 
+	(void) infile;
 	i = 0;
 	j = 0;
 	flag = 0;

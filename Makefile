@@ -2,7 +2,6 @@
 #                                 VARIABLES                                   #
 ###############################################################################
 
-# .SILENT:
 NAME		= minishell
 INC			= includes/executor.h includes/parser.h src/builtins/builtins.h
 CC			= cc
@@ -32,7 +31,7 @@ RDLINE		= -lreadline -lhistory
 RM			= rm -f
 
 .c.o:
-	$(CC) -c $< -o $@ -g
+	$(CC) -c $(CFLAGS) $< -o $@
 
 ################################################################################
 #                                 COLORS                                       #
@@ -54,7 +53,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 		@make -C libft
-#		clear
+		clear
 		@echo "$(GREEN)Compiling of $(REminishell.c:25D)$(NAME)...$(CLR_RESET)"
 		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(RDLINE) -o $(NAME)
 		@echo "$(RED)$(NAME) $(GREEN)is ready!$(CLR_RESET)\n"
@@ -78,14 +77,6 @@ re: fclean all
 	@echo "$(PURPLE)====================================$(CLR_RESET)"
 
 v:
-	make re && valgrind --suppressions=readline.supp --leak-check=full --show-leak-kinds=all --track-fds=yes ./$(NAME)
-
-# a flag --show-leak-kinds=all 
-# pode ajudar a identificar vazamentos de memória que de outra forma poderiam passar despercebidos.
-vs:
-	make re && valgrind --leak-check=full --show-leak-kinds=all --suppressions=readline.supp ./minishell
-
-fd:
-	make re && valgrind  --track-fds=yes ./minishell
+	make re && valgrind --suppressions=readline.supp --leak-check=full --show-leak-kinds=all --track-fds=all ./$(NAME)
 
 .PHONY: all clean fclean re
