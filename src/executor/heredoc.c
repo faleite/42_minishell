@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:55:36 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/23 23:02:14 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/24 15:14:15 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	check_readline(char *str, char *delimiter)
 	return (0);
 }
 
-static void	open_heredoc(t_command *command)
+void	open_heredoc(t_command *command)
 {
 	command->infile_fd = open("/tmp/heredoc_file", O_RDONLY);
 	if (command->infile_fd == -1)

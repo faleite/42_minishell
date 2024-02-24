@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/23 22:12:35 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/24 15:18:06 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void		ft_dup2(t_command *command, int infile, int outfile);
 void		unlink_heredoc(void);
 void		export_keys(char **key_value, char *name, int i);
 
+int			index_heredoc(t_command *current);
+void		open_heredoc(t_command *command);
 int			ft_open_infile_heredoc(t_command *current, char *delimiter);
 int			ft_open_infile(t_command *current, char *file);
 void		update_value(char *name, char *value);
