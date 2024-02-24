@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:46:00 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/24 16:44:55 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:22:47 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	update_value(char *name, char *value)
 				current->value = ft_strdup(value);
 			else
 				current->value = NULL;
-			// getevarr()->envp = update_env(getevarr()->envp);
 			return ;
 		}
 		current = current->next;
@@ -34,7 +33,6 @@ void	update_value(char *name, char *value)
 	current = insert_end_envp(&data()->envp);
 	current->name = ft_strdup(name);
 	current->value = ft_strdup(value);
-	// getevarr()->envp = update_env(getevarr()->envp);
 }
 
 char	*get_value(char *name)

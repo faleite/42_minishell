@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:37:04 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/24 15:58:48 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:17:07 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	is_num(char *str)
 {
 	int	flag;
 
+	if (!str)
+		return (0);
 	flag = 0;
 	if (*str == '-')
 		str++;
