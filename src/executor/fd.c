@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/26 17:33:03 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:15:03 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ int	ft_open_all(t_command *head)
 		ft_open_heredoc_all(current);
 		while (current->prompt->tokens[++i])
 			check_open(current, i);
-		if (current->infile_fd != -1 && index_heredoc(current) > index_last_infile(current))
+		if (current->infile_fd != -1 && \
+			index_heredoc(current) > index_last_infile(current))
 		{
 			close(current->infile_fd);
 			open_heredoc(current);
