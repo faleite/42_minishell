@@ -6,11 +6,13 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/23 23:25:29 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:10:15 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static void	executing_utils(t_command *head);
 
 static int	exec_command(t_command *command, int infile, int outfile)
 {
@@ -92,7 +94,14 @@ void	executing(t_command *head)
 		infile = current->fd[0];
 		current = current->next;
 	}
+	executing_utils(head);
+}
+
+static void	executing_utils(t_command *head)
+{
+	signal(SIGINT, handle_crtl_pause);
 	wait_all(head);
+	signal(SIGINT, handle_sigint);
 }
 
 int	to_execute(t_command *head)

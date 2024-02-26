@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:26:00 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/23 22:08:52 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:02:20 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ void	handle_sigint(int sig)
 		data()->signal = 0;
 		data()->is_exec_all = 0;
 	}
+}
+
+void	handle_crtl_pause(int sig)
+{
+	if (sig == SIGINT)
+		return ;
 }
 
 void	handle_sigint_clean(int sig)
