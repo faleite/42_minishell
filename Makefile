@@ -19,7 +19,7 @@ FILES 		= $(SRC_DIR)minishell.c $(SRC_DIR)exit.c $(SRC_DIR)free.c\
 			  $(SP)/parser_redirect.c $(SP)/utils.c $(SP)/parser_args.c\
 			  $(SP)/free_data.c $(SP)/parser_prompt.c $(SP)/debugs.c\
 			  $(SE)/handle_errors.c $(SE)/handle_data.c $(SE)/sintax_errors.c\
-			  $(SEC)/envp.c $(SEC)/execve.c $(SEC)/fd.c $(SEC)/path.c\
+			  $(SEC)/envp.c $(SEC)/execve.c $(SEC)/fd.c $(SEC)/fd_utils.c $(SEC)/path.c\
 			  $(SEC)/print_msg.c $(SEC)/io.c $(SEC)/init_utils.c $(SEC)/heredoc.c\
 			  $(SEC)/init_executor.c $(SB)/builtins.c $(SB)/echo.c\
 			  $(SB)/pwd.c $(SB)/cd.c $(SB)/unset.c $(SB)/envp_utils.c\

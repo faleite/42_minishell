@@ -6,12 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:04:23 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/24 15:30:36 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:33:03 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <unistd.h>
 
 int	ft_open_infile(t_command *current, char *file)
 {
@@ -93,7 +92,6 @@ int	ft_open_heredoc_all(t_command *current)
 int	ft_open_all(t_command *head)
 {
 	t_command		*current;
-	t_enum_token	token_id;
 	int				i;
 
 	current = head;
@@ -102,19 +100,8 @@ int	ft_open_all(t_command *head)
 		i = -1;
 		ft_open_heredoc_all(current);
 		while (current->prompt->tokens[++i])
-		{
-			token_id = current->prompt->tokens_id[i];
-			if (token_id == OUTFILE_ID && \
-				!ft_open_outfile(current, current->prompt->tokens[i]))
-				break ;
-			else if (token_id == APPEND_ID && \
-				!ft_open_outfile_append(current, current->prompt->tokens[i]))
-				break ;
-			else if (token_id == INFILE_ID && \
-				!ft_open_infile(current, current->prompt->tokens[i]))
-				break ;
-		}
-		if (current->infile_fd != -1 && index_heredoc(current) >= i - 1)
+			check_open(current, i);
+		if (current->infile_fd != -1 && index_heredoc(current) > index_last_infile(current))
 		{
 			close(current->infile_fd);
 			open_heredoc(current);

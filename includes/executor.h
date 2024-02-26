@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/24 16:34:27 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:32:42 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,13 @@ int			commands_wait(t_command *head);
 
 void		command_error(t_command *command);
 int			to_execute(t_command *head);
+
+// FD functions
+int			ft_open_outfile_append(t_command *current, char *outfile);
+int			ft_open_outfile(t_command *current, char *outfile);
+int			ft_open_infile(t_command *current, char *file);
+void		check_open(t_command *current, int i);
+int			index_last_infile(t_command *current);
 
 // Builtin utils
 int			is_long(char *str);
