@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 03:00:55 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/24 17:21:08 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:25:58 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ void	ft_export(char **key_value, int outfile)
 			name = get_name(key_value[i]);
 			if (!name)
 				continue ;
-			if (in_str(name, '-') || in_str(name, '?') \
-					|| in_str(name, '@') || is_num(name) \
-					|| (!in_str(key_value[i], '=') && (in_str(name, '+'))))
+			if (!ft_isalpha(name[0]) || in_str(name, '-') || in_str(name, '?') \
+				|| in_str(name, '@') || is_num(name) \
+				|| (!in_str(key_value[i], '=') && (in_str(name, '+'))))
 				exit_msg(key_value[i]);
 			else
 				export_keys(key_value, name, i);
