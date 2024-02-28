@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:33:49 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/22 22:30:45 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/28 14:46:36 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	new_struct(t_prompt *prompt, t_command **head)
 	new = ft_calloc(1, sizeof(t_command));
 	if (prompt && prompt->args[0])
 	{
-		new->path = cmd_path(prompt->args[0]);
 		new->args = expander_args(cpy_arr(prompt->args));
 		strtrim_quotes(new->args);
+		new->path = cmd_path(new->args[0]);
 	}
 	new->prompt = prompt;
 	new->fd[0] = -1;
