@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:55:36 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/24 15:14:15 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/27 21:16:49 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	ft_open_infile_heredoc(t_command *current, char *delimiter)
 	if (current->infile_fd != -1)
 		close(current->infile_fd);
 	pid = fork();
-	signal(SIGINT, handle_sigint);
+	signal(SIGINT, handle_sigint_hd);
 	if (pid == 0)
 	{
 		signal(SIGINT, handle_sigint_clean);
