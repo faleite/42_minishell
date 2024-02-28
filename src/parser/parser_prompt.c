@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 17:09:18 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/22 22:06:16 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/24 16:02:51 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ void	fill_prompt(t_prompt *node, t_args *arg, t_redirect *red, char **toks)
 	while (red && (red->tokens && red->tokens[i]))
 	{
 		node->tokens_id[i] = red->tokens_id[i];
-		node->tokens[i] = ft_strdup(red->tokens[i]);
+		if (node->tokens_id[i] != HEREDOC_ID)
+			node->tokens[i] = expander_str(ft_strdup(red->tokens[i]));
+		else
+			node->tokens[i] = ft_strdup(red->tokens[i]);
 		i++;
 	}
 	node->tokens[i] = NULL;

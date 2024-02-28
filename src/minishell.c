@@ -6,13 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/23 21:34:29 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:50:54 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-#include <linux/limits.h>
-#include <unistd.h>
 
 /**
 * DEBUGS:
@@ -26,7 +24,7 @@
 * free_envp(data()->envp);
 * free_arr(getevarr()->envp);
 */
-void	exec_process(t_prompt *prompt, char **envp)
+void	exec_process(t_prompt *prompt)
 {
 	t_command	*exec;
 
@@ -46,7 +44,7 @@ void	exec_process(t_prompt *prompt, char **envp)
 * print_prompt(prompt);
 * free_prompt(&prompt);
 */
-void	init_process(char *line, char **envp, int ac, char **av)
+void	init_process(char *line)
 {
 	char		**tokens;
 	t_args		*args;
@@ -63,7 +61,7 @@ void	init_process(char *line, char **envp, int ac, char **av)
 	free_arr(tokens);
 	free_args(&args);
 	free_redirects(&redirect);
-	exec_process(prompt, envp);
+	exec_process(prompt);
 }
 
 static int	handle_any_args(char **cmd_line, char **envp, int ac, char **av)
@@ -96,7 +94,7 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 			if (cmd_line && *cmd_line)
 				add_history(cmd_line);
 			if (!sintax_errors(cmd_line) && ft_strlen(cmd_line) > 0)
-				init_process(cmd_line, envp, ac, av);
+				init_process(cmd_line);
 		}
 		free(cmd_line);
 		cmd_line = NULL;
@@ -108,11 +106,8 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 int	main(int ac, char *av[], char *envp[])
 {
 	char	*cmd_line;
-	char	cwd[PATH_MAX];
 
 	cmd_line = NULL;
-	getcwd(cwd, PATH_MAX);
-	data()->cwd = cwd;
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, handle_sigint);
 	cmdline(cmd_line, envp, ac, av);

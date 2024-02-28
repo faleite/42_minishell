@@ -6,13 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:27:54 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/23 21:34:50 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/24 15:54:22 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-static char	*expander_str(char *str);
 
 /**
  * Checks if a string is a valid variable expansion.
@@ -72,7 +70,7 @@ static char	*expander(char *str, int start, int len)
 	return (expander_str(result));
 }
 
-static char	*expander_str(char *str)
+char	*expander_str(char *str)
 {
 	size_t	i;
 	char	flag;
@@ -108,6 +106,9 @@ char	**expander_args(char **args)
 	i = 0;
 	while (args[i])
 	{
+		if (!ft_strcmp(args[i], "\"\'$\'\"") || \
+			!ft_strcmp(args[i], "\"$\""))
+			i++;
 		args[i] = expander_str(args[i]);
 		if (args[i] == NULL)
 		{
