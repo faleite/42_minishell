@@ -2,7 +2,6 @@
 #                                 VARIABLES                                   #
 ###############################################################################
 
-# .SILENT:
 NAME		= minishell
 INC			= includes/executor.h includes/parser.h src/builtins/builtins.h
 CC			= cc
@@ -20,7 +19,7 @@ FILES 		= $(SRC_DIR)minishell.c $(SRC_DIR)exit.c $(SRC_DIR)free.c\
 			  $(SP)/parser_redirect.c $(SP)/utils.c $(SP)/parser_args.c\
 			  $(SP)/free_data.c $(SP)/parser_prompt.c $(SP)/debugs.c\
 			  $(SE)/handle_errors.c $(SE)/handle_data.c $(SE)/sintax_errors.c\
-			  $(SEC)/envp.c $(SEC)/execve.c $(SEC)/fd.c $(SEC)/path.c\
+			  $(SEC)/envp.c $(SEC)/execve.c $(SEC)/fd.c $(SEC)/fd_utils.c $(SEC)/path.c\
 			  $(SEC)/print_msg.c $(SEC)/io.c $(SEC)/init_utils.c $(SEC)/heredoc.c\
 			  $(SEC)/init_executor.c $(SB)/builtins.c $(SB)/echo.c\
 			  $(SB)/pwd.c $(SB)/cd.c $(SB)/unset.c $(SB)/envp_utils.c\
@@ -32,7 +31,7 @@ RDLINE		= -lreadline -lhistory
 RM			= rm -f
 
 .c.o:
-	$(CC) -c $< -o $@ -g
+	$(CC) -c $(CFLAGS) $< -o $@
 
 ################################################################################
 #                                 COLORS                                       #
@@ -54,7 +53,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 		@make -C libft
-#		clear
+		clear
 		@echo "$(GREEN)Compiling of $(REminishell.c:25D)$(NAME)...$(CLR_RESET)"
 		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(RDLINE) -o $(NAME)
 		@echo "$(RED)$(NAME) $(GREEN)is ready!$(CLR_RESET)\n"
@@ -79,13 +78,5 @@ re: fclean all
 
 v:
 	make re && valgrind --suppressions=readline.supp --leak-check=full --show-leak-kinds=all --track-fds=yes ./$(NAME)
-
-# a flag --show-leak-kinds=all 
-# pode ajudar a identificar vazamentos de memória que de outra forma poderiam passar despercebidos.
-vs:
-	make re && valgrind --leak-check=full --show-leak-kinds=all --suppressions=readline.supp ./minishell
-
-fd:
-	make re && valgrind  --track-fds=yes ./minishell
 
 .PHONY: all clean fclean re

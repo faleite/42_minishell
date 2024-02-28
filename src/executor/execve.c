@@ -6,11 +6,19 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:39:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/23 21:24:13 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/27 22:15:07 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static void	executing_utils(t_command *head);
+
+void	handle_sigquit(int sig)
+{
+	(void) sig;
+    write(1, "^\\Quit\n", 6);
+}
 
 static int	exec_command(t_command *command, int infile, int outfile)
 {
@@ -20,6 +28,8 @@ static int	exec_command(t_command *command, int infile, int outfile)
 		if (command->pid == 0)
 		{
 			ft_dup2(command, infile, outfile);
+			// signal(SIGQUIT, handle_sigquit);
+			signal(SIGQUIT, SIG_DFL);
 			if (command->path && \
 				execve(command->path, command->args, \
 				getevarr()->envp) == -1)
@@ -86,13 +96,24 @@ void	executing(t_command *head)
 		outfile = change_out(current, outfile);
 		infile = change_in(current, infile);
 		if (current->args && is_builtin(current->args[0]))
-			builtins(current, infile, outfile, 1);
+			builtins(current, infile, outfile);
 		else
+		{
+			// signal(SIGINT, SIG_IGN);
+			// signal(SIGQUIT, SIG_IGN);
 			exec_command(current, infile, outfile);
+		}
 		infile = current->fd[0];
 		current = current->next;
 	}
+	executing_utils(head);
+}
+
+static void	executing_utils(t_command *head)
+{
+	signal(SIGINT, handle_crtl_pause);
 	wait_all(head);
+	signal(SIGINT, handle_sigint);
 }
 
 int	to_execute(t_command *head)

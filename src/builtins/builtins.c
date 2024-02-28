@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 14:18:00 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/23 21:31:39 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/27 21:43:27 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ int	is_builtin(char	*arg)
 	return (0);
 }
 
-void	builtins(t_command *command, int infile, int outfile, int flag)
+void	builtins(t_command *command, int infile, int outfile)
 {
+	// signal(SIGINT, SIG_DFL);
+	// signal(SIGQUIT, SIG_DFL);
 	if (command->is_exec == 1 && data()->is_exec_all == 1)
 	{
 		if ((ft_strcmp(command->args[0], "echo") == 0))
@@ -46,8 +48,7 @@ void	builtins(t_command *command, int infile, int outfile, int flag)
 			cd(command, outfile);
 		else if ((ft_strcmp(command->args[0], "env") == 0))
 			env(outfile);
-		else if (data()->single_cmd == 1 && \
-			(ft_strcmp(command->args[0], "export") == 0))
+		else if (ft_strcmp(command->args[0], "export") == 0)
 			ft_export(command->args, outfile);
 		else if ((ft_strcmp(command->args[0], "unset") == 0))
 			unset(command);

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:11:10 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/08 17:20:13 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:10:29 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@ static int	is_open_quotes(char *token);
 int	handle_quotes_err(t_token *lst)
 {
 	char	quotes;
-	int		len;
 	t_token	*curr;
 
 	curr = lst;
 	while (curr)
 	{
-		len = ft_strlen(curr->token) - 1;
 		quotes = is_open_quotes(curr->token);
 		if (quotes)
 			return (msg_error(lst, (char []){quotes, '\0'}, 1));
@@ -106,11 +104,9 @@ int	handle_pipe_err(t_token *lst)
 static int	is_open_quotes(char *token)
 {
 	int		i;
-	int		j;
 	char	quotes;
 
 	i = 0;
-	j = 0;
 	while (token[i])
 	{
 		quotes = '\0';
