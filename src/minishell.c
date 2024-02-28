@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/26 16:50:54 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/28 22:06:04 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	init_process(char *line)
 	t_redirect	*redirect;
 	t_prompt	*prompt;
 
+	if (!ft_strcmp(line, "./minishell"))
+		data()->sigcat = 1;
 	tokens = ft_lexer(line);
 	args = NULL;
 	parser_args(&args, tokens);
