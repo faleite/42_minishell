@@ -1,5 +1,9 @@
 # Testes da linha de comando
 
+# ./minishell
+./minishell 
+./minishell Quit
+
 # parser
 ```bash
 echo ""$"" # ok
