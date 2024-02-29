@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:26:00 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/27 21:26:05 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/28 22:24:24 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	handle_sigint_hd(int sig)
 	{
 		data()->exit_status = 130;
 		data()->h_flag = 1;
-		write(1, "\n", 1);
+		write(1, "^C\n", 3);
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		data()->signal = 0;
