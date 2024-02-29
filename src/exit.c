@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:27:08 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/29 15:57:32 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:23:52 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,11 @@ void	unlink_heredoc(void)
 {
 	if (access("/tmp/heredoc_file", F_OK) == 0)
 		unlink("/tmp/heredoc_file");
+}
+
+void	cmdline_utils(char **line)
+{
+	free(*line);
+	*line = NULL;
+	unlink_heredoc();
 }

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/27 21:15:06 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:25:20 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_args		*insert_end_args(t_args **root);
 int			ft_strcmp(char *s1, char *s2);
 int			count_tokens(char **tokens);
 int			is_redirect(char *token);
+void		cmdline_utils(char **line);
 void		free_arr(char **arr);
 
 /* Errors */
@@ -82,6 +83,6 @@ void		print_tokens(t_token *root);
 void		handle_sigint(int sig);
 void		handle_sigint_hd(int sig);
 void		handle_sigint_clean(int sig);
-void		handle_crtl_pause(int sig);
+void		handle_signext(int sig);
 
 #endif /* PARSER_H */

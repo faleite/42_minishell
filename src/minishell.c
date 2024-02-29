@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/28 22:06:04 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:24:54 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ void	init_process(char *line)
 	t_redirect	*redirect;
 	t_prompt	*prompt;
 
-	if (!ft_strcmp(line, "./minishell"))
-		data()->sigcat = 1;
 	tokens = ft_lexer(line);
 	args = NULL;
 	parser_args(&args, tokens);
@@ -82,6 +80,8 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 		return (ft_putstr_fd("Error: Wrong arguments\n", 2));
 	while (true)
 	{
+		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, handle_sigint);
 		if (!cmd_line)
 			cmd_line = readline("[minishell]$ ");
 		if (!cmd_line)
@@ -98,9 +98,7 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 			if (!sintax_errors(cmd_line) && ft_strlen(cmd_line) > 0)
 				init_process(cmd_line);
 		}
-		free(cmd_line);
-		cmd_line = NULL;
-		unlink_heredoc();
+		cmdline_utils(&cmd_line);
 	}
 	return (0);
 }
@@ -110,8 +108,6 @@ int	main(int ac, char *av[], char *envp[])
 	char	*cmd_line;
 
 	cmd_line = NULL;
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, handle_sigint);
 	cmdline(cmd_line, envp, ac, av);
 	return (data()->exit_status);
 }

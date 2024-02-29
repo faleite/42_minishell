@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:26:00 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/28 22:24:24 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:26:17 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	handle_sigint_hd(int sig)
 	}
 }
 
-void	handle_crtl_pause(int sig)
+void	handle_signext(int sig)
 {
-	if (sig == SIGINT)
+	if (sig == SIGINT || sig == SIGQUIT)
 		return ;
 }
 
