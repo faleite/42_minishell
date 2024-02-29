@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:06:27 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/29 15:56:28 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/29 19:02:45 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@ t_command	*init_exec(t_prompt *prompt);
 char		*var_path(void);
 
 // Enviroment variables management
-void		ft_fillenvp(char *envp[]);
-void		ft_envp(char *envp[]);
-t_envp		*getev(void);
 t_envparr	*getevarr(void);
 
 int			ft_open_all(t_command *current);
@@ -33,7 +30,6 @@ int			ft_open_all(t_command *current);
 int			exit_final(void);
 int			exit_finald(void);
 int			clean_newline(void);
-void		print_envp(t_envp *head);
 void		print_commands(t_command *head);
 void		free_struct(t_command *head);
 char		*add_name(char *str);
@@ -42,7 +38,6 @@ t_data		*data(void);
 t_envp		*insert_end_envp(t_envp **head);
 t_envp		*get_node(char *name);
 
-void		free_path(char *str);
 void		free_envp(t_envp *head);
 void		free_struct(t_command *head);
 void		free_prompt2(t_prompt *head);
