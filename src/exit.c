@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:27:08 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/23 22:01:58 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:57:32 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	exit_final(void)
 
 int	clean_newline(void)
 {
+	fuck_fds();
 	free_arr(getevarr()->envp);
 	free_struct(data()->exec);
 	free_envp(data()->envp);

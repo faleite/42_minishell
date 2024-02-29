@@ -6,11 +6,12 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:26:39 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/02/26 17:30:41 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:55:56 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <stdio.h>
 
 void	check_open(t_command *current, int i)
 {
@@ -56,4 +57,16 @@ int	index_last_infile(t_command *current)
 			ret = i;
 	}
 	return (ret);
+}
+
+void	fuck_fds(void)
+{
+	size_t	fd;
+
+	fd = 3;
+	while (fd < FOPEN_MAX)
+	{
+		close(fd);
+		fd++;
+	}
 }
