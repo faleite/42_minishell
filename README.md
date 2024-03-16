@@ -25,7 +25,7 @@
 Este projeto consiste em recriar o seu próprio **(mini)shell**, tendo como referência o **bash** (Bourne Again SHell). Este foi o nosso primeiro projeto de grupo da ***Escola 42***, e tive a honra de o fazer com o [Felipe Silva](https://github.com/filipeedensilva).
 
 ## Overview
-### O que contém este minishell:
+### Sobre este minishell:
 #### Modo interativo
 * Exibir um **prompt** ao aguardar um novo comando.
   * Na forma interativa o **Shell** aceita entradas digitadas do teclado.
