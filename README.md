@@ -10,94 +10,22 @@
 
  Skills | Grade |
 :------:|:-----:|
-[**Unix**] [**Rigor**] [**Imperative programming**] | **Subscribed :atom:**
-<!-- **:white_check_mark: 100%** -->
+[**Unix**] [**Rigor**] [**Imperative programming**] | **:white_check_mark: 101%**
+<!--  **Subscribed :atom:** -->
 
-<!-- * ### [Introduction]() -->
-* ### [Mandatory part](#mandatory-part-1)
-* ### [Mind Map](./dcs/readme/mind_map.md)
-<!-- * ### [Mind Map](#mind-map-1) -->
-* ### [Overview](./dcs/readme/bash_brief.md)
-<!-- * ### [Overview](#overview-1) -->
+* ### [Introduction](#introduction)
+* ### [Overview](#overview)
+* ### [Parser](#organização-do-lexer-parser-e-expander)
+* ### [Bash brief](#bash-brief-1)
 <!-- * ### [Usage]() -->
 * ### [Study resources](#study-resources-1)
 <!-- * ### [Tools]() -->
-<!-- * ### [Workflow]() -->
 
-## Mandatory part
-*Subject Comentado**
+## Introduction
+Este projeto consiste em recriar o seu próprio **(mini)shell**, tendo como referência o **bash** (Bourne Again SHell). Este foi o nosso primeiro projeto de grupo da ***Escola 42***, e tive a honra de o fazer com o [Felipe Silva](https://github.com/filipeedensilva).
 
-Program name | minishell
------------- | ---------
-Turn in files| Makefile, *.h, *.c
-Makefile     | NAME, all, clean, fclean, re
-Arguments    | None
-External functs.| readline, rl_clear_history, rl_on_new_line, rl_replace_line, rl_redisplay, add_history, printf, malloc, free, write, access, open, read, close, fork, wait, waitpid, wait3, wait4, signal, sigaction, sigemptyset, sigaddset, kill, exit, getcwd, chdir, stat, lstat, fstat, unlink, execve, dup, dup2, pipe, opendir, readdir, closedir, strerror, perror, isatty, ttyname, ttyslot, ioctl, getenv, tcsetattr, tcgetattr, tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
-Libft authorized | Yes
-Description  | Write a shell
-
-### Funcoes externas:
-<details>
-  <summary>Click to expand </summary>
-  
-Funcoes externas | Header | Brief
-------- | ------ | -----
-**readline** | `<readline/readline.h>` | Fornece facilidades para leitura de linhas de texto de entrada.
-**rl_clear_history** | `<readline/readline.h>` | Limpa o histórico de comandos no readline.
-**rl_on_new_line** | `<readline/readline.h>` |  Informa ao readline que a próxima leitura deve começar em uma nova linha.
-**rl_replace_line** | `<readline/readline.h>` | Substitui a linha de entrada atual no readline.
-**rl_redisplay** | `<readline/readline.h>` | Redesenha a linha de entrada no readline.
-**add_history** | `<readline/history.h>` | Adiciona uma linha ao histórico do readline.
-**printf** | `<stdio.h>` | Imprime texto formatado no console.
-**malloc** | `<stdlib.h>` | Aloca memória dinamicamente.
-**free** | `<stdlib.h>` | Libera a memória alocada dinamicamente.
-**write** | `<unistd.h>` | Escreve dados em um descritor de arquivo.
-**access** | `<unistd.h>` | Verifica a existência e permissões de arquivos.
-**open** | `<fcntl.h>` | Abre ou cria um arquivo.
-**read** | `<unistd.h>` | Lê dados de um descritor de arquivo.
-**close** | `<unistd.h>` | Fecha um descritor de arquivo.
-**fork** | `<unistd.h>` | Cria um novo processo (fork).
-**wait** | `<sys/wait.h>` | Aguardam o término de um processo filho.
-**waitpid** | `<sys/wait.h>` | Aguardam o término de um processo filho.
-**wait3** | `<sys/wait.h>` | Aguardam o término de um processo filho.
-**wait4** | `<sys/wait.h>` | Aguardam o término de um processo filho.
-**signal** | `<signal.h>` | Manipulam sinais.
-**sigaction** | `<signal.h>` | Manipulam sinais.
-**sigemptyset** | `<signal.h>` | Manipulam sinais.
-**sigaddset** | `<signal.h>` | Manipulam sinais.
-**kill** | `<signal.h>` | Envia um sinal para um processo.
-**exit** | `<stdlib.h>` | Encerra o processo 
-**getcwd** | `<unistd.h>` | Obtém o diretório de trabalho atual. 
-**chdir** | `<unistd.h>` | Muda o diretório de trabalho. 
-**stat** | `<sys/stat.h>` | Obtêm informações sobre arquivos.
-**lstat** | `<sys/stat.h>` | Obtêm informações sobre arquivos.
-**fstat** | `<sys/stat.h>` | Obtêm informações sobre arquivos.
-**unlink** | `<unistd.h>` | Remove um arquivo.
-**execve** | `<unistd.h>` | Executa um programa. 
-**dup** | `<unistd.h>` | Duplicam descritores de arquivo.
-**dup2** | `<unistd.h>` | Duplicam descritores de arquivo.
-**pipe** | `<unistd.h>` | Cria um pipe.
-**opendir** | `<dirent.h>` | Manipulam diretórios.
-**readdir** | `<dirent.h>` | Manipulam diretórios.
-**closedir** | `<dirent.h>` | Manipulam diretórios.
-**strerror** | `<string.h>` | Convertem códigos de erro em mensagens de erro.
-**perror** | `<string.h>` | Convertem códigos de erro em mensagens de erro.
-**isatty** | `<unistd.h>` | Manipulam informações do terminal. 
-**ttyname** | `<unistd.h>` | Manipulam informações do terminal. 
-**ttyslot** | `<unistd.h>` | Manipulam informações do terminal. 
-**ioctl** | `<ioctl.h>` | Controla dispositivos.
-**getenv** | `<stdlib.h>` | Obtém o valor de uma variável de ambiente.
-**tcsetattr** | `<termios.h>` | Configuram e obtêm atributos do terminal.
-**tcgetattr** | `<termios.h>` | Configuram e obtêm atributos do terminal.
-**tgetent** | `<term.h>` | Gerenciam terminais com capacidades ANSI.
-**tgetflag** | `<term.h>` | Gerenciam terminais com capacidades ANSI.
-**tgetnum** | `<term.h>` | Gerenciam terminais com capacidades ANSI.
-**tgetstr** | `<term.h>` | Gerenciam terminais com capacidades ANSI.
-**tgoto** | `<term.h>` | Gerenciam terminais com capacidades ANSI.
-**tputs** | `<term.h>` | Gerenciam terminais com capacidades ANSI.
-</details>
-
-### Seu shell deve:
+## Overview
+### O que contém este minishell:
 #### Modo interativo
 * Exibir um **prompt** ao aguardar um novo comando.
   * Na forma interativa o **Shell** aceita entradas digitadas do teclado.
@@ -168,29 +96,85 @@ Deve se expandir para o status de saída do pipeline em primeiro plano executado
 6. `env` sem opções ou argumentos: *Mostra as variáveis de ambiente.*
 7. `exit` sem opções: *Sai do shell.*
     - O comando `exit` no Bash é usado para terminar uma sessão de terminal. Ele fecha a shell atual. Se você estiver em uma sessão de terminal interativa, o terminal será fechado. Se o terminal estiver sendo executado como um processo filho (subshell), o processo filho será encerrado e o terminal pai permanecerá aberto.
----
-  *A função **readline()** pode causar vazamentos de memória. Você não precisa consertá-los. Mas isso **não significa que seu próprio código, sim, o código que você escreveu, pode ter memmory leaks**.*
 
-***Você deve se limitar à descrição do assunto. Tudo o que não é pedido não é obrigatório. Se você tiver alguma dúvida sobre algum requisito, tome o [bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/) como referência.***
+#### Funcoes externas autorizadas:
+<details>
+  <summary>Click to expand </summary>
+  
+Funcoes externas | Header | Brief
+------- | ------ | -----
+**readline** | `<readline/readline.h>` | Fornece facilidades para leitura de linhas de texto de entrada.
+**rl_clear_history** | `<readline/readline.h>` | Limpa o histórico de comandos no readline.
+**rl_on_new_line** | `<readline/readline.h>` |  Informa ao readline que a próxima leitura deve começar em uma nova linha.
+**rl_replace_line** | `<readline/readline.h>` | Substitui a linha de entrada atual no readline.
+**rl_redisplay** | `<readline/readline.h>` | Redesenha a linha de entrada no readline.
+**add_history** | `<readline/history.h>` | Adiciona uma linha ao histórico do readline.
+**printf** | `<stdio.h>` | Imprime texto formatado no console.
+**malloc** | `<stdlib.h>` | Aloca memória dinamicamente.
+**free** | `<stdlib.h>` | Libera a memória alocada dinamicamente.
+**write** | `<unistd.h>` | Escreve dados em um descritor de arquivo.
+**access** | `<unistd.h>` | Verifica a existência e permissões de arquivos.
+**open** | `<fcntl.h>` | Abre ou cria um arquivo.
+**read** | `<unistd.h>` | Lê dados de um descritor de arquivo.
+**close** | `<unistd.h>` | Fecha um descritor de arquivo.
+**fork** | `<unistd.h>` | Cria um novo processo (fork).
+**wait** | `<sys/wait.h>` | Aguardam o término de um processo filho.
+**waitpid** | `<sys/wait.h>` | Aguardam o término de um processo filho.
+**wait3** | `<sys/wait.h>` | Aguardam o término de um processo filho.
+**wait4** | `<sys/wait.h>` | Aguardam o término de um processo filho.
+**signal** | `<signal.h>` | Manipulam sinais.
+**sigaction** | `<signal.h>` | Manipulam sinais.
+**sigemptyset** | `<signal.h>` | Manipulam sinais.
+**sigaddset** | `<signal.h>` | Manipulam sinais.
+**kill** | `<signal.h>` | Envia um sinal para um processo.
+**exit** | `<stdlib.h>` | Encerra o processo 
+**getcwd** | `<unistd.h>` | Obtém o diretório de trabalho atual. 
+**chdir** | `<unistd.h>` | Muda o diretório de trabalho. 
+**stat** | `<sys/stat.h>` | Obtêm informações sobre arquivos.
+**lstat** | `<sys/stat.h>` | Obtêm informações sobre arquivos.
+**fstat** | `<sys/stat.h>` | Obtêm informações sobre arquivos.
+**unlink** | `<unistd.h>` | Remove um arquivo.
+**execve** | `<unistd.h>` | Executa um programa. 
+**dup** | `<unistd.h>` | Duplicam descritores de arquivo.
+**dup2** | `<unistd.h>` | Duplicam descritores de arquivo.
+**pipe** | `<unistd.h>` | Cria um pipe.
+**opendir** | `<dirent.h>` | Manipulam diretórios.
+**readdir** | `<dirent.h>` | Manipulam diretórios.
+**closedir** | `<dirent.h>` | Manipulam diretórios.
+**strerror** | `<string.h>` | Convertem códigos de erro em mensagens de erro.
+**perror** | `<string.h>` | Convertem códigos de erro em mensagens de erro.
+**isatty** | `<unistd.h>` | Manipulam informações do terminal. 
+**ttyname** | `<unistd.h>` | Manipulam informações do terminal. 
+**ttyslot** | `<unistd.h>` | Manipulam informações do terminal. 
+**ioctl** | `<ioctl.h>` | Controla dispositivos.
+**getenv** | `<stdlib.h>` | Obtém o valor de uma variável de ambiente.
+**tcsetattr** | `<termios.h>` | Configuram e obtêm atributos do terminal.
+**tcgetattr** | `<termios.h>` | Configuram e obtêm atributos do terminal.
+**tgetent** | `<term.h>` | Gerenciam terminais com capacidades ANSI.
+**tgetflag** | `<term.h>` | Gerenciam terminais com capacidades ANSI.
+**tgetnum** | `<term.h>` | Gerenciam terminais com capacidades ANSI.
+**tgetstr** | `<term.h>` | Gerenciam terminais com capacidades ANSI.
+**tgoto** | `<term.h>` | Gerenciam terminais com capacidades ANSI.
+**tputs** | `<term.h>` | Gerenciam terminais com capacidades ANSI.
+</details>
 
-[↑ Index ↑](#mandatory-part)
+[↑ Index ↑](#introduction)
 
-<!-- ## Mind Map
-
-### Parser
+## Organização do lexer, parser e expander
+> *Please make sure to do a `lexer` -> `parser` -> `expander` -> `executor` to make your life easier.*
+### Lexer
 ```mermaid
 ---
 noteAlign: left
 ---
 %%{ init: { "theme": 'dark', "nodeAlignment": 'left' } }%%
 graph TB
-    A(["< Makefile cat| echo #quot;$PWD < > | 'hola'#quot; #quot;$HOME#quot;/src | 'tr' -d / >outfile"])
-    B(["<\2Makefile\2cat\2|\2echo\2#quot;$PWD < > | 'hola'#quot;\2#quot;$HOME#quot;/src\2|\2'tr'\2-d\2/\2>\2outfile"])
-    C[("< Makefile
+    A(["< Makefile cat | echo #quot;$PWD 'hola'#quot; ~/src | 'tr' -d/>outfile"])
+    B[("< Makefile
     cat|
     echo
-    #quot;/home/n_user/minishell 'hola'#quot;
-    #quot;/home/n_user#quot;/src
+    #quot;$PWD 'hola'#quot;
+    ~/src
     |
     'tr'
     -d
@@ -201,8 +185,21 @@ graph TB
     cat
     |
     echo
+    #quot;$PWD 'hola'#quot;
+    ~/src
+    |
+    'tr'
+    -d
+    /
+    >
+    outifile")]
+    C[("<
+    Makefile
+    cat
+    |
+    echo
     #quot;/home/n_user/minishell 'hola'#quot;
-    #quot;/home/n_user#quot;/src
+    /home/n_user/src
     |
     'tr'
     -d
@@ -222,90 +219,35 @@ graph TB
     /
     >
     outifile")]
-    A =="handle_quotes
-    replace_spaces"==> B
-    A =="expander_outside
-    expander_inside"==> C
-    A ==ft_split==> D
-    A ==strtrim_quotes==> E
-    E ~~~ H
-    A === H
-    subgraph fill_structs
-        F{{"struct1
-        full_cmd : cat
-        full_path   : cat
-        pid         : -1
-        infile      : 3
-        outfile     : 1"}}
-        G{{"struct2
-        full_cmd : echo ; /home/n_user/minishell 'hola' ; /home/n_user/src
-        full_path   : NULL
-        pid         : -1
-        infile      : 0
-        outfile     : 1"}}
-        H{{"struct3
-        full_cmd : tr ; -d ; /
-        full_path   : tr
-        pid         : -1
-        infile      : 0
-        outfile     : 4"}}
-    end
+    A ==split geral==> B
+    A =="expand_vars
+    expand_path"==> C
+    A ==split pipes/redirections==> D
+    A ==trim quotes==> E
 ```
-
-### Minishell
+### Parser 
 ```mermaid
 %%{ init: { 'theme': 'dark' } }%%
 graph LR
-	A((main))-.->B
-	A-.->D
-	A-.->C
-	A-.->I
-	I-.->Q
-	D([prompt])-.->E
-	I([parse_args])
-	Q([builtins])
-	Q-.->R
-	Q-.->S
-	S-.->T
-	subgraph  
-		R([env])
-		S([exc])
-		T([get_cmd])
-	end
-	subgraph  
-		B([signal])
-		C([error])
-	end
-	I-.->J
-	I-.->K
-	I-.->L
-	I-.->M
-	K-.->N
-	K-.->O
-	O-.->P
-	subgraph  
-		J([ft_cmdtrim])
-		K([fill_node])
-		L([expand])
-		M([ft_cmdsubsplit])
-		N([ft_strtrim_all])
-		O([get_params])
-		P([herdoc])
-	end
-	E-.->F
-	E-.->G
-	E-.->H
-	subgraph  
-		E([custom_cmd])
-		F([env])
-		G([herdoc])
-		H([get_next_line])
-	end
+    F{{"struct1
+    args: cat
+    id: 3 (infile)
+    id args: Makefile"}}
+    F--pipe---G
+    G{{"struct2
+    args: echo, /home/n_user/minishell 'hola', /home/n_user/src
+    id: 0 (no args)
+    id args: (null)"}}
+    G--pipe---H
+    H{{"struct3
+    args: tr, -d, /
+    id: 4 (outfile)
+    id args: outfile"}}
 ```
 
-[↑ Index ↑](#mandatory-part)
+[↑ Index ↑](#introduction)
 
-## Overview
+## Bash brief
 ### [Resumo manual do Bash](https://www.gnu.org/software/bash/manual/bash.html)
 >*Bourne-Again Shell*
 
@@ -640,13 +582,11 @@ Estes são os recursos especiais do POSIX :
 ### Interação Readline
 Muitas vezes, durante uma sessão interativa, você digita uma longa linha de texto, apenas para perceber que a primeira palavra da linha está escrita incorretamente. A biblioteca Readline oferece um conjunto de comandos para manipular o texto conforme você o digita, permitindo apenas corrigir o erro de digitação e não forçando você a redigitar a maior parte da linha. Utilizando esses comandos de edição, você move o cursor até o local que precisa de correção e apaga ou insere o texto das correções. Então, quando estiver satisfeito com a linha, basta pressionar RET . Você não precisa estar no final da linha para pressionar RET ; a linha inteira é aceita independentemente da localização do cursor dentro da linha.
 
-[↑ Index ↑](#mandatory-part) -->
+[↑ Index ↑](#introduction)
 
 ## Study resources
-### Links
 - [Bash Reference Manual](https://www.gnu.org/software/bash/manual/bash.html)
 - [Book -> Writing Your Own Shell](https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf)
-  - *Please make sure to do a `lexer` -> `parser` -> `expander` -> `executor` to make your life easier.*
 - [Repo -> madebypixel02](https://github.com/madebypixel02/minishell)
 - [Repo -> Swoorup](https://github.com/Swoorup/mysh)
 - [Article -> Building a mini-bash](https://m4nnb3ll.medium.com/minishell-building-a-mini-bash-a-42-project-b55a10598218)
@@ -654,8 +594,4 @@ Muitas vezes, durante uma sessão interativa, você digita uma longa linha de te
 - [Test your shell](https://github.com/ChewyToast/mpanic) 
 <!-- - [Article -> Shell Scripting Tutorial](https://www.shellscript.sh/) -->
 
-[↑ Index ↑](#mandatory-part)
-
- <!-- ## Workflow
-<details>
-  <summary>Click to expand </summary> -->
+[↑ Index ↑](#introduction)
