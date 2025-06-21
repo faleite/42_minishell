@@ -6,11 +6,15 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:21:53 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/02/29 19:04:58 by faaraujo         ###   ########.fr       */
+/*   Updated: 2025/06/21 23:50:59 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+#define BOLD    "\033[1m"
+#define GREEN   "\033[0;32m"
+#define RESET   "\033[0m"
 
 /**
 * DEBUGS:
@@ -82,7 +86,7 @@ int	cmdline(char *cmd_line, char **envp, int ac, char **av)
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, handle_sigint);
 		if (!cmd_line)
-			cmd_line = readline("[minishell]$ ");
+			cmd_line = readline(GREEN BOLD "[minishell]$ " RESET);
 		if (!cmd_line)
 			exit_finald();
 		if (!just_spaces(cmd_line))
